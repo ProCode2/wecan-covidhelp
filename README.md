@@ -1,8 +1,4 @@
 # WBCAN webpage
-### Update [May 21]
-+ renamed insta handle to current handle for wbcan 
-+ fixed district names 
-+ fixed broken github link
 
 ### Update [May 19]
 + Disclaimer is now on every page
