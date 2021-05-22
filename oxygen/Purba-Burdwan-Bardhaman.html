@@ -439,8 +439,8 @@ a:hover{
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post">
+            <div class="wrapper">
+                <article class="post">
 
   <header class="post-header">
     <h1 class="post-title">Oxygen supplies</h1>
@@ -524,8 +524,8 @@ a:hover{
 
 </article>
 
-      </div>
-    </main><footer class="site-footer h-card">
+            </div>
+        </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
 
   <div class="wrapper">
@@ -561,4 +561,17 @@ a:hover{
 </footer>
 </body>
 
+    <script>
+        window.onscroll = function() {fixSearchBar()};
+        var header = document.getElementById("myInput");
+        var sticky = header.offsetTop;
+
+        function fixSearchBar() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
 </html>

@@ -27,6 +27,41 @@
   gtag('js', new Date());
 
   gtag('config', 'G-4V3KJLL18H');
+
+  function filterSearch() {
+    var input, filter, av_divs, nav_divs, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase().trim();
+    av_divs = document.getElementsByClassName("card_av");
+    nav_divs = document.getElementsByClassName("card_nav");
+    if(filter.length > 0){
+      setDisplay(av_divs,filter);
+      setDisplay(nav_divs,filter);
+    }else{
+      console.error("Invalid input length.");
+      setAllBlock(av_divs, nav_divs);
+    }
+  }
+  function setDisplay(divs, filter) {
+    for(i = 0; i < divs.length; i++) {
+      txtValue = divs[i].innerText.toUpperCase();
+      if(txtValue.indexOf(filter) > -1) {
+        divs[i].style.display = "";
+      }
+      else {
+        divs[i].style.display = "none";
+      }
+    }
+  }
+  function setAllBlock(divs1, divs2) {
+    for(i = 0; i < divs1.length; i++) {
+      divs1[i].style.display = "";
+    }
+    for(i = 0; i < divs2.length; i++) {
+      divs2[i].style.display = "";
+    }
+  }
+
 </script>
 
 <style>
@@ -172,11 +207,8 @@ div.ex1 {
     font-family: Optima, sans-serif;
     font-size: 16px;
     font-weight: 100;
-<<<<<<< HEAD
     color: #000010;
-=======
     color: rgba(0, 0, 0, 1);
->>>>>>> 449902bb3bf83a49e949c23a7fb8d18ad7a48945
     text-transform: none;
     font-style: normal;
     text-decoration: none;
@@ -186,15 +218,19 @@ div.ex1 {
 
 
 
-/* Float four columns side by side */
 .column {
-  float: left;
-  width: 70%;
-  padding: 10px 10px;
+  width: 60%;
+  text-align: center;
+  padding: 2px;
+  margin: 0 auto
 }
 
 /* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
+.row {
+  width: 100%;
+  text-align: center;
+  padding: 7px;
+}
 
 /* Clear floats after the columns */
 .row:after {
@@ -335,6 +371,22 @@ h4{
 a:hover{
   text-decoration: none;
 }
+
+#myInput {
+  background-image: url('../assets/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 91.6%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+.sticky {
+  position: fixed;
+  top: 2px;
+  width: 50% !important;
+}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -387,8 +439,8 @@ a:hover{
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post">
+            <div class="wrapper">
+                <article class="post">
 
   <header class="post-header">
     <h1 class="post-title">Hospital Beds</h1>
@@ -398,51 +450,51 @@ a:hover{
     <div style="margin-top: 20px; text-align: left; border: none;">
 
  <br /><br />
-<div class="text_foot"><h4> Data updated at: 22, May 2021 14:00. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
+<div class="text_foot"><h4> Data updated at: 22, May 2021 22:30. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
 <div class="row">
 	<div class="column">
 <div class="card_av">
-<h3>Basirhat District Hospital</h3>
+<h3>Megacity Nursing Home</h3>
 
 <div class="info"><table>
 <tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Basirhaat</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03217  266197">03217  266197</a><a href="tel: 9832753064"> 9832753064</a><a href="tel: 1800313444222"> 1800313444222</a></th></tr>
+<tr><th>Location</th><th>Fish Market, 12, Jessore Rd, Champadali, Barasat</th></tr>
+<tr><th>Contact number</th><th><a href="tel:62903 37393">62903 37393</a><a href="tel: 033 2552 6319"> 033 2552 6319</a><a href="tel:033 2552 5069">033 2552 5069</a><a href="tel: 033 2562 7701/ Swastha Bhaban"> 033 2562 7701/ Swastha Bhaban</a></th></tr>
 <tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 15:21:04</th></tr>
+<tr><th>Verification time</th><th>5/22/2021 15:26:20</th></tr>
 <tr><th>Availability Status</th><th>Available</th></tr>
 </table></div></div>
 <div class="card_av">
-<h3>Barahnagar Sgh</h3>
+<h3>Gnrc Barasat</h3>
 
 <div class="info"><table>
 <tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Baranagar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7605057322">7605057322</a><a href="tel: 1800313444222"> 1800313444222</a></th></tr>
+<tr><th>Location</th><th>Barasat</th></tr>
+<tr><th>Contact number</th><th><a href="tel:1800313444222">1800313444222</a><a href="tel: 03325847005"> 03325847005</a><a href="tel: 03325847006"> 03325847006</a><a href="tel: 6291835619/ 9330900627"> 6291835619/ 9330900627</a></th></tr>
 <tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 15:15:41</th></tr>
+<tr><th>Verification time</th><th>5/22/2021 15:25:51</th></tr>
 <tr><th>Availability Status</th><th>Available</th></tr>
 </table></div></div>
 <div class="card_av">
-<h3>Panihati Sgh</h3>
+<h3>Baine Hospital</h3>
 
 <div class="info"><table>
 <tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Panihati</th></tr>
-<tr><th>Contact number</th><th><a href="tel:1800313444222">1800313444222</a></th></tr>
+<tr><th>Location</th><th>Bonhooghly Government Colony, Baranagar</th></tr>
+<tr><th>Contact number</th><th><a href="tel:096748 73262">096748 73262</a></th></tr>
 <tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 15:15:41</th></tr>
+<tr><th>Verification time</th><th>5/22/2021 15:24:46</th></tr>
 <tr><th>Availability Status</th><th>Available</th></tr>
 </table></div></div>
 <div class="card_av">
-<h3>Gobardanga Rh Covid Hospital</h3>
+<h3>Barasat District Hospital</h3>
 
 <div class="info"><table>
 <tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Gobardanga</th></tr>
-<tr><th>Contact number</th><th><a href="tel:1800313444222">1800313444222</a><a href="tel: 9804950032"> 9804950032</a></th></tr>
+<tr><th>Location</th><th>Barasat</th></tr>
+<tr><th>Contact number</th><th><a href="tel:1800313444222">1800313444222</a><a href="tel: 7607057313"> 7607057313</a></th></tr>
 <tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 15:15:41</th></tr>
+<tr><th>Verification time</th><th>5/22/2021 15:23:26</th></tr>
 <tr><th>Availability Status</th><th>Available</th></tr>
 </table></div></div>
 <div class="card_av">
@@ -453,7 +505,62 @@ a:hover{
 <tr><th>Location</th><th>Naihati</th></tr>
 <tr><th>Contact number</th><th><a href="tel:033 25812933">033 25812933</a><a href="tel: 1800313444222"> 1800313444222</a><a href="tel: 7439623721"> 7439623721</a></th></tr>
 <tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 15:15:41</th></tr>
+<tr><th>Verification time</th><th>5/22/2021 15:23:21</th></tr>
+<tr><th>Availability Status</th><th>Available</th></tr>
+</table></div></div>
+<div class="card_av">
+<h3>Gobardanga Rh Covid Hospital</h3>
+
+<div class="info"><table>
+<tr><th>District</th><th>North 24 Parganas</th></tr>
+<tr><th>Location</th><th>Gobardanga</th></tr>
+<tr><th>Contact number</th><th><a href="tel:1800313444222">1800313444222</a><a href="tel: 9804950032"> 9804950032</a></th></tr>
+<tr><th>Verification  Status</th><th>Verified</th></tr>
+<tr><th>Verification time</th><th>5/22/2021 15:21:12</th></tr>
+<tr><th>Availability Status</th><th>Available</th></tr>
+</table></div></div>
+<div class="card_av">
+<h3>Panihati Sgh</h3>
+
+<div class="info"><table>
+<tr><th>District</th><th>North 24 Parganas</th></tr>
+<tr><th>Location</th><th>Panihati</th></tr>
+<tr><th>Contact number</th><th><a href="tel:1800313444222">1800313444222</a></th></tr>
+<tr><th>Verification  Status</th><th>Verified</th></tr>
+<tr><th>Verification time</th><th>5/22/2021 15:21:06</th></tr>
+<tr><th>Availability Status</th><th>Available</th></tr>
+</table></div></div>
+<div class="card_av">
+<h3>Ashoknagar Sgh</h3>
+
+<div class="info"><table>
+<tr><th>District</th><th>North 24 Parganas</th></tr>
+<tr><th>Location</th><th>Ashoknagar</th></tr>
+<tr><th>Contact number</th><th><a href="tel:8145404375">8145404375</a><a href="tel: 1800313444222"> 1800313444222</a></th></tr>
+<tr><th>Verification  Status</th><th>Verified</th></tr>
+<tr><th>Verification time</th><th>5/22/2021 15:20:55</th></tr>
+<tr><th>Availability Status</th><th>Available</th></tr>
+</table></div></div>
+<div class="card_av">
+<h3>Barahnagar Sgh</h3>
+
+<div class="info"><table>
+<tr><th>District</th><th>North 24 Parganas</th></tr>
+<tr><th>Location</th><th>Baranagar</th></tr>
+<tr><th>Contact number</th><th><a href="tel:7605057322">7605057322</a><a href="tel: 1800313444222"> 1800313444222</a></th></tr>
+<tr><th>Verification  Status</th><th>Verified</th></tr>
+<tr><th>Verification time</th><th>5/22/2021 15:20:47</th></tr>
+<tr><th>Availability Status</th><th>Available</th></tr>
+</table></div></div>
+<div class="card_av">
+<h3>Basirhat District Hospital</h3>
+
+<div class="info"><table>
+<tr><th>District</th><th>North 24 Parganas</th></tr>
+<tr><th>Location</th><th>Basirhaat</th></tr>
+<tr><th>Contact number</th><th><a href="tel:03217  266197">03217  266197</a><a href="tel: 9832753064"> 9832753064</a><a href="tel: 1800313444222"> 1800313444222</a></th></tr>
+<tr><th>Verification  Status</th><th>Verified</th></tr>
+<tr><th>Verification time</th><th>5/21/2021 15:21:04</th></tr>
 <tr><th>Availability Status</th><th>Available</th></tr>
 </table></div></div>
 <div class="card_av">
@@ -468,80 +575,25 @@ a:hover{
 <tr><th>Availability Status</th><th>Available</th></tr>
 </table></div></div>
 <div class="card_nav">
-<h3>Barasat District Hospital</h3>
+<h3>Nehru Memorial Techno Global</h3>
 
 <div class="info"><table>
 <tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Barasat</th></tr>
-<tr><th>Contact number</th><th><a href="tel:1800313444222">1800313444222</a><a href="tel: 7607057313"> 7607057313</a></th></tr>
+<tr><th>Location</th><th>6, Barasat Road, Lalkuthi, Barrackpore</th></tr>
+<tr><th>Contact number</th><th><a href="tel:033 2593 0099">033 2593 0099</a><a href="tel: 033 2592 0145"> 033 2592 0145</a><a href="tel: 033 2592 9922"> 033 2592 9922</a></th></tr>
 <tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 15:20:29</th></tr>
+<tr><th>Verification time</th><th>5/22/2021 15:26:50</th></tr>
 <tr><th>Availability Status</th><th>Unavailable</th></tr>
 </table></div></div>
 <div class="card_nav">
-<h3>Ashoknagar Sgh</h3>
+<h3>Charnock Hospital</h3>
 
 <div class="info"><table>
 <tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Ashoknagar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8145404375">8145404375</a><a href="tel: 1800313444222"> 1800313444222</a></th></tr>
+<tr><th>Location</th><th>Tegharia, Newtown</th></tr>
+<tr><th>Contact number</th><th><a href="tel:033 40500500">033 40500500</a><a href="tel:033 40500501">033 40500501</a></th></tr>
 <tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 15:15:41</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Sahid Khudiram Bose Hospital  Diagnostic Centre</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>12, Barrackpore Trunk Rd, Rathtala, Belghoria, Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 2544 3250">033 2544 3250</a><a href="tel: 033 2544 8408"> 033 2544 8408</a><a href="tel: 98311 96190"> 98311 96190</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 14:32:21</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Megacity Nursing Home</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Fish Market, 12, Jessore Rd, Champadali, Barasat</th></tr>
-<tr><th>Contact number</th><th><a href="tel:62903 37393">62903 37393</a><a href="tel: 033 2552 6319"> 033 2552 6319</a><a href="tel:033 2552 5069">033 2552 5069</a><a href="tel: 033 2562 7701/ Swastha Bhaban"> 033 2562 7701/ Swastha Bhaban</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 14:31:32</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Green View Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Barrackpur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:086978 73701">086978 73701</a><a href="tel: 03325630496"> 03325630496</a><a href="tel: 9339768476"> 9339768476</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 14:30:52</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Gnrc Barasat</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Barasat</th></tr>
-<tr><th>Contact number</th><th><a href="tel:1800313444222">1800313444222</a><a href="tel: 03325847005"> 03325847005</a><a href="tel: 03325847006"> 03325847006</a><a href="tel: 6291835619/ 9330900627"> 6291835619/ 9330900627</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 14:30:46</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Baine Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Bonhooghly Government Colony, Baranagar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:096748 73262">096748 73262</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 14:30:35</th></tr>
+<tr><th>Verification time</th><th>5/22/2021 15:23:35</th></tr>
 <tr><th>Availability Status</th><th>Unavailable</th></tr>
 </table></div></div>
 </div>
@@ -551,8 +603,8 @@ a:hover{
 
 </article>
 
-      </div>
-    </main><footer class="site-footer h-card">
+            </div>
+        </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
 
   <div class="wrapper">
@@ -588,4 +640,17 @@ a:hover{
 </footer>
 </body>
 
+    <script>
+        window.onscroll = function() {fixSearchBar()};
+        var header = document.getElementById("myInput");
+        var sticky = header.offsetTop;
+
+        function fixSearchBar() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
 </html>

@@ -439,8 +439,8 @@ a:hover{
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post">
+            <div class="wrapper">
+                <article class="post">
 
   <header class="post-header">
     <h1 class="post-title">Volunteer</h1>
@@ -450,7 +450,7 @@ a:hover{
     <div style="margin-top: 20px; text-align: left; border: none;">
 
  <br /><br />
-<div class="text_foot"><h4> Data updated at: 22, May 2021 14:00. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
+<div class="text_foot"><h4> Data updated at: 22, May 2021 22:30. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
 <div class="row">
 	<div class="column">
 <div class="card_av">
@@ -841,8 +841,8 @@ a:hover{
 
 </article>
 
-      </div>
-    </main><footer class="site-footer h-card">
+            </div>
+        </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
 
   <div class="wrapper">
@@ -878,4 +878,17 @@ a:hover{
 </footer>
 </body>
 
+    <script>
+        window.onscroll = function() {fixSearchBar()};
+        var header = document.getElementById("myInput");
+        var sticky = header.offsetTop;
+
+        function fixSearchBar() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
 </html>
