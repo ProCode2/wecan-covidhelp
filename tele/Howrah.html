@@ -27,6 +27,41 @@
   gtag('js', new Date());
 
   gtag('config', 'G-4V3KJLL18H');
+
+  function filterSearch() {
+    var input, filter, av_divs, nav_divs, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase().trim();
+    av_divs = document.getElementsByClassName("card_av");
+    nav_divs = document.getElementsByClassName("card_nav");
+    if(filter.length > 0){
+      setDisplay(av_divs,filter);
+      setDisplay(nav_divs,filter);
+    }else{
+      console.error("Invalid input length.");
+      setAllBlock(av_divs, nav_divs);
+    }
+  }
+  function setDisplay(divs, filter) {
+    for(i = 0; i < divs.length; i++) {
+      txtValue = divs[i].innerText.toUpperCase();
+      if(txtValue.indexOf(filter) > -1) {
+        divs[i].style.display = "";
+      }
+      else {
+        divs[i].style.display = "none";
+      }
+    }
+  }
+  function setAllBlock(divs1, divs2) {
+    for(i = 0; i < divs1.length; i++) {
+      divs1[i].style.display = "";
+    }
+    for(i = 0; i < divs2.length; i++) {
+      divs2[i].style.display = "";
+    }
+  }
+
 </script>
 
 <style>
@@ -172,11 +207,8 @@ div.ex1 {
     font-family: Optima, sans-serif;
     font-size: 16px;
     font-weight: 100;
-<<<<<<< HEAD
     color: #000010;
-=======
     color: rgba(0, 0, 0, 1);
->>>>>>> 449902bb3bf83a49e949c23a7fb8d18ad7a48945
     text-transform: none;
     font-style: normal;
     text-decoration: none;
@@ -186,15 +218,19 @@ div.ex1 {
 
 
 
-/* Float four columns side by side */
 .column {
-  float: left;
-  width: 70%;
-  padding: 10px 10px;
+  width: 60%;
+  text-align: center;
+  padding: 2px;
+  margin: 0 auto
 }
 
 /* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
+.row {
+  width: 100%;
+  text-align: center;
+  padding: 7px;
+}
 
 /* Clear floats after the columns */
 .row:after {
@@ -335,6 +371,22 @@ h4{
 a:hover{
   text-decoration: none;
 }
+
+#myInput {
+  background-image: url('../assets/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 91.6%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+.sticky {
+  position: fixed;
+  top: 2px;
+  width: 50% !important;
+}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -398,7 +450,7 @@ a:hover{
     <div style="margin-top: 20px; text-align: left; border: none;">
 
  <br /><br />
-<div class="text_foot"><h4> Data updated at: 22, May 2021 13:45. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
+<div class="text_foot"><h4> Data updated at: 22, May 2021 14:00. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
 <div class="row">
 	<div class="column">
 <div class="card_av">
