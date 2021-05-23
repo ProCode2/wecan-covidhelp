@@ -1,4 +1,8 @@
 # WBCAN webpage
+### Update [May 22]
++ Search bar added
++ Disclaimer updated
++ Google Analytics integrated 
 
 ### Update [May 19]
 + Disclaimer is now on every page
