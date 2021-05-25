@@ -2,9 +2,9 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Ambulance | WBCAN</title>
-<meta name="generator" content="Jekyll v3.9.0" />
+<meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Ambulance" />
 <meta name="author" content="WBCAN Copyright © 2021" />
 <meta property="og:locale" content="en_US" />
@@ -13,10 +13,12 @@
 <link rel="canonical" href="http://www.wbcan.org/ambulance/Birbhum" />
 <meta property="og:url" content="http://www.wbcan.org/ambulance/Birbhum" />
 <meta property="og:site_name" content="WBCAN" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Ambulance" />
 <meta name="google-site-verification" content="shmIemKrYpRAIcUmw2hZzRij1uySn9s55BGBbLBsOto" />
 <meta name="msvalidate.01" content="F0966E9DC4FDEE6F087ADCDD6E5F6743" />
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.wbcan.org/wecan-covidhelp/assets/wbcan-logo.png"},"name":"WBCAN Copyright © 2021"},"@type":"WebPage","headline":"Ambulance","url":"http://www.wbcan.org/ambulance/Birbhum","author":{"@type":"Person","name":"WBCAN Copyright © 2021"},"description":"Connecting verified resource information with patients in need.","@context":"https://schema.org"}</script>
+{"headline":"Ambulance","url":"http://www.wbcan.org/ambulance/Birbhum","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.wbcan.org/wecan-covidhelp/assets/wbcan-logo.png"},"name":"WBCAN Copyright © 2021"},"author":{"@type":"Person","name":"WBCAN Copyright © 2021"},"@type":"WebPage","description":"Connecting verified resource information with patients in need.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://www.wbcan.org/feed.xml" title="WBCAN" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -27,6 +29,41 @@
   gtag('js', new Date());
 
   gtag('config', 'G-4V3KJLL18H');
+
+  function filterSearch() {
+    var input, filter, av_divs, nav_divs, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase().trim();
+    av_divs = document.getElementsByClassName("card_av");
+    nav_divs = document.getElementsByClassName("card_nav");
+    if(filter.length > 0){
+      setDisplay(av_divs,filter);
+      setDisplay(nav_divs,filter);
+    }else{
+      console.error("Invalid input length.");
+      setAllBlock(av_divs, nav_divs);
+    }
+  }
+  function setDisplay(divs, filter) {
+    for(i = 0; i < divs.length; i++) {
+      txtValue = divs[i].innerText.toUpperCase();
+      if(txtValue.indexOf(filter) > -1) {
+        divs[i].style.display = "";
+      }
+      else {
+        divs[i].style.display = "none";
+      }
+    }
+  }
+  function setAllBlock(divs1, divs2) {
+    for(i = 0; i < divs1.length; i++) {
+      divs1[i].style.display = "";
+    }
+    for(i = 0; i < divs2.length; i++) {
+      divs2[i].style.display = "";
+    }
+  }
+
 </script>
 
 <style>
@@ -172,11 +209,8 @@ div.ex1 {
     font-family: Optima, sans-serif;
     font-size: 16px;
     font-weight: 100;
-<<<<<<< HEAD
     color: #000010;
-=======
     color: rgba(0, 0, 0, 1);
->>>>>>> 449902bb3bf83a49e949c23a7fb8d18ad7a48945
     text-transform: none;
     font-style: normal;
     text-decoration: none;
@@ -186,15 +220,19 @@ div.ex1 {
 
 
 
-/* Float four columns side by side */
 .column {
-  float: left;
-  width: 70%;
-  padding: 10px 10px;
+  width: 60%;
+  text-align: center;
+  padding: 2px;
+  margin: 0 auto
 }
 
 /* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
+.row {
+  width: 100%;
+  text-align: center;
+  padding: 7px;
+}
 
 /* Clear floats after the columns */
 .row:after {
@@ -335,6 +373,22 @@ h4{
 a:hover{
   text-decoration: none;
 }
+
+#myInput {
+  background-image: url('../assets/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 91.6%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+.sticky {
+  position: fixed;
+  top: 2px;
+  width: 50% !important;
+}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -343,9 +397,9 @@ a:hover{
 
 
 
-  <!-- Begin Jekyll SEO tag v2.6.1 -->
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Ambulance | WBCAN</title>
-<meta name="generator" content="Jekyll v3.9.0" />
+<meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Ambulance" />
 <meta name="author" content="WBCAN Copyright © 2021" />
 <meta property="og:locale" content="en_US" />
@@ -354,10 +408,12 @@ a:hover{
 <link rel="canonical" href="http://www.wbcan.org/ambulance/Birbhum" />
 <meta property="og:url" content="http://www.wbcan.org/ambulance/Birbhum" />
 <meta property="og:site_name" content="WBCAN" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Ambulance" />
 <meta name="google-site-verification" content="shmIemKrYpRAIcUmw2hZzRij1uySn9s55BGBbLBsOto" />
 <meta name="msvalidate.01" content="F0966E9DC4FDEE6F087ADCDD6E5F6743" />
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.wbcan.org/wecan-covidhelp/assets/wbcan-logo.png"},"name":"WBCAN Copyright © 2021"},"@type":"WebPage","headline":"Ambulance","url":"http://www.wbcan.org/ambulance/Birbhum","author":{"@type":"Person","name":"WBCAN Copyright © 2021"},"description":"Connecting verified resource information with patients in need.","@context":"https://schema.org"}</script>
+{"headline":"Ambulance","url":"http://www.wbcan.org/ambulance/Birbhum","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.wbcan.org/wecan-covidhelp/assets/wbcan-logo.png"},"name":"WBCAN Copyright © 2021"},"author":{"@type":"Person","name":"WBCAN Copyright © 2021"},"@type":"WebPage","description":"Connecting verified resource information with patients in need.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 </head>
 <body><header class="site-header" style="background-color: #eeeeee;">
@@ -387,39 +443,41 @@ a:hover{
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post">
+            <div class="wrapper">
+                <article class="post">
 
   <header class="post-header">
     <h1 class="post-title">Ambulance</h1>
   </header>
 
   <div class="post-content">
-    <div class="row">
+    <div style="margin-top: 20px; text-align: left; border: none;">
+<input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search.." />
+
+ <br /><br />
+<div class="text_foot"><h4> Data updated at: 25, May 2021 18:15. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
+<div class="row">
 	<div class="column">
 <div class="card_av">
-<h3>Iccu Ambulance</h3>
+<h3>Sudip</h3>
 
 <div class="info"><table>
-<tr><th>Location</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9831756858">9831756858</a><a href="tel: 8013687821"> 8013687821</a><a href="tel: 8910352905"> 8910352905</a></th></tr>
+<tr><th>District</th><th>Birbhum</th></tr>
+<tr><th>Location</th><th>Birbhum</th></tr>
+<tr><th>Contact number</th><th><a href="tel:8926324005">8926324005</a></th></tr>
 <tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/17/2021 18:53:17</th></tr>
+<tr><th>Verification time</th><th>5/25/2021 18:06:06</th></tr>
 <tr><th>Availability Status</th><th>Available</th></tr>
 </table></div></div>
 </div>
  </div>
-<div style="margin-top: 20px; text-align: left; border: none;">
-
- <br /><br />
-<div class="text_foot"><h4> Data updated at: 17, May 2021 19:30 </h4> </div></div>
 
   </div>
 
 </article>
 
-      </div>
-    </main><footer class="site-footer h-card">
+            </div>
+        </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
 
   <div class="wrapper">
@@ -447,7 +505,7 @@ a:hover{
       </div>
     </div>
 
-    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://www.facebook.com/groups%2F338484847687812%2F" title="groups/338484847687812/"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#facebook"></use></svg></a></li><li><a rel="me" href="https://github.com/debjyoti0891%2Fwecan-covidhelp" title="debjyoti0891/wecan-covidhelp"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.instagram.com/wbcan_official" title="wbcan_official"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#instagram"></use></svg></a></li><li><a rel="me" href="https://twitter.com/WBCAN2" title="WBCAN2"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://www.facebook.com/groups%2F338484847687812%2F" title="groups/338484847687812/"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#facebook"></use></svg></a></li><li><a rel="me" href="https://github.com/debjyoti0891/wecan-covidhelp" title="debjyoti0891/wecan-covidhelp"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.instagram.com/wbcan_covidresources" title="wbcan_covidresources"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#instagram"></use></svg></a></li><li><a rel="me" href="https://twitter.com/WBCAN2" title="WBCAN2"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
 </div>
 
   </div>
@@ -455,4 +513,17 @@ a:hover{
 </footer>
 </body>
 
+    <script>
+        window.onscroll = function() {fixSearchBar()};
+        var header = document.getElementById("myInput");
+        var sticky = header.offsetTop;
+
+        function fixSearchBar() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
 </html>
