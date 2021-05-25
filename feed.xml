@@ -1,46 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://www.wbcan.org/feed.xml" rel="self" type="application/atom+xml" /><link href="http://www.wbcan.org/" rel="alternate" type="text/html" /><updated>2021-05-25T18:25:43+02:00</updated><id>http://www.wbcan.org/feed.xml</id><title type="html">WBCAN</title><subtitle>Connecting verified resource information with patients in need. </subtitle><author><name>WBCAN Copyright © 2021</name></author><entry><title type="html">How to treat someone with Covid-19 at home</title><link href="http://www.wbcan.org/home/2021/05/01/detect.html" rel="alternate" type="text/html" title="How to treat someone with Covid-19 at home" /><published>2021-05-01T18:32:56+02:00</published><updated>2021-05-01T18:32:56+02:00</updated><id>http://www.wbcan.org/home/2021/05/01/detect</id><content type="html" xml:base="http://www.wbcan.org/home/2021/05/01/detect.html">&lt;h3 id=&quot;most-common-symptoms&quot;&gt;Most common symptoms:&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://www.wbcan.org/feed.xml" rel="self" type="application/atom+xml" /><link href="http://www.wbcan.org/" rel="alternate" type="text/html" /><updated>2021-05-25T18:30:12+02:00</updated><id>http://www.wbcan.org/feed.xml</id><title type="html">WBCAN</title><subtitle>Connecting verified resource information with patients in need. </subtitle><author><name>WBCAN Copyright © 2021</name></author><entry><title type="html">How to treat someone with Covid-19 at home</title><link href="http://www.wbcan.org/home/2021/05/01/detect.html" rel="alternate" type="text/html" title="How to treat someone with Covid-19 at home" /><published>2021-05-01T18:32:56+02:00</published><updated>2021-05-01T18:32:56+02:00</updated><id>http://www.wbcan.org/home/2021/05/01/detect</id><content type="html" xml:base="http://www.wbcan.org/home/2021/05/01/detect.html">### Most common symptoms:
 
-&lt;ul&gt;
-  &lt;li&gt;Fever&lt;/li&gt;
-  &lt;li&gt;Dry cough&lt;/li&gt;
-  &lt;li&gt;Tiredness&lt;/li&gt;
-&lt;/ul&gt;
+- Fever
+- Dry cough
+- Tiredness
 
-&lt;h3 id=&quot;less-common-symptoms&quot;&gt;Less common symptoms:&lt;/h3&gt;
+### Less common symptoms:
 
-&lt;ul&gt;
-  &lt;li&gt;Aches and pains&lt;/li&gt;
-  &lt;li&gt;Sore throat&lt;/li&gt;
-  &lt;li&gt;Diarrhoea&lt;/li&gt;
-  &lt;li&gt;Conjunctivitis&lt;/li&gt;
-  &lt;li&gt;Headache&lt;/li&gt;
-  &lt;li&gt;Loss of taste or smell&lt;/li&gt;
-  &lt;li&gt;A rash on skin, or discolouration of fingers or toes&lt;/li&gt;
-&lt;/ul&gt;
+- Aches and pains
+- Sore throat
+- Diarrhoea
+- Conjunctivitis
+- Headache
+- Loss of taste or smell
+- A rash on skin, or discolouration of fingers or toes
 
-&lt;h3 id=&quot;serious-symptoms&quot;&gt;Serious symptoms:&lt;/h3&gt;
+### Serious symptoms:
 
-&lt;ul&gt;
-  &lt;li&gt;Difficulty breathing or shortness of breath&lt;/li&gt;
-  &lt;li&gt;Chest pain or pressure&lt;/li&gt;
-  &lt;li&gt;Loss of speech or movement&lt;/li&gt;
-&lt;/ul&gt;
+- Difficulty breathing or shortness of breath
+- Chest pain or pressure
+- Loss of speech or movement
 &lt;div class=&quot;text_highlight&quot;&gt; Seek immediate medical attention if you have serious symptoms. Always call before visiting your doctor or health facility.&lt;/div&gt;
 
-&lt;p&gt;People with mild symptoms who are otherwise healthy should manage their symptoms at home. On average it takes 5–6 days from when someone is infected with the virus for symptoms to show, however it can take up to 14 days.&lt;/p&gt;</content><author><name>WBCAN Copyright © 2021</name></author><category term="home" /><category term="covid" /><category term="home" /><category term="treatment" /><category term="faq" /><summary type="html">Most common symptoms:</summary></entry><entry><title type="html">How to know if you have Covid-19</title><link href="http://www.wbcan.org/home/2021/05/01/treat.html" rel="alternate" type="text/html" title="How to know if you have Covid-19" /><published>2021-05-01T18:32:56+02:00</published><updated>2021-05-01T18:32:56+02:00</updated><id>http://www.wbcan.org/home/2021/05/01/treat</id><content type="html" xml:base="http://www.wbcan.org/home/2021/05/01/treat.html">&lt;p&gt;After exposure to someone who has Covid-19, do the following:&lt;/p&gt;
+People with mild symptoms who are otherwise healthy should manage their symptoms at home. On average it takes 5–6 days from when someone is infected with the virus for symptoms to show, however it can take up to 14 days.</content><author><name>WBCAN Copyright © 2021</name></author><category term="home" /><category term="covid" /><category term="home" /><category term="treatment" /><category term="faq" /><summary type="html">Most common symptoms:</summary></entry><entry><title type="html">How to know if you have Covid-19</title><link href="http://www.wbcan.org/home/2021/05/01/treat.html" rel="alternate" type="text/html" title="How to know if you have Covid-19" /><published>2021-05-01T18:32:56+02:00</published><updated>2021-05-01T18:32:56+02:00</updated><id>http://www.wbcan.org/home/2021/05/01/treat</id><content type="html" xml:base="http://www.wbcan.org/home/2021/05/01/treat.html">After exposure to someone who has Covid-19, do the following:
 
-&lt;ul&gt;
-  &lt;li&gt;Call your health care provider or Covid-19 hotline to find out where and when to get a test.&lt;/li&gt;
-  &lt;li&gt;Cooperate with contact-tracing procedures to stop the spread of the virus.&lt;/li&gt;
-  &lt;li&gt;If testing is not available, stay home and away from others for 14 days.&lt;/li&gt;
-  &lt;li&gt;While you are in quarantine, do not go to work, to school or to public places. Ask someone to bring you supplies.&lt;/li&gt;
-  &lt;li&gt;Keep at least a 1-metre distance from others, even from your family members.&lt;/li&gt;
-  &lt;li&gt;Wear a medical mask to protect others, including if/when you need to seek medical care.&lt;/li&gt;
-  &lt;li&gt;Clean your hands frequently.&lt;/li&gt;
-  &lt;li&gt;Stay in a separate room from other family members, and if not possible, wear a medical mask.&lt;/li&gt;
-  &lt;li&gt;Keep the room well-ventilated.&lt;/li&gt;
-  &lt;li&gt;If you share a room, place beds at least 1 metre apart.&lt;/li&gt;
-  &lt;li&gt;Monitor yourself for any symptoms for 14 days.&lt;/li&gt;
-  &lt;li&gt;Call your health care provider immediately if you have any of these danger signs: difficulty breathing, loss of speech or mobility, confusion or chest pain.&lt;/li&gt;
-  &lt;li&gt;Stay positive by keeping in touch with loved ones by phone or online, and by exercising at home.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>WBCAN Copyright © 2021</name></author><category term="home" /><category term="covid" /><category term="home" /><category term="treatment" /><category term="faq" /><summary type="html">After exposure to someone who has Covid-19, do the following:</summary></entry></feed>
+- Call your health care provider or Covid-19 hotline to find out where and when to get a test.
+- Cooperate with contact-tracing procedures to stop the spread of the virus.
+- If testing is not available, stay home and away from others for 14 days.
+- While you are in quarantine, do not go to work, to school or to public places. Ask someone to bring you supplies.
+- Keep at least a 1-metre distance from others, even from your family members.
+- Wear a medical mask to protect others, including if/when you need to seek medical care.
+- Clean your hands frequently.
+- Stay in a separate room from other family members, and if not possible, wear a medical mask.
+- Keep the room well-ventilated.
+- If you share a room, place beds at least 1 metre apart.
+- Monitor yourself for any symptoms for 14 days.
+- Call your health care provider immediately if you have any of these danger signs: difficulty breathing, loss of speech or mobility, confusion or chest pain.
+- Stay positive by keeping in touch with loved ones by phone or online, and by exercising at home.</content><author><name>WBCAN Copyright © 2021</name></author><category term="home" /><category term="covid" /><category term="home" /><category term="treatment" /><category term="faq" /><summary type="html">After exposure to someone who has Covid-19, do the following:</summary></entry></feed>
