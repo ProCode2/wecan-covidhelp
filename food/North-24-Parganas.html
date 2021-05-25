@@ -22,13 +22,18 @@
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://www.wbcan.org/feed.xml" title="WBCAN" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
-  gtag('config', 'G-4V3KJLL18H');
+  gtag("config", "G-4V3KJLL18H");
 
   function filterSearch() {
     var input, filter, av_divs, nav_divs, i, txtValue;
@@ -36,368 +41,438 @@
     filter = input.value.toUpperCase().trim();
     av_divs = document.getElementsByClassName("card_av");
     nav_divs = document.getElementsByClassName("card_nav");
-    if(filter.length > 0){
-      setDisplay(av_divs,filter);
-      setDisplay(nav_divs,filter);
-    }else{
+    if (filter.length > 0) {
+      setDisplay(av_divs, filter);
+      setDisplay(nav_divs, filter);
+    } else {
       console.error("Invalid input length.");
       setAllBlock(av_divs, nav_divs);
     }
   }
   function setDisplay(divs, filter) {
-    for(i = 0; i < divs.length; i++) {
+    for (i = 0; i < divs.length; i++) {
       txtValue = divs[i].innerText.toUpperCase();
-      if(txtValue.indexOf(filter) > -1) {
+      if (txtValue.indexOf(filter) > -1) {
         divs[i].style.display = "";
-      }
-      else {
+      } else {
         divs[i].style.display = "none";
       }
     }
   }
   function setAllBlock(divs1, divs2) {
-    for(i = 0; i < divs1.length; i++) {
+    for (i = 0; i < divs1.length; i++) {
       divs1[i].style.display = "";
     }
-    for(i = 0; i < divs2.length; i++) {
+    for (i = 0; i < divs2.length; i++) {
       divs2[i].style.display = "";
     }
   }
 
+  function copyToClipboard(text, id) {
+    document.querySelector(`#${id}`).style.background = "#5ef345";
+    setTimeout(function () {
+      document.querySelector(`#${id}`).style.background = "lightgray";
+    }, 3000);
+    let temp = document.createElement("textarea");
+    document.body.appendChild(temp);
+    temp.value = text;
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+  }
 </script>
 
 <style>
-  .button0 {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button1 {
-    background-color: #4c7aaf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button2 {
-    background-color: #a8af4c;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button3 {
-    background-color: #e6518f;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button4 {
-    background-color: #5e4caf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button5 {
-    background-color: #7782d3;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+    .head-and-copy {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0 10px 0;
+    }
 
-  .sp{
-  width: 10px;
-  padding-right: 15px;
-  background-color: #bdbbc5;
-  padding: 4px 12px;
-  }
+    .card-head {
+      font-weight: 700;
+      font-size: 1.1rem !important;
+      margin: 0 !important;
+    }
 
-  .highlight{
-  font-family: ABeeZee, sans-serif;
-  background-color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(99, 82, 82, 1);
-  text-transform: none;
-  font-style: normal;
-  text-decoration: none;
-  line-height: 1.6em;
-  letter-spacing: 0.7px;
-  }
-  .headHi{
+    .copy-to-clip-board {
+      background-color: lightgray;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .copy-to-clip-board > img {
+      width: 15px;
+      height: 15px;
+    }
+
+    .button0 {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button1 {
+      background-color: #4c7aaf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button2 {
+      background-color: #a8af4c;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button3 {
+      background-color: #e6518f;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button4 {
+      background-color: #5e4caf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button5 {
+      background-color: #7782d3;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .sp{
+    width: 10px;
+    padding-right: 15px;
+    background-color: #bdbbc5;
+    padding: 4px 12px;
+    }
+
+    .highlight{
     font-family: ABeeZee, sans-serif;
-    font-size: 26px;
+    background-color: #ffffff;
+    font-size: 16px;
     font-weight: 600;
-    color: rgba(77, 63, 63, 1);
+    color: rgba(99, 82, 82, 1);
     text-transform: none;
     font-style: normal;
     text-decoration: none;
     line-height: 1.6em;
     letter-spacing: 0.7px;
-}
-
-.introtext{
-    font-family: Verdana, sans-serif;
-    font-size: 16px;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.datetext{
-    font-family: Courier New, sans-serif;
-    font-size: 16px;
-    background-color: #eeeeee;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.divtext{
-  background-color: rgb(214, 226, 226);
-}
-
-div.ex1 {
-  width: 150px;
-  margin: auto;
-  border: 3px solid #73AD21;
-}
-.introhightext{
-    font-family: Optima, sans-serif;
-    font-size: 16px;
-    font-weight: 100;
-    color: #000010;
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 0em;
-    letter-spacing: 0px;
-}
-
-
-
-.column {
-  width: 60%;
-  text-align: center;
-  padding: 2px;
-  margin: 0 auto
-}
-
-/* Remove extra left and right margins, due to padding */
-.row {
-  width: 100%;
-  text-align: center;
-  padding: 7px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive columns */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
+    }
+    .headHi{
+      font-family: ABeeZee, sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: rgba(77, 63, 63, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.6em;
+      letter-spacing: 0.7px;
   }
-}
+
+  .introtext{
+      font-family: Verdana, sans-serif;
+      font-size: 16px;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .datetext{
+      font-family: Courier New, sans-serif;
+      font-size: 16px;
+      background-color: #eeeeee;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .divtext{
+    background-color: rgb(214, 226, 226);
+  }
+
+  div.ex1 {
+    width: 150px;
+    margin: auto;
+    border: 3px solid #73AD21;
+  }
+  .introhightext{
+      font-family: Optima, sans-serif;
+      font-size: 16px;
+      font-weight: 100;
+      color: #000010;
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 0em;
+      letter-spacing: 0px;
+  }
 
 
 
-.card_av {
-  padding: 16px;
-  text-align: center;
-  background-color: #bdfcd5;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  .column {
+    width: 60%;
+    text-align: center;
+    padding: 2px;
+    margin: 0 auto
+  }
 
-.card_nav {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  padding: 16px;
-  text-align: center;
-  background-color: #e49e9e;
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  /* Remove extra left and right margins, due to padding */
+  .row {
+    width: 100%;
+    text-align: center;
+    padding: 7px;
+  }
 
-.text_highlight{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 14px;
-  background-color: rgb(247, 194, 194);
-  text-align: justify;
-}
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
-.text_reg{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
-
-.text_foot{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 10px;
-  color:rgb(157, 158, 158);
-  text-align: justify;
-}
-
-.info {
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
-  padding: 2px;
-  text-align: left;
-  background-color: #f8f9fc;
-}
-
-
-/* button group css */
-.btn-group button {
-  background-color: #04AA6D; /* Green background */
-  border: 1px solid green; /* Green border */
-  color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  width: 50%; /* Set a width if needed */
-  display: block; /* Make the buttons appear below each other */
-}
-
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-  background-color: #3e8e41;
-}
-
-
-.cards {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-}
-
-/* CRAZY CARDS */ 
-
-
-/* buttons in intro */
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px !important;
-  margin-bottom: 15px;
-  font-size: inherit !important;
-}
-
-a:hover{
-  text-decoration: none;
-}
-
-#myInput {
-  background-image: url('../assets/css/searchicon.png');
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 91.6%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-.sticky {
-  position: fixed;
-  top: 2px;
-  width: 50% !important;
-}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-/* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
-  </style>
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
 
 
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
+  .card_av {
+    margin: 18px;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #bdfcd5;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .card_nav {
+    margin: 18px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #e49e9e;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .resource-info {
+    width: 44%;
+    text-align: left;
+  }
+
+  .resource-title {
+    font-weight: 600;
+    margin-right: 8px;
+  }
+
+  .resource-time {
+    font-family: monospace;
+    font-size: 14px;
+    border-top: 1px solid lightgray;
+    padding: 10px;
+    text-align: right;
+  }
+
+  .card-verified {
+    background-color: lightgreen;
+    border-radius: 50%;
+    padding: 8px;
+    margin-left: 8px;
+  }
+
+  .card-verified img {
+    width: 17px;
+    height: 17px;
+  }
+
+  .text_highlight{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    background-color: rgb(247, 194, 194);
+    text-align: justify;
+  }
+
+  .text_reg{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .text_foot{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    color:rgb(157, 158, 158);
+    text-align: justify;
+  }
+
+  .info {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    padding: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 10px;
+  }
+
+
+  /* button group css */
+  .btn-group button {
+    background-color: #04AA6D; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+  }
+
+  .btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+  }
+
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }
+
+
+  .cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  /* CRAZY CARDS */
+
+
+  /* buttons in intro */
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px !important;
+    margin-bottom: 15px;
+    font-size: inherit !important;
+  }
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  #myInput {
+    background-image: url('../assets/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 91.6%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  .sticky {
+    position: fixed;
+    top: 2px;
+    width: 50% !important;
+  }
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  /* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
+</style>
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Food | WBCAN</title>
 <meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Food" />
@@ -415,6 +490,7 @@ a:hover{
 <script type="application/ld+json">
 {"headline":"Food","url":"http://www.wbcan.org/food/North-24-Parganas","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.wbcan.org/wecan-covidhelp/assets/wbcan-logo.png"},"name":"WBCAN Copyright © 2021"},"author":{"@type":"Person","name":"WBCAN Copyright © 2021"},"@type":"WebPage","description":"Connecting verified resource information with patients in need.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+
 </head>
 <body><header class="site-header" style="background-color: #eeeeee;">
 
@@ -431,9 +507,7 @@ a:hover{
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/tools/">
-               Helplines
-            </a><a class="page-link" href="/faq/">
+        <div class="trigger"><a class="page-link" href="/faq/">
                Covid-19 FAQ
             </a><a class="page-link" href="/contribute/">
                Volunteer
@@ -455,315 +529,326 @@ a:hover{
 <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search.." />
 
  <br /><br />
-<div class="text_foot"><h4> Data updated at: 25, May 2021 21:45. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
+<div class="text_foot"><h4> Data updated at: 25, May 2021 21:55. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
 <div class="row">
 	<div class="column">
-<div class="card_av">
-<h3>Arijit Mukherjee</h3>
+<div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Arijit Mukherjee</h3>
 
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Salt Lake</th></tr>
-<tr><th>Contact number</th><th><a href="tel:89810873761/9831443759/8910840476">89810873761/9831443759/8910840476</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/7/2021 1:46:55</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Under The Supervision Of Mla Somnath Shyam</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Jagaddal Area</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6291811024/9330393407">6291811024/9330393407</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/22/2021 11:31:26</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Pointo</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Barrackpore</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7596987777">7596987777</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 20:08:53</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Home Delivery</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Salt Lake</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9874624389">9874624389</a><a href="tel: 9903005387"> 9903005387</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/13/2021 16:38:41</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ritam</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Barrackporesinthi More, Santoshpur, Baruipur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7479134353">7479134353</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/13/2021 15:25:20</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Khao By Ritik Lal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Barrackpore</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6291530266">6291530266</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 15:08:25</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shreyas Cafe</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Bangur, Laketown, Salt Lake</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7439752707">7439752707</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:56:28</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ready 2 Serve</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Newtown</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9330386851">9330386851</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:45:14</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Unnati Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Laketown</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9830610008">9830610008</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:34:38</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Nitus Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Laketown, Bangur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9330122223">9330122223</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:21:29</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Subhra Mukherjee</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Barasat</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8902105897">8902105897</a><a href="tel: 9143156680"> 9143156680</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 12:52:19</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Akash Guha Roy</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Barrackpur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:918777068028">918777068028</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 10:45:00</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Home Delivery</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Barrackpore</th></tr>
-<tr><th>Contact number</th><th><a href="tel:918777068028">918777068028</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 10:40:23</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Home Delivery</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Ichapur, Palta, Shyamnagar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9748768390">9748768390</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/10/2021 8:55:39</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Meghnath Doloi</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Ghoshpur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9002619893">9002619893</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>4/28/2021 12:16:37</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Suvendu Samanta</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Ghoshpur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9932414398">9932414398</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>4/28/2021 12:15:21</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Sejuti</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Free Meal Halishahar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8617224535">8617224535</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Goopi Gyne, Bagha Byne</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Palta</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8100611018">8100611018</a><a href="tel: 9007098293"> 9007098293</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/8/2021 19:43:35</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Timir Dutta Chowdhury</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Sodepur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9830237797">9830237797</a><a href="tel:9830200860">9830200860</a><a href="tel: 7890830905"> 7890830905</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/8/2021 19:38:46</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Ahare Bahare</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Sodepur, Khardah, Madhya Gram,Agarpara,Belghoria,Kamarhati,Dumdum,Titagargh</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051620985">9051620985</a><a href="tel: 9593030365"> 9593030365</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/8/2021 19:35:44</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Anushongik / Sanjoy Saha</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Kankurgachi, Salt Lake Sector 1, Ultadanga, Phoolbagan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051478526">9051478526</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/7/2021 1:42:10</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Adrija</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Free Meal Sodepur To Kalyani</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6291575300">6291575300</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/7/2021 1:41:18</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Red Volunteers Barrackpore</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Barrackpore</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8697111856">8697111856</a><a href="tel: 8777068028"> 8777068028</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/4/2021 16:14:59</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Heshel By Red Volunteers Kamarhati</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Kamarhati</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9674953080">9674953080</a><a href="tel: 9674604148"> 9674604148</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/4/2021 16:02:11</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Sayani Sengupta</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Salt Lake, Lake Town, Rajarhat, Kestopur, Baguiati, Nagerbazar, Vip Road, Bangur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9903583823">9903583823</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:49:11</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Maa Er Heshel</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8013093423">8013093423</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:49:03</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Ra Seek</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Salt Lake, Rajarhat, Newton,Chinarpark,Bhangur Laketown</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7980847805">7980847805</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:59</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Calcutta Cookbook</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Salt Lake</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051339185">9051339185</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Shyam And Showmen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>North 24 Parganas</th></tr>
-<tr><th>Location</th><th>Barrackpore</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7059850084">7059850084</a><a href="tel: 7003754228"> 7003754228</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 15:09:27</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
+<span id="nbhqu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Arijit Mukherjee, District: North 24 Parganas, Verification  Status: Verified, Location: Salt lake, Availability Status: Available, Contact number: 89810873761/9831443759/8910840476, Verification time: 5/7/2021 1:46:55, ', 'nbhqu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Salt Lake</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:89810873761/9831443759/8910840476">89810873761/9831443759/8910840476</a></div>
 </div>
- </div>
+</div>
+<div class="resource-time">5/7/2021 1:46:55<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Under The Supervision Of Mla Somnath Shyam</h3>
+
+<span id="zwmgq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: under the supervision of MLA Somnath Shyam, District: North 24 Parganas, Verification  Status: Verified, Location: Jagaddal area, Availability Status: Available, Contact number: 6291811024/9330393407, Verification time: 5/22/2021 11:31:26, ', 'zwmgq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Jagaddal Area</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6291811024/9330393407">6291811024/9330393407</a></div>
+</div>
+</div>
+<div class="resource-time">5/22/2021 11:31:26<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Pointo</h3>
+
+<span id="xryll" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Pointo, District: North 24 Parganas, Verification  Status: Verified, Location: Barrackpore, Availability Status: Available, Contact number: 7596987777, Verification time: 5/21/2021 20:08:53, ', 'xryll');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barrackpore</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7596987777">7596987777</a></div>
+</div>
+</div>
+<div class="resource-time">5/21/2021 20:08:53<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Home Delivery</h3>
+
+<span id="ugjid" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: HOME DELIVERY, District: North 24 Parganas, Verification  Status: Verified, Location: Salt Lake, Availability Status: Available, Contact number: 9874624389, 9903005387, Verification time: 5/13/2021 16:38:41, ', 'ugjid');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Salt Lake</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9874624389">9874624389</a></div>
+<div><a href="tel: 9903005387"> 9903005387</a></div>
+</div>
+</div>
+<div class="resource-time">5/13/2021 16:38:41<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ritam</h3>
+
+<span id="rdncl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ritam, District: North 24 Parganas, Verification  Status: Verified, Location: BarrackporeSinthi More, Santoshpur, Baruipur, Availability Status: Available, Contact number: 7479134353, Verification time: 5/13/2021 15:25:20, ', 'rdncl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barrackporesinthi More, Santoshpur, Baruipur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7479134353">7479134353</a></div>
+</div>
+</div>
+<div class="resource-time">5/13/2021 15:25:20<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Khao By Ritik Lal</h3>
+
+<span id="jpdfl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Khao by Ritik Lal, District: North 24 Parganas, Verification  Status: Verified, Location: Barrackpore, Availability Status: Available, Contact number: 6291530266, Verification time: 5/11/2021 15:08:25, ', 'jpdfl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barrackpore</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6291530266">6291530266</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 15:08:25<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shreyas Cafe</h3>
+
+<span id="lcmdd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shreyas Cafe, District: North 24 Parganas, Verification  Status: Verified, Location: Bangur, Laketown, Salt Lake, Availability Status: Available, Contact number: 7439752707, Verification time: 5/11/2021 13:56:28, ', 'lcmdd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bangur, Laketown, Salt Lake</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7439752707">7439752707</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:56:28<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ready 2 Serve</h3>
+
+<span id="gnpfk" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ready 2 Serve, District: North 24 Parganas, Verification  Status: Verified, Location: Newtown, Availability Status: Available, Contact number: 9330386851, Verification time: 5/11/2021 13:45:14, ', 'gnpfk');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Newtown</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9330386851">9330386851</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:45:14<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Unnati Kitchen</h3>
+
+<span id="ynlyd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Unnati Kitchen, District: North 24 Parganas, Verification  Status: Verified, Location: Laketown, Availability Status: Available, Contact number: 9830610008, Verification time: 5/11/2021 13:34:38, ', 'ynlyd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Laketown</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9830610008">9830610008</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:34:38<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Nitus Kitchen</h3>
+
+<span id="gsxnj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Nitus Kitchen, District: North 24 Parganas, Verification  Status: Verified, Location: Laketown, Bangur, Availability Status: Available, Contact number: 9330122223, Verification time: 5/11/2021 13:21:29, ', 'gsxnj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Laketown, Bangur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9330122223">9330122223</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:21:29<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Subhra Mukherjee</h3>
+
+<span id="sbpnm" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Subhra Mukherjee, District: North 24 Parganas, Verification  Status: Verified, Location: Barasat, Availability Status: Available, Contact number: 8902105897, 9143156680, Verification time: 5/11/2021 12:52:19, ', 'sbpnm');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barasat</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8902105897">8902105897</a></div>
+<div><a href="tel: 9143156680"> 9143156680</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 12:52:19<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Akash Guha Roy</h3>
+
+<span id="klqxv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Akash guha roy, District: North 24 Parganas, Verification  Status: Verified, Location: Barrackpur, Availability Status: Available, Contact number: 918777068028, Verification time: 5/11/2021 10:45:00, ', 'klqxv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barrackpur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:918777068028">918777068028</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 10:45:00<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Home Delivery</h3>
+
+<span id="vdvqo" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: HOME DELIVERY, District: North 24 Parganas, Verification  Status: Verified, Location: Barrackpore, Availability Status: Available, Contact number: 918777068028, Verification time: 5/11/2021 10:40:23, ', 'vdvqo');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barrackpore</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:918777068028">918777068028</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 10:40:23<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Home Delivery</h3>
+
+<span id="tnetb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: HOME DELIVERY, District: North 24 Parganas, Verification  Status: Verified, Location: Ichapur, Palta, Shyamnagar, Availability Status: Available, Contact number: 9748768390, Verification time: 5/10/2021 8:55:39, ', 'tnetb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ichapur, Palta, Shyamnagar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9748768390">9748768390</a></div>
+</div>
+</div>
+<div class="resource-time">5/10/2021 8:55:39<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Meghnath Doloi</h3>
+
+<span id="dkptc" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Meghnath Doloi, District: North 24 Parganas, Verification  Status: Verified, Location: Ghoshpur, Availability Status: Available, Contact number: 9002619893, Verification time: 4/28/2021 12:16:37, ', 'dkptc');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ghoshpur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9002619893">9002619893</a></div>
+</div>
+</div>
+<div class="resource-time">4/28/2021 12:16:37<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Suvendu Samanta</h3>
+
+<span id="aiphb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Suvendu Samanta, District: North 24 Parganas, Verification  Status: Verified, Location: Ghoshpur, Availability Status: Available, Contact number: 9932414398, Verification time: 4/28/2021 12:15:21, ', 'aiphb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ghoshpur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9932414398">9932414398</a></div>
+</div>
+</div>
+<div class="resource-time">4/28/2021 12:15:21<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Sejuti</h3>
+
+<span id="kpnur" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: sejuti, District: North 24 Parganas, Verification  Status: Verified, Location: Free meal Halishahar, Availability Status: Info Missing, Contact number: 8617224535, Verification time: Info Missing, ', 'kpnur');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Free Meal Halishahar</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8617224535">8617224535</a></div>
+</div>
+</div>
+<div class="resource-time">Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Goopi Gyne, Bagha Byne</h3>
+
+<span id="bvgtp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Goopi gyne, Bagha byne, District: North 24 Parganas, Verification  Status: Verified, Location: Palta, Availability Status: Info Missing, Contact number: 8100611018, 9007098293, Verification time: 5/8/2021 19:43:35, ', 'bvgtp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Palta</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8100611018">8100611018</a></div>
+<div><a href="tel: 9007098293"> 9007098293</a></div>
+</div>
+</div>
+<div class="resource-time">5/8/2021 19:43:35<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Timir Dutta Chowdhury</h3>
+
+<span id="gvmrd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Timir Dutta chowdhury, District: North 24 Parganas, Verification  Status: Verified, Location: Sodepur, Availability Status: Info Missing, Contact number: 9830237797,9830200860, 7890830905, Verification time: 5/8/2021 19:38:46, ', 'gvmrd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Sodepur</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9830237797">9830237797</a></div>
+<div><a href="tel:9830200860">9830200860</a></div>
+<div><a href="tel: 7890830905"> 7890830905</a></div>
+</div>
+</div>
+<div class="resource-time">5/8/2021 19:38:46<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Ahare Bahare</h3>
+
+<span id="seczx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ahare Bahare, District: North 24 Parganas, Verification  Status: Verified, Location: Sodepur, khardah, madhya gram,Agarpara,Belghoria,Kamarhati,Dumdum,titagargh, Availability Status: Info Missing, Contact number: 9051620985, 9593030365, Verification time: 5/8/2021 19:35:44, ', 'seczx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Sodepur, Khardah, Madhya Gram,Agarpara,Belghoria,Kamarhati,Dumdum,Titagargh</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051620985">9051620985</a></div>
+<div><a href="tel: 9593030365"> 9593030365</a></div>
+</div>
+</div>
+<div class="resource-time">5/8/2021 19:35:44<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Anushongik / Sanjoy Saha</h3>
+
+<span id="owxjf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Anushongik / Sanjoy saha, District: North 24 Parganas, Verification  Status: Verified, Location: Kankurgachi, salt lake sector 1, Ultadanga, phoolbagan, Availability Status: Info Missing, Contact number: 9051478526, Verification time: 5/7/2021 1:42:10, ', 'owxjf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kankurgachi, Salt Lake Sector 1, Ultadanga, Phoolbagan</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051478526">9051478526</a></div>
+</div>
+</div>
+<div class="resource-time">5/7/2021 1:42:10<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Adrija</h3>
+
+<span id="twnjj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Adrija, District: North 24 Parganas, Verification  Status: Verified, Location: Free meal Sodepur to kalyani, Availability Status: Info Missing, Contact number: 6291575300, Verification time: 5/7/2021 1:41:18, ', 'twnjj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Free Meal Sodepur To Kalyani</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6291575300">6291575300</a></div>
+</div>
+</div>
+<div class="resource-time">5/7/2021 1:41:18<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteers Barrackpore</h3>
+
+<span id="icooh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red volunteers Barrackpore, District: North 24 Parganas, Verification  Status: Verified, Location: Barrackpore, Availability Status: Info Missing, Contact number: 8697111856, 8777068028, Verification time: 5/4/2021 16:14:59, ', 'icooh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barrackpore</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8697111856">8697111856</a></div>
+<div><a href="tel: 8777068028"> 8777068028</a></div>
+</div>
+</div>
+<div class="resource-time">5/4/2021 16:14:59<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Heshel By Red Volunteers Kamarhati</h3>
+
+<span id="jkskv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Heshel by red volunteers kamarhati, District: North 24 Parganas, Verification  Status: Verified, Location: Kamarhati, Availability Status: Info Missing, Contact number: 9674953080, 9674604148, Verification time: 5/4/2021 16:02:11, ', 'jkskv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kamarhati</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9674953080">9674953080</a></div>
+<div><a href="tel: 9674604148"> 9674604148</a></div>
+</div>
+</div>
+<div class="resource-time">5/4/2021 16:02:11<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Sayani Sengupta</h3>
+
+<span id="mfnry" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: sayani sengupta, District: North 24 Parganas, Verification  Status: Verified, Location: salt lake, lake town, rajarhat, kestopur, baguiati, nagerbazar, vip road, bangur, Availability Status: Info Missing, Contact number: 9903583823, Verification time: 5/3/2021 12:49:11, ', 'mfnry');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Salt Lake, Lake Town, Rajarhat, Kestopur, Baguiati, Nagerbazar, Vip Road, Bangur</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9903583823">9903583823</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:49:11<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Maa Er Heshel</h3>
+
+<span id="alwdx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Maa er heshel, District: North 24 Parganas, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 8013093423, Verification time: 5/3/2021 12:49:03, ', 'alwdx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8013093423">8013093423</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:49:03<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Ra Seek</h3>
+
+<span id="zkqep" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ra seek, District: North 24 Parganas, Verification  Status: Verified, Location: Salt lake, Rajarhat, Newton,chinarpark,bhangur Laketown, Availability Status: Info Missing, Contact number: 7980847805, Verification time: 5/3/2021 12:48:59, ', 'zkqep');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Salt Lake, Rajarhat, Newton,Chinarpark,Bhangur Laketown</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7980847805">7980847805</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:59<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Calcutta Cookbook</h3>
+
+<span id="ypmlb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Calcutta cookbook, District: North 24 Parganas, Verification  Status: Verified, Location: Salt lake, Availability Status: Info Missing, Contact number: 9051339185, Verification time:  Info Missing, ', 'ypmlb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Salt Lake</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051339185">9051339185</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Shyam And Showmen</h3>
+
+<span id="viakl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shyam and Showmen, District: North 24 Parganas, Verification  Status: Verified, Location: Barrackpore, Availability Status: Unavailable, Contact number: 7059850084, 7003754228, Verification time: 5/11/2021 15:09:27, ', 'viakl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>North 24 Parganas</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barrackpore</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7059850084">7059850084</a></div>
+<div><a href="tel: 7003754228"> 7003754228</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 15:09:27<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div></div>
+</div>
 
   </div>
 

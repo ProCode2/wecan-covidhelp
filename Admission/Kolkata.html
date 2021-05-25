@@ -22,13 +22,18 @@
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://www.wbcan.org/feed.xml" title="WBCAN" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
-  gtag('config', 'G-4V3KJLL18H');
+  gtag("config", "G-4V3KJLL18H");
 
   function filterSearch() {
     var input, filter, av_divs, nav_divs, i, txtValue;
@@ -36,368 +41,438 @@
     filter = input.value.toUpperCase().trim();
     av_divs = document.getElementsByClassName("card_av");
     nav_divs = document.getElementsByClassName("card_nav");
-    if(filter.length > 0){
-      setDisplay(av_divs,filter);
-      setDisplay(nav_divs,filter);
-    }else{
+    if (filter.length > 0) {
+      setDisplay(av_divs, filter);
+      setDisplay(nav_divs, filter);
+    } else {
       console.error("Invalid input length.");
       setAllBlock(av_divs, nav_divs);
     }
   }
   function setDisplay(divs, filter) {
-    for(i = 0; i < divs.length; i++) {
+    for (i = 0; i < divs.length; i++) {
       txtValue = divs[i].innerText.toUpperCase();
-      if(txtValue.indexOf(filter) > -1) {
+      if (txtValue.indexOf(filter) > -1) {
         divs[i].style.display = "";
-      }
-      else {
+      } else {
         divs[i].style.display = "none";
       }
     }
   }
   function setAllBlock(divs1, divs2) {
-    for(i = 0; i < divs1.length; i++) {
+    for (i = 0; i < divs1.length; i++) {
       divs1[i].style.display = "";
     }
-    for(i = 0; i < divs2.length; i++) {
+    for (i = 0; i < divs2.length; i++) {
       divs2[i].style.display = "";
     }
   }
 
+  function copyToClipboard(text, id) {
+    document.querySelector(`#${id}`).style.background = "#5ef345";
+    setTimeout(function () {
+      document.querySelector(`#${id}`).style.background = "lightgray";
+    }, 3000);
+    let temp = document.createElement("textarea");
+    document.body.appendChild(temp);
+    temp.value = text;
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+  }
 </script>
 
 <style>
-  .button0 {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button1 {
-    background-color: #4c7aaf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button2 {
-    background-color: #a8af4c;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button3 {
-    background-color: #e6518f;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button4 {
-    background-color: #5e4caf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button5 {
-    background-color: #7782d3;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+    .head-and-copy {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0 10px 0;
+    }
 
-  .sp{
-  width: 10px;
-  padding-right: 15px;
-  background-color: #bdbbc5;
-  padding: 4px 12px;
-  }
+    .card-head {
+      font-weight: 700;
+      font-size: 1.1rem !important;
+      margin: 0 !important;
+    }
 
-  .highlight{
-  font-family: ABeeZee, sans-serif;
-  background-color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(99, 82, 82, 1);
-  text-transform: none;
-  font-style: normal;
-  text-decoration: none;
-  line-height: 1.6em;
-  letter-spacing: 0.7px;
-  }
-  .headHi{
+    .copy-to-clip-board {
+      background-color: lightgray;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .copy-to-clip-board > img {
+      width: 15px;
+      height: 15px;
+    }
+
+    .button0 {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button1 {
+      background-color: #4c7aaf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button2 {
+      background-color: #a8af4c;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button3 {
+      background-color: #e6518f;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button4 {
+      background-color: #5e4caf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button5 {
+      background-color: #7782d3;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .sp{
+    width: 10px;
+    padding-right: 15px;
+    background-color: #bdbbc5;
+    padding: 4px 12px;
+    }
+
+    .highlight{
     font-family: ABeeZee, sans-serif;
-    font-size: 26px;
+    background-color: #ffffff;
+    font-size: 16px;
     font-weight: 600;
-    color: rgba(77, 63, 63, 1);
+    color: rgba(99, 82, 82, 1);
     text-transform: none;
     font-style: normal;
     text-decoration: none;
     line-height: 1.6em;
     letter-spacing: 0.7px;
-}
-
-.introtext{
-    font-family: Verdana, sans-serif;
-    font-size: 16px;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.datetext{
-    font-family: Courier New, sans-serif;
-    font-size: 16px;
-    background-color: #eeeeee;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.divtext{
-  background-color: rgb(214, 226, 226);
-}
-
-div.ex1 {
-  width: 150px;
-  margin: auto;
-  border: 3px solid #73AD21;
-}
-.introhightext{
-    font-family: Optima, sans-serif;
-    font-size: 16px;
-    font-weight: 100;
-    color: #000010;
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 0em;
-    letter-spacing: 0px;
-}
-
-
-
-.column {
-  width: 60%;
-  text-align: center;
-  padding: 2px;
-  margin: 0 auto
-}
-
-/* Remove extra left and right margins, due to padding */
-.row {
-  width: 100%;
-  text-align: center;
-  padding: 7px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive columns */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
+    }
+    .headHi{
+      font-family: ABeeZee, sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: rgba(77, 63, 63, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.6em;
+      letter-spacing: 0.7px;
   }
-}
+
+  .introtext{
+      font-family: Verdana, sans-serif;
+      font-size: 16px;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .datetext{
+      font-family: Courier New, sans-serif;
+      font-size: 16px;
+      background-color: #eeeeee;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .divtext{
+    background-color: rgb(214, 226, 226);
+  }
+
+  div.ex1 {
+    width: 150px;
+    margin: auto;
+    border: 3px solid #73AD21;
+  }
+  .introhightext{
+      font-family: Optima, sans-serif;
+      font-size: 16px;
+      font-weight: 100;
+      color: #000010;
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 0em;
+      letter-spacing: 0px;
+  }
 
 
 
-.card_av {
-  padding: 16px;
-  text-align: center;
-  background-color: #bdfcd5;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  .column {
+    width: 60%;
+    text-align: center;
+    padding: 2px;
+    margin: 0 auto
+  }
 
-.card_nav {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  padding: 16px;
-  text-align: center;
-  background-color: #e49e9e;
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  /* Remove extra left and right margins, due to padding */
+  .row {
+    width: 100%;
+    text-align: center;
+    padding: 7px;
+  }
 
-.text_highlight{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 14px;
-  background-color: rgb(247, 194, 194);
-  text-align: justify;
-}
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
-.text_reg{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
-
-.text_foot{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 10px;
-  color:rgb(157, 158, 158);
-  text-align: justify;
-}
-
-.info {
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
-  padding: 2px;
-  text-align: left;
-  background-color: #f8f9fc;
-}
-
-
-/* button group css */
-.btn-group button {
-  background-color: #04AA6D; /* Green background */
-  border: 1px solid green; /* Green border */
-  color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  width: 50%; /* Set a width if needed */
-  display: block; /* Make the buttons appear below each other */
-}
-
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-  background-color: #3e8e41;
-}
-
-
-.cards {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-}
-
-/* CRAZY CARDS */ 
-
-
-/* buttons in intro */
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px !important;
-  margin-bottom: 15px;
-  font-size: inherit !important;
-}
-
-a:hover{
-  text-decoration: none;
-}
-
-#myInput {
-  background-image: url('../assets/css/searchicon.png');
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 91.6%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-.sticky {
-  position: fixed;
-  top: 2px;
-  width: 50% !important;
-}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-/* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
-  </style>
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
 
 
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
+  .card_av {
+    margin: 18px;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #bdfcd5;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .card_nav {
+    margin: 18px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #e49e9e;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .resource-info {
+    width: 44%;
+    text-align: left;
+  }
+
+  .resource-title {
+    font-weight: 600;
+    margin-right: 8px;
+  }
+
+  .resource-time {
+    font-family: monospace;
+    font-size: 14px;
+    border-top: 1px solid lightgray;
+    padding: 10px;
+    text-align: right;
+  }
+
+  .card-verified {
+    background-color: lightgreen;
+    border-radius: 50%;
+    padding: 8px;
+    margin-left: 8px;
+  }
+
+  .card-verified img {
+    width: 17px;
+    height: 17px;
+  }
+
+  .text_highlight{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    background-color: rgb(247, 194, 194);
+    text-align: justify;
+  }
+
+  .text_reg{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .text_foot{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    color:rgb(157, 158, 158);
+    text-align: justify;
+  }
+
+  .info {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    padding: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 10px;
+  }
+
+
+  /* button group css */
+  .btn-group button {
+    background-color: #04AA6D; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+  }
+
+  .btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+  }
+
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }
+
+
+  .cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  /* CRAZY CARDS */
+
+
+  /* buttons in intro */
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px !important;
+    margin-bottom: 15px;
+    font-size: inherit !important;
+  }
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  #myInput {
+    background-image: url('../assets/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 91.6%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  .sticky {
+    position: fixed;
+    top: 2px;
+    width: 50% !important;
+  }
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  /* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
+</style>
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Hospital Beds | WBCAN</title>
 <meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Hospital Beds" />
@@ -415,6 +490,7 @@ a:hover{
 <script type="application/ld+json">
 {"headline":"Hospital Beds","url":"http://www.wbcan.org/Admission/Kolkata","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.wbcan.org/wecan-covidhelp/assets/wbcan-logo.png"},"name":"WBCAN Copyright © 2021"},"author":{"@type":"Person","name":"WBCAN Copyright © 2021"},"@type":"WebPage","description":"Connecting verified resource information with patients in need.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+
 </head>
 <body><header class="site-header" style="background-color: #eeeeee;">
 
@@ -431,9 +507,7 @@ a:hover{
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/tools/">
-               Helplines
-            </a><a class="page-link" href="/faq/">
+        <div class="trigger"><a class="page-link" href="/faq/">
                Covid-19 FAQ
             </a><a class="page-link" href="/contribute/">
                Volunteer
@@ -455,418 +529,483 @@ a:hover{
 <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search.." />
 
  <br /><br />
-<div class="text_foot"><h4> Data updated at: 25, May 2021 21:45. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
+<div class="text_foot"><h4> Data updated at: 25, May 2021 21:55. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
 <div class="row">
 	<div class="column">
-<div class="card_av">
-<h3>Id And Bg Hospital Government Hospital</h3>
+<div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Id And Bg Hospital Government Hospital</h3>
 
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>57, Beleghata Main Rd, Subhas Sarobar Park, Phool Bagan, Beleghata, Kolkata,</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 2303 2200">033 2303 2200</a><a href="tel:033 2300 2248">033 2300 2248</a><a href="tel: 1800313444222"> 1800313444222</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 17:10:18</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sambhu Nath Pandit Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Elgin Road</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03323022820">03323022820</a><a href="tel: 03322551621"> 03322551621</a><a href="tel: 1800313444222"> 1800313444222</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 17:01:30</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Amri Hospital Salt Lake</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Salt Lake</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03366063800">03366063800</a><a href="tel: 8444800000"> 8444800000</a><a href="tel: 9903025666"> 9903025666</a><a href="tel: 9163645544"> 9163645544</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 17:00:20</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Nrs Nil Ratan Sarkar Medical College</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Sealdah</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03322653214">03322653214</a><a href="tel:033 22860033">033 22860033</a><a href="tel: 033 22653215"> 033 22653215</a><a href="tel: 033 22653216"> 033 22653216</a><a href="tel: 033 22653217"> 033 22653217</a><a href="tel: 1800313444222"> 1800313444222</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 17:00:05</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Hope Kolkata Foundation</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Ballygaunge</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 2407 5089">033 2407 5089</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 16:59:40</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Cnmch Emergency Department</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 2301 8101/03323018234/Swastha Bhaban">033 2301 8101/03323018234/Swastha Bhaban</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 16:57:40</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Woodlands Multispeciality Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Alipore</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03340337000">03340337000</a><a href="tel: 07604075551"> 07604075551</a><a href="tel: 07604075553"> 07604075553</a><a href="tel: 9475927873"> 9475927873</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 16:56:52</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Arogya Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>New Alipur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 24000681">033 24000681</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 16:54:57</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Nightingale Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Shakespeare Sarani</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03322827970">03322827970</a><a href="tel: 03322827969"> 03322827969</a><a href="tel: 03322827971"> 03322827971</a><a href="tel: 03322827465"> 03322827465</a><a href="tel: 9874376667"> 9874376667</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 16:14:41</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Northern Light Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Gouri Bari Lane, Manicktala</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 25330019">033 25330019</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 16:02:17</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Apex Nursing Home</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Shyam Bazar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7595033440">7595033440</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:54:55</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Anandaloke Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9330700347">9330700347</a><a href="tel: 033 23592931"> 033 23592931</a><a href="tel: 9038883777"> 9038883777</a><a href="tel: 03323590742"> 03323590742</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:44:46</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Cnci New Townchittaranjan National Cancer Institute</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>New Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 2476 5102">033 2476 5102</a><a href="tel: 03323245010"> 03323245010</a><a href="tel: 03323245013"> 03323245013</a><a href="tel: 03323245011"> 03323245011</a><a href="tel: 03323245014"> 03323245014</a><a href="tel: 1800313444222"> 1800313444222</a><a href="tel: 7605057325"> 7605057325</a><a href="tel: 6289726011"> 6289726011</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:43:00</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Apex Institute Of Medical Science</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Santoshpur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9038883777">9038883777</a><a href="tel: 03371256666"> 03371256666</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:39:29</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Rsv Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>0, Deshpran Sasmal Rd, Tollygunge Phari, Tollygunge</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 3001 3000">033 3001 3000</a><a href="tel:  91521 37423">  91521 37423</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:38:35</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>All Asia Medical Institute</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Ballygunge</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 40012200 ">033 40012200 </a><a href="tel: 6289124821"> 6289124821</a><a href="tel: 9830592300"> 9830592300</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:38:19</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Mission Of Mercy Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>125, 1, Park St, Dharmatala, Taltala</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 66352000">033 66352000</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:38:07</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Health Point Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Prannath Pandit Street</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6292206001">6292206001</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:38:01</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Revival Nursing Home</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Bosepukur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:09830057020">09830057020</a><a href="tel: 9830767020"> 9830767020</a><a href="tel: 9051959540"> 9051959540</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:37:37</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Samaritan Nursing Home</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Elgin Road</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03340608313">03340608313</a><a href="tel: 9874692167"> 9874692167</a><a href="tel: 6290462574"> 6290462574</a><a href="tel: 9874692167"> 9874692167</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:37:10</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Bhowanipore Police Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Bhowanipur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03324552064">03324552064</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:36:32</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>All Asia Gariahat Medical Center</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Gariahat, Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 4001 2200/ 9830592300">033 4001 2200/ 9830592300</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:32:58</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>M R Bangur Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Tollygunge</th></tr>
-<tr><th>Contact number</th><th><a href="tel:88207 02070">88207 02070</a><a href="tel: 7044044363"> 7044044363</a><a href="tel: 6390648755"> 6390648755</a><a href="tel: 1800313444222"> 1800313444222</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:32:29</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Apex General Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Joramandir Vip Road</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 4022 3200">033 4022 3200</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:25:44</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Fortis Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>E M Bypass</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03366284444">03366284444</a><a href="tel: 9038414433"> 9038414433</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 17:11:59</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Royd Nursing Home</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Esplanade</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03346016536">03346016536</a><a href="tel: 03322271666"> 03322271666</a><a href="tel: 03333547000"> 03333547000</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 16:14:22</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Parkview Super Speciality Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Bidhan Nagar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7604022150">7604022150</a><a href="tel: 03340591111"> 03340591111</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 16:14:18</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>R G Kar Medical College And Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Bidhan Sarani , Shyambazar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:1800313444222">1800313444222</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 16:13:16</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Divine Nursing Home</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Beleghata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 40156789">033 40156789</a><a href="tel: 7947129470"> 7947129470</a><a href="tel: 033 23598353"> 033 23598353</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:44:09</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Dreamland Nursing Home</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Shyam Bazar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 2555 3216">033 2555 3216</a><a href="tel: 033 2555 3217"> 033 2555 3217</a><a href="tel: 98303 28500"> 98303 28500</a><a href="tel: 98300 59535"> 98300 59535</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:44:01</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Sagar Dutta Medical College  Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Bt Road</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03325834277">03325834277</a><a href="tel:7890607616 ">7890607616 </a><a href="tel: 03325239058"> 03325239058</a><a href="tel: 8013278169"> 8013278169</a><a href="tel: 1800313444222"> 1800313444222</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:43:00</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>North City Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Ultadanga</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9836964496">9836964496</a><a href="tel: 03366328555"> 03366328555</a><a href="tel: 03366328501"> 03366328501</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:43:00</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Ram Krishna Mission Seva Pratishthan Non Covid</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Kalighat,Hazra</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 2475 3639">033 2475 3639</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:41:10</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Ashok Nursing Home</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Jodhpur Park</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 24833050 03340574057 ">033 24833050 03340574057 </a><a href="tel: 8910383636"> 8910383636</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:41:10</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Tra General Hospital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Gariahat</th></tr>
-<tr><th>Contact number</th><th><a href="tel:033 4011 6800">033 4011 6800</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:41:01</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Sri Aurobindo Seva Kendra Eedf</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Gariahat</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03340171717">03340171717</a><a href="tel: 03340171522"> 03340171522</a><a href="tel: 03340171526"> 03340171526</a><a href="tel: 03340171573"> 03340171573</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:40:54</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Ils Hospital Dumdum</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Dumdum</th></tr>
-<tr><th>Contact number</th><th><a href="tel:03340315041">03340315041</a><a href="tel: 03340315042"> 03340315042</a><a href="tel: 03340315000"> 03340315000</a><a href="tel: 03340315001"> 03340315001</a><a href="tel: 9830400443"> 9830400443</a><a href="tel: 9830337567"> 9830337567</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 15:37:07</th></tr>
-<tr><th>Availability Status</th><th>Unavailable</th></tr>
-</table></div></div>
+<span id="jlwjc" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: ID And BG Hospital Government Hospital, District: Kolkata, Verification  Status: Verified, Location: 57, Beleghata Main Rd, Subhas Sarobar Park, Phool Bagan, Beleghata, Kolkata,, Availability Status: Available, Contact number: 033 2303 2200,033 2300 2248, 1800313444222, Verification time: 5/25/2021 17:10:18, ', 'jlwjc');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>57, Beleghata Main Rd, Subhas Sarobar Park, Phool Bagan, Beleghata, Kolkata,</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 2303 2200">033 2303 2200</a></div>
+<div><a href="tel:033 2300 2248">033 2300 2248</a></div>
+<div><a href="tel: 1800313444222"> 1800313444222</a></div>
 </div>
- </div>
+</div>
+<div class="resource-time">5/25/2021 17:10:18<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sambhu Nath Pandit Hospital</h3>
+
+<span id="trrur" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sambhu Nath Pandit Hospital, District: Kolkata, Verification  Status: Verified, Location: Elgin Road, Availability Status: Available, Contact number: 03323022820, 03322551621, 1800313444222, Verification time: 5/25/2021 17:01:30, ', 'trrur');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Elgin Road</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03323022820">03323022820</a></div>
+<div><a href="tel: 03322551621"> 03322551621</a></div>
+<div><a href="tel: 1800313444222"> 1800313444222</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 17:01:30<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Amri Hospital Salt Lake</h3>
+
+<span id="uzrgv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: AMRI Hospital Salt Lake, District: Kolkata, Verification  Status: Verified, Location: Salt lake, Availability Status: Available, Contact number: 03366063800, 8444800000, 9903025666, 9163645544, Verification time: 5/25/2021 17:00:20, ', 'uzrgv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Salt Lake</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03366063800">03366063800</a></div>
+<div><a href="tel: 8444800000"> 8444800000</a></div>
+<div><a href="tel: 9903025666"> 9903025666</a></div>
+<div><a href="tel: 9163645544"> 9163645544</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 17:00:20<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Nrs Nil Ratan Sarkar Medical College</h3>
+
+<span id="cvypp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: NRS Nil Ratan Sarkar Medical college, District: Kolkata, Verification  Status: Verified, Location: Sealdah, Availability Status: Available, Contact number: 03322653214,033 22860033, 033 22653215, 033 22653216, 033 22653217, 1800313444222, Verification time: 5/25/2021 17:00:05, ', 'cvypp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Sealdah</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03322653214">03322653214</a></div>
+<div><a href="tel:033 22860033">033 22860033</a></div>
+<div><a href="tel: 033 22653215"> 033 22653215</a></div>
+<div><a href="tel: 033 22653216"> 033 22653216</a></div>
+<div><a href="tel: 033 22653217"> 033 22653217</a></div>
+<div><a href="tel: 1800313444222"> 1800313444222</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 17:00:05<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Hope Kolkata Foundation</h3>
+
+<span id="xzwug" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Hope Kolkata Foundation, District: Kolkata, Verification  Status: Verified, Location: Ballygaunge, Availability Status: Available, Contact number: 033 2407 5089, Verification time: 5/25/2021 16:59:40, ', 'xzwug');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ballygaunge</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 2407 5089">033 2407 5089</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 16:59:40<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Cnmch Emergency Department</h3>
+
+<span id="tyvpv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: CNMCH Emergency Department, District: Kolkata, Verification  Status: Verified, Location: Kolkata, Availability Status: Available, Contact number: 033 2301 8101/03323018234/Swastha Bhaban, Verification time: 5/25/2021 16:57:40, ', 'tyvpv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 2301 8101/03323018234/Swastha Bhaban">033 2301 8101/03323018234/Swastha Bhaban</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 16:57:40<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Woodlands Multispeciality Hospital</h3>
+
+<span id="dibza" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Woodlands Multispeciality Hospital, District: Kolkata, Verification  Status: Verified, Location: Alipore, Availability Status: Available, Contact number: 03340337000, 07604075551, 07604075553, 9475927873, Verification time: 5/25/2021 16:56:52, ', 'dibza');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Alipore</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03340337000">03340337000</a></div>
+<div><a href="tel: 07604075551"> 07604075551</a></div>
+<div><a href="tel: 07604075553"> 07604075553</a></div>
+<div><a href="tel: 9475927873"> 9475927873</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 16:56:52<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Arogya Hospital</h3>
+
+<span id="hcxfs" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Arogya Hospital, District: Kolkata, Verification  Status: Verified, Location: New Alipur, Availability Status: Available, Contact number: 033 24000681, Verification time: 5/25/2021 16:54:57, ', 'hcxfs');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>New Alipur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 24000681">033 24000681</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 16:54:57<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Nightingale Hospital</h3>
+
+<span id="voyka" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Nightingale Hospital, District: Kolkata, Verification  Status: Verified, Location: Shakespeare sarani, Availability Status: Available, Contact number: 03322827970, 03322827969, 03322827971, 03322827465, 9874376667, Verification time: 5/25/2021 16:14:41, ', 'voyka');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Shakespeare Sarani</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03322827970">03322827970</a></div>
+<div><a href="tel: 03322827969"> 03322827969</a></div>
+<div><a href="tel: 03322827971"> 03322827971</a></div>
+<div><a href="tel: 03322827465"> 03322827465</a></div>
+<div><a href="tel: 9874376667"> 9874376667</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 16:14:41<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Northern Light Hospital</h3>
+
+<span id="icklr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Northern Light Hospital, District: Kolkata, Verification  Status: Verified, Location: Gouri Bari Lane, Manicktala, Availability Status: Available, Contact number: 033 25330019, Verification time: 5/25/2021 16:02:17, ', 'icklr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Gouri Bari Lane, Manicktala</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 25330019">033 25330019</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 16:02:17<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Apex Nursing Home</h3>
+
+<span id="nxflb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Apex Nursing Home, District: Kolkata, Verification  Status: Verified, Location: Shyam Bazar, Availability Status: Available, Contact number: 7595033440, Verification time: 5/25/2021 15:54:55, ', 'nxflb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Shyam Bazar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7595033440">7595033440</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:54:55<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Anandaloke Hospital</h3>
+
+<span id="aggnh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Anandaloke Hospital, District: Kolkata, Verification  Status: Verified, Location: Kolkata, Availability Status: Available, Contact number: 9330700347, 033 23592931, 9038883777, 03323590742, Verification time: 5/25/2021 15:44:46, ', 'aggnh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9330700347">9330700347</a></div>
+<div><a href="tel: 033 23592931"> 033 23592931</a></div>
+<div><a href="tel: 9038883777"> 9038883777</a></div>
+<div><a href="tel: 03323590742"> 03323590742</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:44:46<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Cnci New Townchittaranjan National Cancer Institute</h3>
+
+<span id="jupzu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: CNCI New TownChittaranjan National Cancer Institute, District: Kolkata, Verification  Status: Verified, Location: New Town, Availability Status: Available, Contact number: 033 2476 5102, 03323245010, 03323245013, 03323245011, 03323245014, 1800313444222, 7605057325, 6289726011, Verification time: 5/25/2021 15:43:00, ', 'jupzu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>New Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 2476 5102">033 2476 5102</a></div>
+<div><a href="tel: 03323245010"> 03323245010</a></div>
+<div><a href="tel: 03323245013"> 03323245013</a></div>
+<div><a href="tel: 03323245011"> 03323245011</a></div>
+<div><a href="tel: 03323245014"> 03323245014</a></div>
+<div><a href="tel: 1800313444222"> 1800313444222</a></div>
+<div><a href="tel: 7605057325"> 7605057325</a></div>
+<div><a href="tel: 6289726011"> 6289726011</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:43:00<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Apex Institute Of Medical Science</h3>
+
+<span id="tqzhj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Apex Institute of Medical Science, District: Kolkata, Verification  Status: Verified, Location: Santoshpur, Availability Status: Available, Contact number: 9038883777, 03371256666, Verification time: 5/25/2021 15:39:29, ', 'tqzhj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Santoshpur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9038883777">9038883777</a></div>
+<div><a href="tel: 03371256666"> 03371256666</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:39:29<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Rsv Hospital</h3>
+
+<span id="xomhl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: RSV Hospital, District: Kolkata, Verification  Status: Verified, Location: 0, Deshpran Sasmal Rd, Tollygunge Phari, Tollygunge, Availability Status: Available, Contact number: 033 3001 3000,  91521 37423, Verification time: 5/25/2021 15:38:35, ', 'xomhl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>0, Deshpran Sasmal Rd, Tollygunge Phari, Tollygunge</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 3001 3000">033 3001 3000</a></div>
+<div><a href="tel:  91521 37423">  91521 37423</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:38:35<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">All Asia Medical Institute</h3>
+
+<span id="lmkgq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: All Asia Medical Institute, District: Kolkata, Verification  Status: Verified, Location: Ballygunge, Availability Status: Available, Contact number: 033 40012200 , 6289124821, 9830592300, Verification time: 5/25/2021 15:38:19, ', 'lmkgq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ballygunge</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 40012200 ">033 40012200 </a></div>
+<div><a href="tel: 6289124821"> 6289124821</a></div>
+<div><a href="tel: 9830592300"> 9830592300</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:38:19<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Mission Of Mercy Hospital</h3>
+
+<span id="qqzxp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Mission Of Mercy Hospital, District: Kolkata, Verification  Status: Verified, Location: 125, 1, Park St, Dharmatala, Taltala, Availability Status: Available, Contact number: 033 66352000, Verification time: 5/25/2021 15:38:07, ', 'qqzxp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>125, 1, Park St, Dharmatala, Taltala</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 66352000">033 66352000</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:38:07<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Health Point Hospital</h3>
+
+<span id="jsifw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Health Point Hospital, District: Kolkata, Verification  Status: Verified, Location: Prannath Pandit Street, Availability Status: Available, Contact number: 6292206001, Verification time: 5/25/2021 15:38:01, ', 'jsifw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Prannath Pandit Street</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6292206001">6292206001</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:38:01<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Revival Nursing Home</h3>
+
+<span id="cnfvj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Revival nursing home, District: Kolkata, Verification  Status: Verified, Location: Bosepukur, Availability Status: Available, Contact number: 09830057020, 9830767020, 9051959540, Verification time: 5/25/2021 15:37:37, ', 'cnfvj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bosepukur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:09830057020">09830057020</a></div>
+<div><a href="tel: 9830767020"> 9830767020</a></div>
+<div><a href="tel: 9051959540"> 9051959540</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:37:37<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Samaritan Nursing Home</h3>
+
+<span id="dfopq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Samaritan Nursing Home, District: Kolkata, Verification  Status: Verified, Location: Elgin Road, Availability Status: Available, Contact number: 03340608313, 9874692167, 6290462574, 9874692167, Verification time: 5/25/2021 15:37:10, ', 'dfopq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Elgin Road</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03340608313">03340608313</a></div>
+<div><a href="tel: 9874692167"> 9874692167</a></div>
+<div><a href="tel: 6290462574"> 6290462574</a></div>
+<div><a href="tel: 9874692167"> 9874692167</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:37:10<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Bhowanipore Police Hospital</h3>
+
+<span id="uesft" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Bhowanipore police hospital, District: Kolkata, Verification  Status: Verified, Location: Bhowanipur, Availability Status: Available, Contact number: 03324552064, Verification time: 5/25/2021 15:36:32, ', 'uesft');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bhowanipur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03324552064">03324552064</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:36:32<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">All Asia Gariahat Medical Center</h3>
+
+<span id="ijqok" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: All asia gariahat medical center, District: Kolkata, Verification  Status: Verified, Location: Gariahat, kolkata, Availability Status: Available, Contact number: 033 4001 2200/ 9830592300, Verification time: 5/25/2021 15:32:58, ', 'ijqok');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Gariahat, Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 4001 2200/ 9830592300">033 4001 2200/ 9830592300</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:32:58<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">M R Bangur Hospital</h3>
+
+<span id="sccms" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: M R Bangur Hospital, District: Kolkata, Verification  Status: Verified, Location: Tollygunge, Availability Status: Available, Contact number: 88207 02070, 7044044363, 6390648755, 1800313444222, Verification time: 5/25/2021 15:32:29, ', 'sccms');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Tollygunge</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:88207 02070">88207 02070</a></div>
+<div><a href="tel: 7044044363"> 7044044363</a></div>
+<div><a href="tel: 6390648755"> 6390648755</a></div>
+<div><a href="tel: 1800313444222"> 1800313444222</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:32:29<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Apex General Hospital</h3>
+
+<span id="ddmhd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Apex general hospital, District: Kolkata, Verification  Status: Verified, Location: Joramandir VIP road, Availability Status: Available, Contact number: 033 4022 3200, Verification time: 5/25/2021 15:25:44, ', 'ddmhd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Joramandir Vip Road</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 4022 3200">033 4022 3200</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:25:44<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Fortis Hospital</h3>
+
+<span id="tcawf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Fortis Hospital, District: Kolkata, Verification  Status: Verified, Location: E M Bypass, Availability Status: Unavailable, Contact number: 03366284444, 9038414433, Verification time: 5/25/2021 17:11:59, ', 'tcawf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>E M Bypass</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03366284444">03366284444</a></div>
+<div><a href="tel: 9038414433"> 9038414433</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 17:11:59<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Royd Nursing Home</h3>
+
+<span id="stvir" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Royd Nursing Home, District: Kolkata, Verification  Status: Verified, Location: esplanade, Availability Status: Unavailable, Contact number: 03346016536, 03322271666, 03333547000, Verification time: 5/25/2021 16:14:22, ', 'stvir');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Esplanade</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03346016536">03346016536</a></div>
+<div><a href="tel: 03322271666"> 03322271666</a></div>
+<div><a href="tel: 03333547000"> 03333547000</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 16:14:22<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Parkview Super Speciality Hospital</h3>
+
+<span id="pfhvh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Parkview Super Speciality Hospital, District: Kolkata, Verification  Status: Verified, Location: Bidhan nagar, Availability Status: Unavailable, Contact number: 7604022150, 03340591111, Verification time: 5/25/2021 16:14:18, ', 'pfhvh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bidhan Nagar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7604022150">7604022150</a></div>
+<div><a href="tel: 03340591111"> 03340591111</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 16:14:18<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">R G Kar Medical College And Hospital</h3>
+
+<span id="npwiq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: R G Kar Medical College and Hospital, District: Kolkata, Verification  Status: Verified, Location: Bidhan Sarani , Shyambazar, Availability Status: Unavailable, Contact number: 1800313444222, Verification time: 5/25/2021 16:13:16, ', 'npwiq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bidhan Sarani , Shyambazar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:1800313444222">1800313444222</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 16:13:16<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Divine Nursing Home</h3>
+
+<span id="kziar" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Divine Nursing Home, District: Kolkata, Verification  Status: Verified, Location: Beleghata, Availability Status: Unavailable, Contact number: 033 40156789, 7947129470, 033 23598353, Verification time: 5/25/2021 15:44:09, ', 'kziar');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Beleghata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 40156789">033 40156789</a></div>
+<div><a href="tel: 7947129470"> 7947129470</a></div>
+<div><a href="tel: 033 23598353"> 033 23598353</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:44:09<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Dreamland Nursing Home</h3>
+
+<span id="neviv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Dreamland Nursing Home, District: Kolkata, Verification  Status: Verified, Location: Shyam Bazar, Availability Status: Unavailable, Contact number: 033 2555 3216, 033 2555 3217, 98303 28500, 98300 59535, Verification time: 5/25/2021 15:44:01, ', 'neviv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Shyam Bazar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 2555 3216">033 2555 3216</a></div>
+<div><a href="tel: 033 2555 3217"> 033 2555 3217</a></div>
+<div><a href="tel: 98303 28500"> 98303 28500</a></div>
+<div><a href="tel: 98300 59535"> 98300 59535</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:44:01<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Sagar Dutta Medical College  Hospital</h3>
+
+<span id="ztead" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sagar Dutta Medical college  Hospital, District: Kolkata, Verification  Status: Verified, Location: BT road, Availability Status: Unavailable, Contact number: 03325834277,7890607616 , 03325239058, 8013278169, 1800313444222, Verification time: 5/25/2021 15:43:00, ', 'ztead');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bt Road</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03325834277">03325834277</a></div>
+<div><a href="tel:7890607616 ">7890607616 </a></div>
+<div><a href="tel: 03325239058"> 03325239058</a></div>
+<div><a href="tel: 8013278169"> 8013278169</a></div>
+<div><a href="tel: 1800313444222"> 1800313444222</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:43:00<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">North City Hospital</h3>
+
+<span id="duroi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: North City Hospital, District: Kolkata, Verification  Status: Verified, Location: ultadanga, Availability Status: Unavailable, Contact number: 9836964496, 03366328555, 03366328501, Verification time: 5/25/2021 15:43:00, ', 'duroi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ultadanga</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9836964496">9836964496</a></div>
+<div><a href="tel: 03366328555"> 03366328555</a></div>
+<div><a href="tel: 03366328501"> 03366328501</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:43:00<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Ram Krishna Mission Seva Pratishthan Non Covid</h3>
+
+<span id="ispxh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ram krishna mission seva pratishthan non Covid, District: Kolkata, Verification  Status: Verified, Location: Kalighat,Hazra, Availability Status: Unavailable, Contact number: 033 2475 3639, Verification time: 5/25/2021 15:41:10, ', 'ispxh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kalighat,Hazra</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 2475 3639">033 2475 3639</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:41:10<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Ashok Nursing Home</h3>
+
+<span id="ickap" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ashok Nursing Home, District: Kolkata, Verification  Status: Verified, Location: Jodhpur Park, Availability Status: Unavailable, Contact number: 033 24833050 03340574057 , 8910383636, Verification time: 5/25/2021 15:41:10, ', 'ickap');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Jodhpur Park</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 24833050 03340574057 ">033 24833050 03340574057 </a></div>
+<div><a href="tel: 8910383636"> 8910383636</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:41:10<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Tra General Hospital</h3>
+
+<span id="hlbsy" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: TRA General Hospital, District: Kolkata, Verification  Status: Verified, Location: Gariahat, Availability Status: Unavailable, Contact number: 033 4011 6800, Verification time: 5/25/2021 15:41:01, ', 'hlbsy');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Gariahat</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:033 4011 6800">033 4011 6800</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:41:01<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Sri Aurobindo Seva Kendra Eedf</h3>
+
+<span id="rwjaf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sri Aurobindo Seva Kendra EEDF, District: Kolkata, Verification  Status: Verified, Location: Gariahat, Availability Status: Unavailable, Contact number: 03340171717, 03340171522, 03340171526, 03340171573, Verification time: 5/25/2021 15:40:54, ', 'rwjaf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Gariahat</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03340171717">03340171717</a></div>
+<div><a href="tel: 03340171522"> 03340171522</a></div>
+<div><a href="tel: 03340171526"> 03340171526</a></div>
+<div><a href="tel: 03340171573"> 03340171573</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:40:54<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Ils Hospital Dumdum</h3>
+
+<span id="ulldz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: ILS Hospital Dumdum, District: Kolkata, Verification  Status: Verified, Location: Dumdum, Availability Status: Unavailable, Contact number: 03340315041, 03340315042, 03340315000, 03340315001, 9830400443, 9830337567, Verification time: 5/25/2021 15:37:07, ', 'ulldz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dumdum</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Unavailable</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:03340315041">03340315041</a></div>
+<div><a href="tel: 03340315042"> 03340315042</a></div>
+<div><a href="tel: 03340315000"> 03340315000</a></div>
+<div><a href="tel: 03340315001"> 03340315001</a></div>
+<div><a href="tel: 9830400443"> 9830400443</a></div>
+<div><a href="tel: 9830337567"> 9830337567</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 15:37:07<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div></div>
+</div>
 
   </div>
 

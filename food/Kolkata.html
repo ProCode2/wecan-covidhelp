@@ -22,13 +22,18 @@
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://www.wbcan.org/feed.xml" title="WBCAN" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
-  gtag('config', 'G-4V3KJLL18H');
+  gtag("config", "G-4V3KJLL18H");
 
   function filterSearch() {
     var input, filter, av_divs, nav_divs, i, txtValue;
@@ -36,368 +41,438 @@
     filter = input.value.toUpperCase().trim();
     av_divs = document.getElementsByClassName("card_av");
     nav_divs = document.getElementsByClassName("card_nav");
-    if(filter.length > 0){
-      setDisplay(av_divs,filter);
-      setDisplay(nav_divs,filter);
-    }else{
+    if (filter.length > 0) {
+      setDisplay(av_divs, filter);
+      setDisplay(nav_divs, filter);
+    } else {
       console.error("Invalid input length.");
       setAllBlock(av_divs, nav_divs);
     }
   }
   function setDisplay(divs, filter) {
-    for(i = 0; i < divs.length; i++) {
+    for (i = 0; i < divs.length; i++) {
       txtValue = divs[i].innerText.toUpperCase();
-      if(txtValue.indexOf(filter) > -1) {
+      if (txtValue.indexOf(filter) > -1) {
         divs[i].style.display = "";
-      }
-      else {
+      } else {
         divs[i].style.display = "none";
       }
     }
   }
   function setAllBlock(divs1, divs2) {
-    for(i = 0; i < divs1.length; i++) {
+    for (i = 0; i < divs1.length; i++) {
       divs1[i].style.display = "";
     }
-    for(i = 0; i < divs2.length; i++) {
+    for (i = 0; i < divs2.length; i++) {
       divs2[i].style.display = "";
     }
   }
 
+  function copyToClipboard(text, id) {
+    document.querySelector(`#${id}`).style.background = "#5ef345";
+    setTimeout(function () {
+      document.querySelector(`#${id}`).style.background = "lightgray";
+    }, 3000);
+    let temp = document.createElement("textarea");
+    document.body.appendChild(temp);
+    temp.value = text;
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+  }
 </script>
 
 <style>
-  .button0 {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button1 {
-    background-color: #4c7aaf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button2 {
-    background-color: #a8af4c;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button3 {
-    background-color: #e6518f;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button4 {
-    background-color: #5e4caf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button5 {
-    background-color: #7782d3;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+    .head-and-copy {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0 10px 0;
+    }
 
-  .sp{
-  width: 10px;
-  padding-right: 15px;
-  background-color: #bdbbc5;
-  padding: 4px 12px;
-  }
+    .card-head {
+      font-weight: 700;
+      font-size: 1.1rem !important;
+      margin: 0 !important;
+    }
 
-  .highlight{
-  font-family: ABeeZee, sans-serif;
-  background-color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(99, 82, 82, 1);
-  text-transform: none;
-  font-style: normal;
-  text-decoration: none;
-  line-height: 1.6em;
-  letter-spacing: 0.7px;
-  }
-  .headHi{
+    .copy-to-clip-board {
+      background-color: lightgray;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .copy-to-clip-board > img {
+      width: 15px;
+      height: 15px;
+    }
+
+    .button0 {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button1 {
+      background-color: #4c7aaf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button2 {
+      background-color: #a8af4c;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button3 {
+      background-color: #e6518f;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button4 {
+      background-color: #5e4caf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button5 {
+      background-color: #7782d3;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .sp{
+    width: 10px;
+    padding-right: 15px;
+    background-color: #bdbbc5;
+    padding: 4px 12px;
+    }
+
+    .highlight{
     font-family: ABeeZee, sans-serif;
-    font-size: 26px;
+    background-color: #ffffff;
+    font-size: 16px;
     font-weight: 600;
-    color: rgba(77, 63, 63, 1);
+    color: rgba(99, 82, 82, 1);
     text-transform: none;
     font-style: normal;
     text-decoration: none;
     line-height: 1.6em;
     letter-spacing: 0.7px;
-}
-
-.introtext{
-    font-family: Verdana, sans-serif;
-    font-size: 16px;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.datetext{
-    font-family: Courier New, sans-serif;
-    font-size: 16px;
-    background-color: #eeeeee;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.divtext{
-  background-color: rgb(214, 226, 226);
-}
-
-div.ex1 {
-  width: 150px;
-  margin: auto;
-  border: 3px solid #73AD21;
-}
-.introhightext{
-    font-family: Optima, sans-serif;
-    font-size: 16px;
-    font-weight: 100;
-    color: #000010;
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 0em;
-    letter-spacing: 0px;
-}
-
-
-
-.column {
-  width: 60%;
-  text-align: center;
-  padding: 2px;
-  margin: 0 auto
-}
-
-/* Remove extra left and right margins, due to padding */
-.row {
-  width: 100%;
-  text-align: center;
-  padding: 7px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive columns */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
+    }
+    .headHi{
+      font-family: ABeeZee, sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: rgba(77, 63, 63, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.6em;
+      letter-spacing: 0.7px;
   }
-}
+
+  .introtext{
+      font-family: Verdana, sans-serif;
+      font-size: 16px;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .datetext{
+      font-family: Courier New, sans-serif;
+      font-size: 16px;
+      background-color: #eeeeee;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .divtext{
+    background-color: rgb(214, 226, 226);
+  }
+
+  div.ex1 {
+    width: 150px;
+    margin: auto;
+    border: 3px solid #73AD21;
+  }
+  .introhightext{
+      font-family: Optima, sans-serif;
+      font-size: 16px;
+      font-weight: 100;
+      color: #000010;
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 0em;
+      letter-spacing: 0px;
+  }
 
 
 
-.card_av {
-  padding: 16px;
-  text-align: center;
-  background-color: #bdfcd5;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  .column {
+    width: 60%;
+    text-align: center;
+    padding: 2px;
+    margin: 0 auto
+  }
 
-.card_nav {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  padding: 16px;
-  text-align: center;
-  background-color: #e49e9e;
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  /* Remove extra left and right margins, due to padding */
+  .row {
+    width: 100%;
+    text-align: center;
+    padding: 7px;
+  }
 
-.text_highlight{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 14px;
-  background-color: rgb(247, 194, 194);
-  text-align: justify;
-}
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
-.text_reg{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
-
-.text_foot{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 10px;
-  color:rgb(157, 158, 158);
-  text-align: justify;
-}
-
-.info {
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
-  padding: 2px;
-  text-align: left;
-  background-color: #f8f9fc;
-}
-
-
-/* button group css */
-.btn-group button {
-  background-color: #04AA6D; /* Green background */
-  border: 1px solid green; /* Green border */
-  color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  width: 50%; /* Set a width if needed */
-  display: block; /* Make the buttons appear below each other */
-}
-
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-  background-color: #3e8e41;
-}
-
-
-.cards {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-}
-
-/* CRAZY CARDS */ 
-
-
-/* buttons in intro */
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px !important;
-  margin-bottom: 15px;
-  font-size: inherit !important;
-}
-
-a:hover{
-  text-decoration: none;
-}
-
-#myInput {
-  background-image: url('../assets/css/searchicon.png');
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 91.6%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-.sticky {
-  position: fixed;
-  top: 2px;
-  width: 50% !important;
-}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-/* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
-  </style>
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
 
 
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
+  .card_av {
+    margin: 18px;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #bdfcd5;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .card_nav {
+    margin: 18px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #e49e9e;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .resource-info {
+    width: 44%;
+    text-align: left;
+  }
+
+  .resource-title {
+    font-weight: 600;
+    margin-right: 8px;
+  }
+
+  .resource-time {
+    font-family: monospace;
+    font-size: 14px;
+    border-top: 1px solid lightgray;
+    padding: 10px;
+    text-align: right;
+  }
+
+  .card-verified {
+    background-color: lightgreen;
+    border-radius: 50%;
+    padding: 8px;
+    margin-left: 8px;
+  }
+
+  .card-verified img {
+    width: 17px;
+    height: 17px;
+  }
+
+  .text_highlight{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    background-color: rgb(247, 194, 194);
+    text-align: justify;
+  }
+
+  .text_reg{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .text_foot{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    color:rgb(157, 158, 158);
+    text-align: justify;
+  }
+
+  .info {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    padding: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 10px;
+  }
+
+
+  /* button group css */
+  .btn-group button {
+    background-color: #04AA6D; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+  }
+
+  .btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+  }
+
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }
+
+
+  .cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  /* CRAZY CARDS */
+
+
+  /* buttons in intro */
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px !important;
+    margin-bottom: 15px;
+    font-size: inherit !important;
+  }
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  #myInput {
+    background-image: url('../assets/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 91.6%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  .sticky {
+    position: fixed;
+    top: 2px;
+    width: 50% !important;
+  }
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  /* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
+</style>
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Food | WBCAN</title>
 <meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Food" />
@@ -415,6 +490,7 @@ a:hover{
 <script type="application/ld+json">
 {"headline":"Food","url":"http://www.wbcan.org/food/Kolkata","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.wbcan.org/wecan-covidhelp/assets/wbcan-logo.png"},"name":"WBCAN Copyright © 2021"},"author":{"@type":"Person","name":"WBCAN Copyright © 2021"},"@type":"WebPage","description":"Connecting verified resource information with patients in need.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+
 </head>
 <body><header class="site-header" style="background-color: #eeeeee;">
 
@@ -431,9 +507,7 @@ a:hover{
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/tools/">
-               Helplines
-            </a><a class="page-link" href="/faq/">
+        <div class="trigger"><a class="page-link" href="/faq/">
                Covid-19 FAQ
             </a><a class="page-link" href="/contribute/">
                Volunteer
@@ -455,890 +529,916 @@ a:hover{
 <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search.." />
 
  <br /><br />
-<div class="text_foot"><h4> Data updated at: 25, May 2021 21:45. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
+<div class="text_foot"><h4> Data updated at: 25, May 2021 21:55. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
 <div class="row">
 	<div class="column">
-<div class="card_av">
-<h3>Free Meals</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8335088799">8335088799</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/7/2021 1:37:15</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Home Delivery</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9831710175">9831710175</a><a href="tel: 9007361760"> 9007361760</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/6/2021 10:24:46</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Home Delivery</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9874557022">9874557022</a><a href="tel: 9007316995"> 9007316995</a><a href="tel: 8961524938"> 8961524938</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/6/2021 10:22:25</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Seva Free Food</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Ultadanga, Salt Lake,Lake Town, Airport, Kakurgachi, Phoolbagan, Girish Park</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7044765985">7044765985</a><a href="tel: 7044765929"> 7044765929</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/5/2021 20:09:49</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Scottish Church College Students Union</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Kolkata Ward No 7,8,9,10,11,12,13,14,15,16,17,18,19,20,27 And 38</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7003441678 and 6289961571">7003441678 and 6289961571</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/25/2021 12:41:57</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Salt Lake</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8240219380">8240219380</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/23/2021 14:57:24</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ushor</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9831511851/9830762596/9062076210">9831511851/9830762596/9062076210</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/22/2021 21:00:18</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Hello Beta</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Garia</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9696022022">9696022022</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/22/2021 11:38:53</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Somonnoy Raja</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Ward 105/106/107/108</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6289007703">6289007703</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/22/2021 11:29:03</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Mrs Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over North Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:98305 74772">98305 74772</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 20:15:31</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Apna Ghar Ka Khana</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Park Circus And 67Kms Around</th></tr>
-<tr><th>Contact number</th><th><a href="tel:Sanjay 9831631333 Akash 9831063345">Sanjay 9831631333 Akash 9831063345</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/21/2021 15:36:55</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Jayashree R Jayajatra</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:629184675">629184675</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/20/2021 12:16:32</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ghare Ghare Ahare</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8777847853">8777847853</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/19/2021 20:48:17</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Parashmani</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Dumdum</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8617248592">8617248592</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/19/2021 20:13:14</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Iskon Medinipur</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Dumdum Motijhil</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051497216">9051497216</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/19/2021 19:46:18</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Kheye66E</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>North Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9830041714">9830041714</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/19/2021 19:35:51</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Subhra Canteen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>South Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8388030406">8388030406</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/19/2021 13:17:36</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Taza Bazaar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Bansdrani And Tollyguange</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7439583627">7439583627</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/18/2021 18:08:01</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Anna Dan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Ballygunj</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9830614790">9830614790</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/17/2021 16:35:50</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ma Er Rannaghar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Rajarhat</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051554426">9051554426</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/17/2021 15:45:39</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Harinavi</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:ERROR">ERROR</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/16/2021 12:05:10</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Pragya Banik</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>South Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8336045662">8336045662</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/13/2021 17:36:15</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Deep</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8910369548">8910369548</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/12/2021 11:06:25</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Susmita Biswas</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Jadavpur, Baghajatin, Garia, Tollygunge, Dhakuria, Gariahat, Prince Anwar Shah Road, Abhishikta</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7044321822">7044321822</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:56:25</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sramjibi Canteen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Jadavpur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9748434309">9748434309</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:50:38</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Lopas Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Garia, Patuli, Avishikta</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051643435">9051643435</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:43:14</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Food For U</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>South Kolkata Anwar Shah, Jadavpur, Santoshpur, Baghajatin, Garia, And Adjacent Area, Laketown And Adjacent Area</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8017996766">8017996766</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:40:13</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Gupta Brothers</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9836199154">9836199154</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:32:39</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ranis Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Bhawanipur And Adjacent Area</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9836551616">9836551616</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:31:01</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shailaja Mundra</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9830220594">9830220594</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:28:01</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Annapurna Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Airport To Kakurgachi</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6290313657">6290313657</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:17:26</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shweta Jain</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Across Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9874987724">9874987724</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:15:07</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Roshik By Saini Bhattacharya</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Saltlake, Newtown, Laketown, Rajarhat, Dumdum Park, Bangur, Baguiati, Chinar Park</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7980847805">7980847805</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:10:39</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Kgs Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Garia, Jadavpur, Santoshpur, And Adjacent Area</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9903378663">9903378663</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:07:57</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Homemade</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Behala, Sakherbajar, And Adjacent Area</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9831450773">9831450773</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 13:06:59</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Harsh And Ankur</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>New Alipore, Chetla, Tollygunge, Kalighat, Haridevpur And Behala</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8697449350">8697449350</a><a href="tel: 9811560561"> 9811560561</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 12:33:25</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Asmita And Anurag</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Behala, Tollygunge, Golfgreen, Lake Gardens, Jodhpur Park And Adjoining Areas</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8482055025">8482055025</a><a href="tel: 9748640219"> 9748640219</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 12:27:07</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Bhramari Roy, Kheyechhe Cloud Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9830041714">9830041714</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 12:25:42</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Mrs Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>North Kolkata, Rajarhat, Newtown</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9830574772">9830574772</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 12:22:57</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Priyank Kothari</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051376319">9051376319</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 12:19:47</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Priyank Kothari</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051376319">9051376319</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 12:19:47</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Lintu Dhaba</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Kasba, Ballygunge</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9874401999">9874401999</a><a href="tel: 7003291232"> 7003291232</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/11/2021 12:16:27</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Amrito Home Delivery Not Arnab Delivery</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>South Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051159815">9051159815</a><a href="tel: 9051391245"> 9051391245</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Dolar Ranna Ghor</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Phoolbagan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9831830794">9831830794</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Vrinda Patodia</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Ballygunje And Nearby Areas</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9433090588">9433090588</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Meals By Mom</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Park Streetwithin 2Km Radius</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7439311158">7439311158</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Rakhi Mukherjee</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Shyambazar ,Baghbazar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9674327763">9674327763</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Cooked With Care</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9007640487">9007640487</a><a href="tel: 8910480551 "> 8910480551 </a><a href="tel: 9331110327"> 9331110327</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/8/2021 19:54:19</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Home Delivery</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Behala, Sokherbajar, Haridev Pur, Thakurpukur, 3A, Tollygunge ,Chourasta</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9674147275">9674147275</a><a href="tel: 7890044404"> 7890044404</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/7/2021 1:37:29</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Ranjans Homefood</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8820470143">8820470143</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/7/2021 1:33:45</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Nanighar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8282828787">8282828787</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/7/2021 1:32:11</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Kerry Patta</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Free Lunch24 Hrs Notice</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9830706543">9830706543</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:49:57</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Bekery</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Belghoria To Birati</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7044077280">7044077280</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:49:55</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Ubuntu The Vegan Cafe</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>South Kolkata  Book 24Hrs Prior</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8861657131">8861657131</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:49:45</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Covid19 Canteen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>8B, Bijoygarh, Pallisree, Sree Colony, Netajinagar, Gandhi Colony, Ranikuthi, Baghajatin, Garia</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7044630806">7044630806</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:49:14</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Ekdalia Coccinia</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9123369378">9123369378</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:56</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Arnab Home Delivery</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051159815">9051159815</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:53</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Taaza</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7044169715">7044169715</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:52</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Nishat Tasmin</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Swiggy/Uber</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8697767907">8697767907</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:51</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Ogs Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8697082035">8697082035</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:47</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>The Hungry Bear</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9831397018">9831397018</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:47</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Ghar Ki Rasoi</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9874987724">9874987724</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:43</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Rannaghor</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8240109107">8240109107</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:36</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Mrs Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8910928400">8910928400</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:36</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Peerless Inn</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9007012906">9007012906</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:36</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Spoon Fuel</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9007760418">9007760418</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:35</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Dolar Rannaghor</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9831830794">9831830794</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:28</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Depend Ablez</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9163267000">9163267000</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:26</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Calcutta Cooks</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8017244299">8017244299</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:24</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Dietfixx</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9830038142">9830038142</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:22</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Sramajibi Canteen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Jadavpur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9674519255">9674519255</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/3/2021 12:48:21</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Sweta Jain</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Veg Thali All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9874987724">9874987724</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/10/2021 12:27:52</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Nitu Saraff</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Veg Thali Meal All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9883132649">9883132649</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/10/2021 12:24:49</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Manila Ain</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Thali Meal All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6289956434">6289956434</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/10/2021 12:21:03</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Aditi Arora</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Veg Thali Meal All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9831179079">9831179079</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/10/2021 12:19:13</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Tiffin Bros</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Veg Thali Meal All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6289984733">6289984733</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/10/2021 12:15:20</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Zeera</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Thali Meal All Over Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9830066624">9830066624</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/10/2021 12:03:32</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Amrito Home Delivery</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051159815">9051159815</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Shivangi Roy</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9073329885">9073329885</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Grannys Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Per Order</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9051661509">9051661509</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Moody Foody By Ankita</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>All Across Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9610096439">9610096439</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Kheyeche</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>South Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9830041714">9830041714</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Mundhra Kitchen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7003752008">7003752008</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Yours Truly</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6291180092">6291180092</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Asmita</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Free Meal At Behala, Tollygunge,Golf Green,Lake Gardens Jodhpur Park</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8482055025">8482055025</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Harsh</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Free Meal At New Alipore, Chetla, Tollygunge, Kalighat, Haridevpur, Behala</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8697449350">8697449350</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
-<div class="card_nav">
-<h3>Shravasti Ghosh</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Kolkata</th></tr>
-<tr><th>Location</th><th>Free Meal Up To 15,North Kol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8902703686">8902703686</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-</table></div></div>
+<div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Free Meals</h3>
+
+<span id="bcbyc" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Free meals, District: Kolkata, Verification  Status: Verified, Location: Kolkata, Availability Status: Available, Contact number: 8335088799, Verification time: 5/7/2021 1:37:15, ', 'bcbyc');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8335088799">8335088799</a></div>
 </div>
- </div>
+</div>
+<div class="resource-time">5/7/2021 1:37:15<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Home Delivery</h3>
+
+<span id="nisho" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Home delivery, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Available, Contact number: 9831710175, 9007361760, Verification time: 5/6/2021 10:24:46, ', 'nisho');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9831710175">9831710175</a></div>
+<div><a href="tel: 9007361760"> 9007361760</a></div>
+</div>
+</div>
+<div class="resource-time">5/6/2021 10:24:46<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Home Delivery</h3>
+
+<span id="anlgu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Home delivery, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Available, Contact number: 9874557022, 9007316995, 8961524938, Verification time: 5/6/2021 10:22:25, ', 'anlgu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9874557022">9874557022</a></div>
+<div><a href="tel: 9007316995"> 9007316995</a></div>
+<div><a href="tel: 8961524938"> 8961524938</a></div>
+</div>
+</div>
+<div class="resource-time">5/6/2021 10:22:25<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Seva Free Food</h3>
+
+<span id="qabkh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Seva Free Food, District: Kolkata, Verification  Status: Verified, Location: Ultadanga, salt lake,lake town, airport, kakurgachi, phoolbagan, girish park, Availability Status: Available, Contact number: 7044765985, 7044765929, Verification time: 5/5/2021 20:09:49, ', 'qabkh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ultadanga, Salt Lake,Lake Town, Airport, Kakurgachi, Phoolbagan, Girish Park</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7044765985">7044765985</a></div>
+<div><a href="tel: 7044765929"> 7044765929</a></div>
+</div>
+</div>
+<div class="resource-time">5/5/2021 20:09:49<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Scottish Church College Students Union</h3>
+
+<span id="tobhg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Scottish church college students union, District: Kolkata, Verification  Status: Verified, Location: Kolkata ward no 7,8,9,10,11,12,13,14,15,16,17,18,19,20,27 and 38, Availability Status: Available, Contact number: 7003441678 and 6289961571, Verification time: 5/25/2021 12:41:57, ', 'tobhg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kolkata Ward No 7,8,9,10,11,12,13,14,15,16,17,18,19,20,27 And 38</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7003441678 and 6289961571">7003441678 and 6289961571</a></div>
+</div>
+</div>
+<div class="resource-time">5/25/2021 12:41:57<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<span id="gleyh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person:  Info Missing, District: Kolkata, Verification  Status: Verified, Location: Salt lake, Availability Status: Available, Contact number: 8240219380, Verification time: 5/23/2021 14:57:24, ', 'gleyh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Salt Lake</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8240219380">8240219380</a></div>
+</div>
+</div>
+<div class="resource-time">5/23/2021 14:57:24<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ushor</h3>
+
+<span id="hvhaw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: USHOR, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Available, Contact number: 9831511851/9830762596/9062076210, Verification time: 5/22/2021 21:00:18, ', 'hvhaw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9831511851/9830762596/9062076210">9831511851/9830762596/9062076210</a></div>
+</div>
+</div>
+<div class="resource-time">5/22/2021 21:00:18<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Hello Beta</h3>
+
+<span id="wivsb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Hello Beta, District: Kolkata, Verification  Status: Verified, Location: Garia, Availability Status: Available, Contact number: 9696022022, Verification time: 5/22/2021 11:38:53, ', 'wivsb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Garia</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9696022022">9696022022</a></div>
+</div>
+</div>
+<div class="resource-time">5/22/2021 11:38:53<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Somonnoy Raja</h3>
+
+<span id="ubwms" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Somonnoy Raja, District: Kolkata, Verification  Status: Verified, Location: Ward 105/106/107/108, Availability Status: Available, Contact number: 6289007703, Verification time: 5/22/2021 11:29:03, ', 'ubwms');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward 105/106/107/108</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6289007703">6289007703</a></div>
+</div>
+</div>
+<div class="resource-time">5/22/2021 11:29:03<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Mrs Kitchen</h3>
+
+<span id="ornrr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Mrs Kitchen, District: Kolkata, Verification  Status: Verified, Location: All over North Kolkata, Availability Status: Available, Contact number: 98305 74772, Verification time: 5/21/2021 20:15:31, ', 'ornrr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over North Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:98305 74772">98305 74772</a></div>
+</div>
+</div>
+<div class="resource-time">5/21/2021 20:15:31<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Apna Ghar Ka Khana</h3>
+
+<span id="ikkbj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Apna ghar ka khana, District: Kolkata, Verification  Status: Verified, Location: Park circus and 67kms around, Availability Status: Available, Contact number: Sanjay 9831631333 Akash 9831063345, Verification time: 5/21/2021 15:36:55, ', 'ikkbj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Park Circus And 67Kms Around</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:Sanjay 9831631333 Akash 9831063345">Sanjay 9831631333 Akash 9831063345</a></div>
+</div>
+</div>
+<div class="resource-time">5/21/2021 15:36:55<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Jayashree R Jayajatra</h3>
+
+<span id="scxem" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Jayashree r jayajatra, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Available, Contact number: 629184675, Verification time: 5/20/2021 12:16:32, ', 'scxem');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:629184675">629184675</a></div>
+</div>
+</div>
+<div class="resource-time">5/20/2021 12:16:32<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ghare Ghare Ahare</h3>
+
+<span id="gwnxj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ghare Ghare ahare, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Available, Contact number: 8777847853, Verification time: 5/19/2021 20:48:17, ', 'gwnxj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8777847853">8777847853</a></div>
+</div>
+</div>
+<div class="resource-time">5/19/2021 20:48:17<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Parashmani</h3>
+
+<span id="kygny" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Parashmani, District: Kolkata, Verification  Status: Verified, Location: Dumdum, Availability Status: Available, Contact number: 8617248592, Verification time: 5/19/2021 20:13:14, ', 'kygny');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dumdum</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8617248592">8617248592</a></div>
+</div>
+</div>
+<div class="resource-time">5/19/2021 20:13:14<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Iskon Medinipur</h3>
+
+<span id="fdazw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Iskon Medinipur, District: Kolkata, Verification  Status: Verified, Location: Dumdum motijhil, Availability Status: Available, Contact number: 9051497216, Verification time: 5/19/2021 19:46:18, ', 'fdazw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dumdum Motijhil</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051497216">9051497216</a></div>
+</div>
+</div>
+<div class="resource-time">5/19/2021 19:46:18<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Kheye66E</h3>
+
+<span id="zczpn" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Kheye66e, District: Kolkata, Verification  Status: Verified, Location: North Kolkata, Availability Status: Available, Contact number: 9830041714, Verification time: 5/19/2021 19:35:51, ', 'zczpn');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>North Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9830041714">9830041714</a></div>
+</div>
+</div>
+<div class="resource-time">5/19/2021 19:35:51<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Subhra Canteen</h3>
+
+<span id="qumsr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Subhra canteen, District: Kolkata, Verification  Status: Verified, Location: South Kolkata, Availability Status: Available, Contact number: 8388030406, Verification time: 5/19/2021 13:17:36, ', 'qumsr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>South Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8388030406">8388030406</a></div>
+</div>
+</div>
+<div class="resource-time">5/19/2021 13:17:36<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Taza Bazaar</h3>
+
+<span id="fimzj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Taza Bazaar, District: Kolkata, Verification  Status: Verified, Location: Bansdrani and Tollyguange, Availability Status: Available, Contact number: 7439583627, Verification time: 5/18/2021 18:08:01, ', 'fimzj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bansdrani And Tollyguange</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7439583627">7439583627</a></div>
+</div>
+</div>
+<div class="resource-time">5/18/2021 18:08:01<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Anna Dan</h3>
+
+<span id="kwzoc" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Anna dan, District: Kolkata, Verification  Status: Verified, Location: Ballygunj, Availability Status: Available, Contact number: 9830614790, Verification time: 5/17/2021 16:35:50, ', 'kwzoc');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ballygunj</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9830614790">9830614790</a></div>
+</div>
+</div>
+<div class="resource-time">5/17/2021 16:35:50<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ma Er Rannaghar</h3>
+
+<span id="ldpox" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ma er rannaghar, District: Kolkata, Verification  Status: Verified, Location: Rajarhat, Availability Status: Available, Contact number: 9051554426, Verification time: 5/17/2021 15:45:39, ', 'ldpox');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Rajarhat</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051554426">9051554426</a></div>
+</div>
+</div>
+<div class="resource-time">5/17/2021 15:45:39<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Harinavi</h3>
+
+<span id="wfvnl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Harinavi, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Available, Contact number: ERROR, Verification time: 5/16/2021 12:05:10, ', 'wfvnl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:ERROR">ERROR</a></div>
+</div>
+</div>
+<div class="resource-time">5/16/2021 12:05:10<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Pragya Banik</h3>
+
+<span id="cnvsw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Pragya Banik, District: Kolkata, Verification  Status: Verified, Location: South Kolkata, Availability Status: Available, Contact number: 8336045662, Verification time: 5/13/2021 17:36:15, ', 'cnvsw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>South Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8336045662">8336045662</a></div>
+</div>
+</div>
+<div class="resource-time">5/13/2021 17:36:15<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Deep</h3>
+
+<span id="kocyk" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Deep, District: Kolkata, Verification  Status: Verified, Location: Kolkata, Availability Status: Available, Contact number: 8910369548, Verification time: 5/12/2021 11:06:25, ', 'kocyk');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8910369548">8910369548</a></div>
+</div>
+</div>
+<div class="resource-time">5/12/2021 11:06:25<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Susmita Biswas</h3>
+
+<span id="fcqkd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Susmita Biswas, District: Kolkata, Verification  Status: Verified, Location: Jadavpur, Baghajatin, Garia, Tollygunge, Dhakuria, Gariahat, Prince Anwar Shah Road, Abhishikta, Availability Status: Available, Contact number: 7044321822, Verification time: 5/11/2021 13:56:25, ', 'fcqkd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Jadavpur, Baghajatin, Garia, Tollygunge, Dhakuria, Gariahat, Prince Anwar Shah Road, Abhishikta</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7044321822">7044321822</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:56:25<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sramjibi Canteen</h3>
+
+<span id="ryakb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sramjibi Canteen, District: Kolkata, Verification  Status: Verified, Location: Jadavpur, Availability Status: Available, Contact number: 9748434309, Verification time: 5/11/2021 13:50:38, ', 'ryakb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Jadavpur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9748434309">9748434309</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:50:38<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Lopas Kitchen</h3>
+
+<span id="vzlhl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Lopas Kitchen, District: Kolkata, Verification  Status: Verified, Location: Garia, Patuli, Avishikta, Availability Status: Available, Contact number: 9051643435, Verification time: 5/11/2021 13:43:14, ', 'vzlhl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Garia, Patuli, Avishikta</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051643435">9051643435</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:43:14<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Food For U</h3>
+
+<span id="erlpl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Food for U, District: Kolkata, Verification  Status: Verified, Location: South Kolkata Anwar Shah, Jadavpur, Santoshpur, Baghajatin, Garia, and adjacent area, Laketown and adjacent area, Availability Status: Available, Contact number: 8017996766, Verification time: 5/11/2021 13:40:13, ', 'erlpl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>South Kolkata Anwar Shah, Jadavpur, Santoshpur, Baghajatin, Garia, And Adjacent Area, Laketown And Adjacent Area</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8017996766">8017996766</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:40:13<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Gupta Brothers</h3>
+
+<span id="euuua" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Gupta Brothers, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Available, Contact number: 9836199154, Verification time: 5/11/2021 13:32:39, ', 'euuua');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9836199154">9836199154</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:32:39<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ranis Kitchen</h3>
+
+<span id="hrjkb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ranis Kitchen, District: Kolkata, Verification  Status: Verified, Location: Bhawanipur and adjacent area, Availability Status: Available, Contact number: 9836551616, Verification time: 5/11/2021 13:31:01, ', 'hrjkb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bhawanipur And Adjacent Area</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9836551616">9836551616</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:31:01<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shailaja Mundra</h3>
+
+<span id="iczfr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shailaja Mundra, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Available, Contact number: 9830220594, Verification time: 5/11/2021 13:28:01, ', 'iczfr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9830220594">9830220594</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:28:01<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Annapurna Kitchen</h3>
+
+<span id="vlfqe" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Annapurna Kitchen, District: Kolkata, Verification  Status: Verified, Location: Airport to Kakurgachi, Availability Status: Available, Contact number: 6290313657, Verification time: 5/11/2021 13:17:26, ', 'vlfqe');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Airport To Kakurgachi</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6290313657">6290313657</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:17:26<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shweta Jain</h3>
+
+<span id="iprkp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shweta Jain, District: Kolkata, Verification  Status: Verified, Location: All across Kolkata, Availability Status: Available, Contact number: 9874987724, Verification time: 5/11/2021 13:15:07, ', 'iprkp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Across Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9874987724">9874987724</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:15:07<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Roshik By Saini Bhattacharya</h3>
+
+<span id="masmk" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Roshik by Saini Bhattacharya, District: Kolkata, Verification  Status: Verified, Location: Saltlake, Newtown, Laketown, Rajarhat, Dumdum Park, Bangur, Baguiati, Chinar Park, Availability Status: Available, Contact number: 7980847805, Verification time: 5/11/2021 13:10:39, ', 'masmk');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Saltlake, Newtown, Laketown, Rajarhat, Dumdum Park, Bangur, Baguiati, Chinar Park</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7980847805">7980847805</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:10:39<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Kgs Kitchen</h3>
+
+<span id="wvbbi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: KGs Kitchen, District: Kolkata, Verification  Status: Verified, Location: Garia, Jadavpur, Santoshpur, and adjacent area, Availability Status: Available, Contact number: 9903378663, Verification time: 5/11/2021 13:07:57, ', 'wvbbi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Garia, Jadavpur, Santoshpur, And Adjacent Area</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9903378663">9903378663</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:07:57<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Homemade</h3>
+
+<span id="uwtuq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: HomeMade, District: Kolkata, Verification  Status: Verified, Location: Behala, Sakherbajar, and adjacent area, Availability Status: Available, Contact number: 9831450773, Verification time: 5/11/2021 13:06:59, ', 'uwtuq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Behala, Sakherbajar, And Adjacent Area</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9831450773">9831450773</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 13:06:59<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Harsh And Ankur</h3>
+
+<span id="pxpyh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Harsh and Ankur, District: Kolkata, Verification  Status: Verified, Location: New Alipore, Chetla, Tollygunge, Kalighat, Haridevpur and Behala, Availability Status: Available, Contact number: 8697449350, 9811560561, Verification time: 5/11/2021 12:33:25, ', 'pxpyh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>New Alipore, Chetla, Tollygunge, Kalighat, Haridevpur And Behala</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8697449350">8697449350</a></div>
+<div><a href="tel: 9811560561"> 9811560561</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 12:33:25<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Asmita And Anurag</h3>
+
+<span id="ytonx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Asmita and Anurag, District: Kolkata, Verification  Status: Verified, Location: Behala, Tollygunge, Golfgreen, Lake Gardens, Jodhpur Park and adjoining areas, Availability Status: Available, Contact number: 8482055025, 9748640219, Verification time: 5/11/2021 12:27:07, ', 'ytonx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Behala, Tollygunge, Golfgreen, Lake Gardens, Jodhpur Park And Adjoining Areas</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8482055025">8482055025</a></div>
+<div><a href="tel: 9748640219"> 9748640219</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 12:27:07<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Bhramari Roy, Kheyechhe Cloud Kitchen</h3>
+
+<span id="brqhu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Bhramari Roy, Kheyechhe Cloud Kitchen, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Available, Contact number: 9830041714, Verification time: 5/11/2021 12:25:42, ', 'brqhu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9830041714">9830041714</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 12:25:42<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Mrs Kitchen</h3>
+
+<span id="oalzo" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Mrs Kitchen, District: Kolkata, Verification  Status: Verified, Location: North Kolkata, Rajarhat, Newtown, Availability Status: Available, Contact number: 9830574772, Verification time: 5/11/2021 12:22:57, ', 'oalzo');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>North Kolkata, Rajarhat, Newtown</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9830574772">9830574772</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 12:22:57<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Priyank Kothari</h3>
+
+<span id="jnhuy" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Priyank Kothari, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Available, Contact number: 9051376319, Verification time: 5/11/2021 12:19:47, ', 'jnhuy');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051376319">9051376319</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 12:19:47<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Priyank Kothari</h3>
+
+<span id="oznpw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Priyank Kothari, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Available, Contact number: 9051376319, Verification time: 5/11/2021 12:19:47, ', 'oznpw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051376319">9051376319</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 12:19:47<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Lintu Dhaba</h3>
+
+<span id="rkzti" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Lintu Dhaba, District: Kolkata, Verification  Status: Verified, Location: Kasba, Ballygunge, Availability Status: Available, Contact number: 9874401999, 7003291232, Verification time: 5/11/2021 12:16:27, ', 'rkzti');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kasba, Ballygunge</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9874401999">9874401999</a></div>
+<div><a href="tel: 7003291232"> 7003291232</a></div>
+</div>
+</div>
+<div class="resource-time">5/11/2021 12:16:27<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Amrito Home Delivery Not Arnab Delivery</h3>
+
+<span id="zavgl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Amrito Home Delivery not Arnab delivery, District: Kolkata, Verification  Status: Verified, Location: South Kolkata, Availability Status: Available, Contact number: 9051159815, 9051391245, Verification time:  Info Missing, ', 'zavgl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>South Kolkata</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051159815">9051159815</a></div>
+<div><a href="tel: 9051391245"> 9051391245</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Dolar Ranna Ghor</h3>
+
+<span id="rgbst" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Dolar Ranna Ghor, District: Kolkata, Verification  Status: Verified, Location: Phoolbagan, Availability Status: Available, Contact number: 9831830794, Verification time:  Info Missing, ', 'rgbst');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Phoolbagan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9831830794">9831830794</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Vrinda Patodia</h3>
+
+<span id="tvmei" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Vrinda Patodia, District: Kolkata, Verification  Status: Verified, Location: Ballygunje and nearby areas, Availability Status: Available, Contact number: 9433090588, Verification time:  Info Missing, ', 'tvmei');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ballygunje And Nearby Areas</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9433090588">9433090588</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Meals By Mom</h3>
+
+<span id="fxrkf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Meals by Mom, District: Kolkata, Verification  Status: Verified, Location: Park Streetwithin 2km radius, Availability Status: Available, Contact number: 7439311158, Verification time:  Info Missing, ', 'fxrkf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Park Streetwithin 2Km Radius</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7439311158">7439311158</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Rakhi Mukherjee</h3>
+
+<span id="wtqhx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Rakhi Mukherjee, District: Kolkata, Verification  Status: Verified, Location: Shyambazar ,Baghbazar, Availability Status: Info Missing, Contact number: 9674327763, Verification time: Info Missing, ', 'wtqhx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Shyambazar ,Baghbazar</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9674327763">9674327763</a></div>
+</div>
+</div>
+<div class="resource-time">Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Cooked With Care</h3>
+
+<span id="wdiue" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Cooked with care, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Info Missing, Contact number: 9007640487, 8910480551 , 9331110327, Verification time: 5/8/2021 19:54:19, ', 'wdiue');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9007640487">9007640487</a></div>
+<div><a href="tel: 8910480551 "> 8910480551 </a></div>
+<div><a href="tel: 9331110327"> 9331110327</a></div>
+</div>
+</div>
+<div class="resource-time">5/8/2021 19:54:19<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Home Delivery</h3>
+
+<span id="bvdvh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Home delivery, District: Kolkata, Verification  Status: Verified, Location: Behala, sokherbajar, Haridev pur, Thakurpukur, 3A, Tollygunge ,chourasta, Availability Status: Info Missing, Contact number: 9674147275, 7890044404, Verification time: 5/7/2021 1:37:29, ', 'bvdvh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Behala, Sokherbajar, Haridev Pur, Thakurpukur, 3A, Tollygunge ,Chourasta</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9674147275">9674147275</a></div>
+<div><a href="tel: 7890044404"> 7890044404</a></div>
+</div>
+</div>
+<div class="resource-time">5/7/2021 1:37:29<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Ranjans Homefood</h3>
+
+<span id="xkanz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: ranjans homefood, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 8820470143, Verification time: 5/7/2021 1:33:45, ', 'xkanz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8820470143">8820470143</a></div>
+</div>
+</div>
+<div class="resource-time">5/7/2021 1:33:45<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Nanighar</h3>
+
+<span id="xzaqf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Nanighar, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Info Missing, Contact number: 8282828787, Verification time: 5/7/2021 1:32:11, ', 'xzaqf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8282828787">8282828787</a></div>
+</div>
+</div>
+<div class="resource-time">5/7/2021 1:32:11<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Kerry Patta</h3>
+
+<span id="jiftz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Kerry patta, District: Kolkata, Verification  Status: Verified, Location: Free lunch24 hrs notice, Availability Status: Info Missing, Contact number: 9830706543, Verification time: 5/3/2021 12:49:57, ', 'jiftz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Free Lunch24 Hrs Notice</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9830706543">9830706543</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:49:57<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Bekery</h3>
+
+<span id="ivpot" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Bekery, District: Kolkata, Verification  Status: Verified, Location: Belghoria to birati, Availability Status: Info Missing, Contact number: 7044077280, Verification time: 5/3/2021 12:49:55, ', 'ivpot');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Belghoria To Birati</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7044077280">7044077280</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:49:55<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Ubuntu The Vegan Cafe</h3>
+
+<span id="sendr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ubuntu the vegan cafe, District: Kolkata, Verification  Status: Verified, Location: South Kolkata  book 24hrs prior, Availability Status: Info Missing, Contact number: 8861657131, Verification time: 5/3/2021 12:49:45, ', 'sendr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>South Kolkata  Book 24Hrs Prior</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8861657131">8861657131</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:49:45<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Covid19 Canteen</h3>
+
+<span id="ymetq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: covid19 canteen, District: Kolkata, Verification  Status: Verified, Location: 8B, bijoygarh, pallisree, sree colony, netajinagar, gandhi colony, ranikuthi, baghajatin, garia, Availability Status: Info Missing, Contact number: 7044630806, Verification time: 5/3/2021 12:49:14, ', 'ymetq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>8B, Bijoygarh, Pallisree, Sree Colony, Netajinagar, Gandhi Colony, Ranikuthi, Baghajatin, Garia</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7044630806">7044630806</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:49:14<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Ekdalia Coccinia</h3>
+
+<span id="pxyzd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ekdalia coccinia, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 9123369378, Verification time: 5/3/2021 12:48:56, ', 'pxyzd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9123369378">9123369378</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:56<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Arnab Home Delivery</h3>
+
+<span id="jkfov" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Arnab home delivery, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 9051159815, Verification time: 5/3/2021 12:48:53, ', 'jkfov');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051159815">9051159815</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:53<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Taaza</h3>
+
+<span id="whzor" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Taaza, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 7044169715, Verification time: 5/3/2021 12:48:52, ', 'whzor');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7044169715">7044169715</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:52<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Nishat Tasmin</h3>
+
+<span id="irail" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Nishat tasmin, District: Kolkata, Verification  Status: Verified, Location: Swiggy/uber, Availability Status: Info Missing, Contact number: 8697767907, Verification time: 5/3/2021 12:48:51, ', 'irail');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Swiggy/Uber</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8697767907">8697767907</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:51<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Ogs Kitchen</h3>
+
+<span id="zhdnz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: OGS Kitchen, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 8697082035, Verification time: 5/3/2021 12:48:47, ', 'zhdnz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8697082035">8697082035</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:47<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">The Hungry Bear</h3>
+
+<span id="skajv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: The hungry bear, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 9831397018, Verification time: 5/3/2021 12:48:47, ', 'skajv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9831397018">9831397018</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:47<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Ghar Ki Rasoi</h3>
+
+<span id="sbrgi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ghar ki rasoi, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 9874987724, Verification time: 5/3/2021 12:48:43, ', 'sbrgi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9874987724">9874987724</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:43<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Rannaghor</h3>
+
+<span id="dugbr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Rannaghor, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Info Missing, Contact number: 8240109107, Verification time: 5/3/2021 12:48:36, ', 'dugbr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8240109107">8240109107</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:36<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Mrs Kitchen</h3>
+
+<span id="uzgjs" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Mrs kitchen, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 8910928400, Verification time: 5/3/2021 12:48:36, ', 'uzgjs');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8910928400">8910928400</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:36<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Peerless Inn</h3>
+
+<span id="vlcdr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Peerless inn, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 9007012906, Verification time: 5/3/2021 12:48:36, ', 'vlcdr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9007012906">9007012906</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:36<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Spoon Fuel</h3>
+
+<span id="vtuhq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Spoon fuel, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 9007760418, Verification time: 5/3/2021 12:48:35, ', 'vtuhq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9007760418">9007760418</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:35<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Dolar Rannaghor</h3>
+
+<span id="jguxg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Dolar Rannaghor, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 9831830794, Verification time: 5/3/2021 12:48:28, ', 'jguxg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9831830794">9831830794</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:28<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Depend Ablez</h3>
+
+<span id="ifzwr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Depend ablez, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Info Missing, Contact number: 9163267000, Verification time: 5/3/2021 12:48:26, ', 'ifzwr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9163267000">9163267000</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:26<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Calcutta Cooks</h3>
+
+<span id="ysbeg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Calcutta cooks, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Info Missing, Contact number: 8017244299, Verification time: 5/3/2021 12:48:24, ', 'ysbeg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8017244299">8017244299</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:24<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Dietfixx</h3>
+
+<span id="yyxzz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: DietFixx, District: Kolkata, Verification  Status: Verified, Location: All over Kolkata, Availability Status: Info Missing, Contact number: 9830038142, Verification time: 5/3/2021 12:48:22, ', 'yyxzz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9830038142">9830038142</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:22<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Sramajibi Canteen</h3>
+
+<span id="cmosl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sramajibi canteen, District: Kolkata, Verification  Status: Verified, Location: Jadavpur, Availability Status: Info Missing, Contact number: 9674519255, Verification time: 5/3/2021 12:48:21, ', 'cmosl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Jadavpur</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9674519255">9674519255</a></div>
+</div>
+</div>
+<div class="resource-time">5/3/2021 12:48:21<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Sweta Jain</h3>
+
+<span id="lttya" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sweta Jain, District: Kolkata, Verification  Status: Verified, Location: Veg thali all over Kolkata, Availability Status: Info Missing, Contact number: 9874987724, Verification time: 5/10/2021 12:27:52, ', 'lttya');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Veg Thali All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9874987724">9874987724</a></div>
+</div>
+</div>
+<div class="resource-time">5/10/2021 12:27:52<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Nitu Saraff</h3>
+
+<span id="avfes" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Nitu Saraff, District: Kolkata, Verification  Status: Verified, Location: Veg thali meal all over Kolkata, Availability Status: Info Missing, Contact number: 9883132649, Verification time: 5/10/2021 12:24:49, ', 'avfes');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Veg Thali Meal All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9883132649">9883132649</a></div>
+</div>
+</div>
+<div class="resource-time">5/10/2021 12:24:49<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Manila Ain</h3>
+
+<span id="fnese" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Manila ain, District: Kolkata, Verification  Status: Verified, Location: Thali meal all over Kolkata, Availability Status: Info Missing, Contact number: 6289956434, Verification time: 5/10/2021 12:21:03, ', 'fnese');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Thali Meal All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6289956434">6289956434</a></div>
+</div>
+</div>
+<div class="resource-time">5/10/2021 12:21:03<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Aditi Arora</h3>
+
+<span id="kejyh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Aditi arora, District: Kolkata, Verification  Status: Verified, Location: Veg Thali meal all over Kolkata, Availability Status: Info Missing, Contact number: 9831179079, Verification time: 5/10/2021 12:19:13, ', 'kejyh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Veg Thali Meal All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9831179079">9831179079</a></div>
+</div>
+</div>
+<div class="resource-time">5/10/2021 12:19:13<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Tiffin Bros</h3>
+
+<span id="uxhxr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Tiffin bros, District: Kolkata, Verification  Status: Verified, Location: Veg Thali meal All over Kolkata, Availability Status: Info Missing, Contact number: 6289984733, Verification time: 5/10/2021 12:15:20, ', 'uxhxr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Veg Thali Meal All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6289984733">6289984733</a></div>
+</div>
+</div>
+<div class="resource-time">5/10/2021 12:15:20<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Zeera</h3>
+
+<span id="awgpg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Zeera, District: Kolkata, Verification  Status: Verified, Location: Thali meal All over Kolkata, Availability Status: Info Missing, Contact number: 9830066624, Verification time: 5/10/2021 12:03:32, ', 'awgpg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Thali Meal All Over Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9830066624">9830066624</a></div>
+</div>
+</div>
+<div class="resource-time">5/10/2021 12:03:32<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Amrito Home Delivery</h3>
+
+<span id="cmppt" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Amrito home delivery, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 9051159815, Verification time:  Info Missing, ', 'cmppt');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051159815">9051159815</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Shivangi Roy</h3>
+
+<span id="unuqn" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shivangi roy, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 9073329885, Verification time:  Info Missing, ', 'unuqn');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9073329885">9073329885</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Grannys Kitchen</h3>
+
+<span id="ejklp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Grannys kitchen, District: Kolkata, Verification  Status: Verified, Location: Per order, Availability Status: Info Missing, Contact number: 9051661509, Verification time:  Info Missing, ', 'ejklp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Per Order</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9051661509">9051661509</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Moody Foody By Ankita</h3>
+
+<span id="bkmie" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Moody foody by ankita, District: Kolkata, Verification  Status: Verified, Location: All across Kolkata, Availability Status: Info Missing, Contact number: 9610096439, Verification time:  Info Missing, ', 'bkmie');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>All Across Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9610096439">9610096439</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Kheyeche</h3>
+
+<span id="yydba" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: kheyeche, District: Kolkata, Verification  Status: Verified, Location: south kolkata, Availability Status: Info Missing, Contact number: 9830041714, Verification time:  Info Missing, ', 'yydba');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>South Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9830041714">9830041714</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Mundhra Kitchen</h3>
+
+<span id="ghvsp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: mundhra kitchen, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 7003752008, Verification time:  Info Missing, ', 'ghvsp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7003752008">7003752008</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Yours Truly</h3>
+
+<span id="cjgzu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Yours Truly, District: Kolkata, Verification  Status: Verified, Location:  Info Missing, Availability Status: Info Missing, Contact number: 6291180092, Verification time:  Info Missing, ', 'cjgzu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6291180092">6291180092</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Asmita</h3>
+
+<span id="rtwrg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Asmita, District: Kolkata, Verification  Status: Verified, Location: Free meal at Behala, Tollygunge,Golf Green,lake gardens jodhpur park, Availability Status: Info Missing, Contact number: 8482055025, Verification time:  Info Missing, ', 'rtwrg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Free Meal At Behala, Tollygunge,Golf Green,Lake Gardens Jodhpur Park</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8482055025">8482055025</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Harsh</h3>
+
+<span id="lxpqx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Harsh, District: Kolkata, Verification  Status: Verified, Location: Free meal at New Alipore, Chetla, Tollygunge, Kalighat, haridevpur, behala, Availability Status: Info Missing, Contact number: 8697449350, Verification time:  Info Missing, ', 'lxpqx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Free Meal At New Alipore, Chetla, Tollygunge, Kalighat, Haridevpur, Behala</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8697449350">8697449350</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_nav"><div class="head-and-copy">
+<h3 class="card-head">Shravasti Ghosh</h3>
+
+<span id="zzyvd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shravasti ghosh, District: Kolkata, Verification  Status: Verified, Location: Free meal up to 15,north kol, Availability Status: Info Missing, Contact number: 8902703686, Verification time:  Info Missing, ', 'zzyvd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Kolkata</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Free Meal Up To 15,North Kol</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8902703686">8902703686</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div></div>
+</div>
 
   </div>
 

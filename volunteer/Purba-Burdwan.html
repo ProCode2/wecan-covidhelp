@@ -22,13 +22,18 @@
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://www.wbcan.org/feed.xml" title="WBCAN" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
-  gtag('config', 'G-4V3KJLL18H');
+  gtag("config", "G-4V3KJLL18H");
 
   function filterSearch() {
     var input, filter, av_divs, nav_divs, i, txtValue;
@@ -36,368 +41,438 @@
     filter = input.value.toUpperCase().trim();
     av_divs = document.getElementsByClassName("card_av");
     nav_divs = document.getElementsByClassName("card_nav");
-    if(filter.length > 0){
-      setDisplay(av_divs,filter);
-      setDisplay(nav_divs,filter);
-    }else{
+    if (filter.length > 0) {
+      setDisplay(av_divs, filter);
+      setDisplay(nav_divs, filter);
+    } else {
       console.error("Invalid input length.");
       setAllBlock(av_divs, nav_divs);
     }
   }
   function setDisplay(divs, filter) {
-    for(i = 0; i < divs.length; i++) {
+    for (i = 0; i < divs.length; i++) {
       txtValue = divs[i].innerText.toUpperCase();
-      if(txtValue.indexOf(filter) > -1) {
+      if (txtValue.indexOf(filter) > -1) {
         divs[i].style.display = "";
-      }
-      else {
+      } else {
         divs[i].style.display = "none";
       }
     }
   }
   function setAllBlock(divs1, divs2) {
-    for(i = 0; i < divs1.length; i++) {
+    for (i = 0; i < divs1.length; i++) {
       divs1[i].style.display = "";
     }
-    for(i = 0; i < divs2.length; i++) {
+    for (i = 0; i < divs2.length; i++) {
       divs2[i].style.display = "";
     }
   }
 
+  function copyToClipboard(text, id) {
+    document.querySelector(`#${id}`).style.background = "#5ef345";
+    setTimeout(function () {
+      document.querySelector(`#${id}`).style.background = "lightgray";
+    }, 3000);
+    let temp = document.createElement("textarea");
+    document.body.appendChild(temp);
+    temp.value = text;
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+  }
 </script>
 
 <style>
-  .button0 {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button1 {
-    background-color: #4c7aaf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button2 {
-    background-color: #a8af4c;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button3 {
-    background-color: #e6518f;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button4 {
-    background-color: #5e4caf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button5 {
-    background-color: #7782d3;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+    .head-and-copy {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0 10px 0;
+    }
 
-  .sp{
-  width: 10px;
-  padding-right: 15px;
-  background-color: #bdbbc5;
-  padding: 4px 12px;
-  }
+    .card-head {
+      font-weight: 700;
+      font-size: 1.1rem !important;
+      margin: 0 !important;
+    }
 
-  .highlight{
-  font-family: ABeeZee, sans-serif;
-  background-color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(99, 82, 82, 1);
-  text-transform: none;
-  font-style: normal;
-  text-decoration: none;
-  line-height: 1.6em;
-  letter-spacing: 0.7px;
-  }
-  .headHi{
+    .copy-to-clip-board {
+      background-color: lightgray;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .copy-to-clip-board > img {
+      width: 15px;
+      height: 15px;
+    }
+
+    .button0 {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button1 {
+      background-color: #4c7aaf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button2 {
+      background-color: #a8af4c;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button3 {
+      background-color: #e6518f;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button4 {
+      background-color: #5e4caf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button5 {
+      background-color: #7782d3;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .sp{
+    width: 10px;
+    padding-right: 15px;
+    background-color: #bdbbc5;
+    padding: 4px 12px;
+    }
+
+    .highlight{
     font-family: ABeeZee, sans-serif;
-    font-size: 26px;
+    background-color: #ffffff;
+    font-size: 16px;
     font-weight: 600;
-    color: rgba(77, 63, 63, 1);
+    color: rgba(99, 82, 82, 1);
     text-transform: none;
     font-style: normal;
     text-decoration: none;
     line-height: 1.6em;
     letter-spacing: 0.7px;
-}
-
-.introtext{
-    font-family: Verdana, sans-serif;
-    font-size: 16px;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.datetext{
-    font-family: Courier New, sans-serif;
-    font-size: 16px;
-    background-color: #eeeeee;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.divtext{
-  background-color: rgb(214, 226, 226);
-}
-
-div.ex1 {
-  width: 150px;
-  margin: auto;
-  border: 3px solid #73AD21;
-}
-.introhightext{
-    font-family: Optima, sans-serif;
-    font-size: 16px;
-    font-weight: 100;
-    color: #000010;
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 0em;
-    letter-spacing: 0px;
-}
-
-
-
-.column {
-  width: 60%;
-  text-align: center;
-  padding: 2px;
-  margin: 0 auto
-}
-
-/* Remove extra left and right margins, due to padding */
-.row {
-  width: 100%;
-  text-align: center;
-  padding: 7px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive columns */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
+    }
+    .headHi{
+      font-family: ABeeZee, sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: rgba(77, 63, 63, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.6em;
+      letter-spacing: 0.7px;
   }
-}
+
+  .introtext{
+      font-family: Verdana, sans-serif;
+      font-size: 16px;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .datetext{
+      font-family: Courier New, sans-serif;
+      font-size: 16px;
+      background-color: #eeeeee;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .divtext{
+    background-color: rgb(214, 226, 226);
+  }
+
+  div.ex1 {
+    width: 150px;
+    margin: auto;
+    border: 3px solid #73AD21;
+  }
+  .introhightext{
+      font-family: Optima, sans-serif;
+      font-size: 16px;
+      font-weight: 100;
+      color: #000010;
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 0em;
+      letter-spacing: 0px;
+  }
 
 
 
-.card_av {
-  padding: 16px;
-  text-align: center;
-  background-color: #bdfcd5;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  .column {
+    width: 60%;
+    text-align: center;
+    padding: 2px;
+    margin: 0 auto
+  }
 
-.card_nav {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  padding: 16px;
-  text-align: center;
-  background-color: #e49e9e;
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  /* Remove extra left and right margins, due to padding */
+  .row {
+    width: 100%;
+    text-align: center;
+    padding: 7px;
+  }
 
-.text_highlight{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 14px;
-  background-color: rgb(247, 194, 194);
-  text-align: justify;
-}
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
-.text_reg{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
-
-.text_foot{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 10px;
-  color:rgb(157, 158, 158);
-  text-align: justify;
-}
-
-.info {
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
-  padding: 2px;
-  text-align: left;
-  background-color: #f8f9fc;
-}
-
-
-/* button group css */
-.btn-group button {
-  background-color: #04AA6D; /* Green background */
-  border: 1px solid green; /* Green border */
-  color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  width: 50%; /* Set a width if needed */
-  display: block; /* Make the buttons appear below each other */
-}
-
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-  background-color: #3e8e41;
-}
-
-
-.cards {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-}
-
-/* CRAZY CARDS */ 
-
-
-/* buttons in intro */
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px !important;
-  margin-bottom: 15px;
-  font-size: inherit !important;
-}
-
-a:hover{
-  text-decoration: none;
-}
-
-#myInput {
-  background-image: url('../assets/css/searchicon.png');
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 91.6%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-.sticky {
-  position: fixed;
-  top: 2px;
-  width: 50% !important;
-}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-/* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
-  </style>
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
 
 
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
+  .card_av {
+    margin: 18px;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #bdfcd5;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .card_nav {
+    margin: 18px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #e49e9e;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .resource-info {
+    width: 44%;
+    text-align: left;
+  }
+
+  .resource-title {
+    font-weight: 600;
+    margin-right: 8px;
+  }
+
+  .resource-time {
+    font-family: monospace;
+    font-size: 14px;
+    border-top: 1px solid lightgray;
+    padding: 10px;
+    text-align: right;
+  }
+
+  .card-verified {
+    background-color: lightgreen;
+    border-radius: 50%;
+    padding: 8px;
+    margin-left: 8px;
+  }
+
+  .card-verified img {
+    width: 17px;
+    height: 17px;
+  }
+
+  .text_highlight{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    background-color: rgb(247, 194, 194);
+    text-align: justify;
+  }
+
+  .text_reg{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .text_foot{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    color:rgb(157, 158, 158);
+    text-align: justify;
+  }
+
+  .info {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    padding: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 10px;
+  }
+
+
+  /* button group css */
+  .btn-group button {
+    background-color: #04AA6D; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+  }
+
+  .btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+  }
+
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }
+
+
+  .cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  /* CRAZY CARDS */
+
+
+  /* buttons in intro */
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px !important;
+    margin-bottom: 15px;
+    font-size: inherit !important;
+  }
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  #myInput {
+    background-image: url('../assets/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 91.6%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  .sticky {
+    position: fixed;
+    top: 2px;
+    width: 50% !important;
+  }
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  /* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
+</style>
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Volunteer | WBCAN</title>
 <meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Volunteer" />
@@ -415,6 +490,7 @@ a:hover{
 <script type="application/ld+json">
 {"headline":"Volunteer","url":"http://www.wbcan.org/volunteer/Purba-Burdwan","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.wbcan.org/wecan-covidhelp/assets/wbcan-logo.png"},"name":"WBCAN Copyright © 2021"},"author":{"@type":"Person","name":"WBCAN Copyright © 2021"},"@type":"WebPage","description":"Connecting verified resource information with patients in need.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+
 </head>
 <body><header class="site-header" style="background-color: #eeeeee;">
 
@@ -431,9 +507,7 @@ a:hover{
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/tools/">
-               Helplines
-            </a><a class="page-link" href="/faq/">
+        <div class="trigger"><a class="page-link" href="/faq/">
                Covid-19 FAQ
             </a><a class="page-link" href="/contribute/">
                Volunteer
@@ -455,731 +529,803 @@ a:hover{
 <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search.." />
 
  <br /><br />
-<div class="text_foot"><h4> Data updated at: 25, May 2021 21:45. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
+<div class="text_foot"><h4> Data updated at: 25, May 2021 21:55. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
 <div class="row">
 	<div class="column">
-<div class="card_av">
-<h3>Sayantan Sarkar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Dakshin</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7872379632">7872379632</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shain</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9932146285">9932146285</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ujjwal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6296126032">6296126032</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sudip</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7029196621">7029196621</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Debashis</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9933448005">9933448005</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Soumyajit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8145774622">8145774622</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Amiyo</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7864066956">7864066956</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sougata</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8016627307">8016627307</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Soumit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8343876487">8343876487</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Bishwajit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9382632301">9382632301</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Arijit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9474978853">9474978853</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Dhruba</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6296231190">6296231190</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Arka</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Sadar 2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8900471058">8900471058</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Usashi Roy Choudhury</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward411, Bardhaman Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9564626803">9564626803</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Titash Banerjee</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward411, Bardhaman Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064759927">9064759927</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Kazi Nion</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward13,2532, Bardhaman Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908158007">7908158007</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Koushik Sarkar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward1216, Bardhaman Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908836271">7908836271</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Monuddin</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward1724,3335</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8116398963">8116398963</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Nandita</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward1724,3335</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9382255499">9382255499</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Afrid</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward1724,3335</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064333056">9064333056</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Gourab Chakraborty</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward13,2532, Bardhaman Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7001194447">7001194447</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Saibal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward 1216, Bardhaman Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8918613724">8918613724</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Dibyendu Nandi</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward13,2532, Bardhaman Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064183340">9064183340</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Agniva</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward1724,3335, Bardhaman Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064235189">9064235189</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Bijoy De</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward1216, Bardhaman Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064235189">9064235189</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Asik Aslam</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ward1724,3335, Bardhaman Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9382839748">9382839748</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Chandan Som</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Uttar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7363056595">7363056595</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Chandi Charan Let</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Uttar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9093546683">9093546683</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Chandrakanta Mukherjee</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bardhaman Uttar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7001983577">7001983577</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sanju</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bhatar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8641893818">8641893818</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Chinmoy</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bhatar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7001092514">7001092514</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Roni</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bogpur Nadanghat</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7001862414">7001862414</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Koushik</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Bogpur Nadanghat</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9123648640">9123648640</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Makhan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Galsi</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7699431128">7699431128</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Atanu</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Guskara Paschim</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908277392">7908277392</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Pralay</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Guskara Purba</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908846143">7908846143</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Neelkamal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Jamalpur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6294453753">6294453753</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Asif</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Kalna 2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064258106">9064258106</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Surajit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Kalna 2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6295876009">6295876009</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Suman</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Kalna 2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064381340">9064381340</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Avijit Raha</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Kalna Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8101963687">8101963687</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ayan Goshwami</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Kalna Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8372076458">8372076458</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Prabir Bhowmick</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Kalna Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9647552146">9647552146</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Souvik Dey</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Kalna Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7001898947">7001898947</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Alamgir Sheikh</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Kalna 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9734616051">9734616051</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Jahangir Sheikh</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Kalna 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8158944125">8158944125</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sabuj Sheikh</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Kalna 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8391943745">8391943745</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Saptarshi</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Katwa1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9635829829">9635829829</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Surojit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Katwa Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9932009827">9932009827</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Neelmadhab</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Katwa2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8515891259">8515891259</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Mangaldeep</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Katwa Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8001072154">8001072154</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Saif</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Katwa Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9832735636">9832735636</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Akash</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Katwa1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7478181881">7478181881</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Pradip</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Katwa2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8250125982">8250125982</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Abinash</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Katwa1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6294752799">6294752799</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ayan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ketugram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7679422927">7679422927</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Tulip</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Ketugram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8918681090">8918681090</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sandip</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Khandaghosh</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9749462516">9749462516</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Biplab</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Khandaghosh</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9547832501">9547832501</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Maidul</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Mangalkot</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9083387998">9083387998</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Makhan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Mangalkot</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7890668215">7890668215</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Debjit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Memari 2  Manteswar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064088868">9064088868</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Mayukh</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Memari1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6295219502">6295219502</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Hemanta</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Memari 2  Manteswar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064075084">9064075084</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Tarok</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Memari1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7863904873">7863904873</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Nayan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Purbasthali2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7318963442">7318963442</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Santanu</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Purbasthali2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8515811474">8515811474</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Srijan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Purbasthali1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7076784222">7076784222</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Koushik</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Purbasthali1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9123648640">9123648640</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Trinath</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Raina</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7001451543">7001451543</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Manas</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Raina</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7478018919">7478018919</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Deep</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Purba Burdwan Bardhaman</th></tr>
-<tr><th>Location</th><th>Raina</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9088087728">9088087728</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
+<div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sayantan Sarkar</h3>
+
+<span id="yqgef" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sayantan Sarkar, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Dakshin, Availability Status: Available, Contact number: 7872379632, Verification time:  Info Missing, ', 'yqgef');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Dakshin</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7872379632">7872379632</a></div>
 </div>
- </div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shain</h3>
+
+<span id="pjdsq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shain, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 1, Availability Status: Available, Contact number: 9932146285, Verification time:  Info Missing, ', 'pjdsq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9932146285">9932146285</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ujjwal</h3>
+
+<span id="ospna" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ujjwal, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 1, Availability Status: Available, Contact number: 6296126032, Verification time:  Info Missing, ', 'ospna');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6296126032">6296126032</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sudip</h3>
+
+<span id="ixfdf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sudip, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 1, Availability Status: Available, Contact number: 7029196621, Verification time:  Info Missing, ', 'ixfdf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7029196621">7029196621</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Debashis</h3>
+
+<span id="jvxwg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Debashis, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 1, Availability Status: Available, Contact number: 9933448005, Verification time:  Info Missing, ', 'jvxwg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9933448005">9933448005</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Soumyajit</h3>
+
+<span id="zxweg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Soumyajit, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 1, Availability Status: Available, Contact number: 8145774622, Verification time:  Info Missing, ', 'zxweg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8145774622">8145774622</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Amiyo</h3>
+
+<span id="adiww" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Amiyo, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 1, Availability Status: Available, Contact number: 7864066956, Verification time:  Info Missing, ', 'adiww');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7864066956">7864066956</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sougata</h3>
+
+<span id="kzckm" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sougata, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 1, Availability Status: Available, Contact number: 8016627307, Verification time:  Info Missing, ', 'kzckm');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8016627307">8016627307</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Soumit</h3>
+
+<span id="wixsr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Soumit, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 1, Availability Status: Available, Contact number: 8343876487, Verification time:  Info Missing, ', 'wixsr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8343876487">8343876487</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Bishwajit</h3>
+
+<span id="paujx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Bishwajit, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 1, Availability Status: Available, Contact number: 9382632301, Verification time:  Info Missing, ', 'paujx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9382632301">9382632301</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Arijit</h3>
+
+<span id="mqfbn" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Arijit, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 1, Availability Status: Available, Contact number: 9474978853, Verification time:  Info Missing, ', 'mqfbn');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9474978853">9474978853</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Dhruba</h3>
+
+<span id="vsvml" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Dhruba, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 1, Availability Status: Available, Contact number: 6296231190, Verification time:  Info Missing, ', 'vsvml');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6296231190">6296231190</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Arka</h3>
+
+<span id="wispg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Arka, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Sadar 2, Availability Status: Available, Contact number: 8900471058, Verification time:  Info Missing, ', 'wispg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Sadar 2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8900471058">8900471058</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Usashi Roy Choudhury</h3>
+
+<span id="zqtze" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Usashi Roy Choudhury, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward411, Bardhaman town, Availability Status: Available, Contact number: 9564626803, Verification time:  Info Missing, ', 'zqtze');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward411, Bardhaman Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9564626803">9564626803</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Titash Banerjee</h3>
+
+<span id="ixcqp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Titash Banerjee, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward411, Bardhaman town, Availability Status: Available, Contact number: 9064759927, Verification time:  Info Missing, ', 'ixcqp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward411, Bardhaman Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064759927">9064759927</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Kazi Nion</h3>
+
+<span id="mojnw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Kazi Nion, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward13,2532, Bardhaman town, Availability Status: Available, Contact number: 7908158007, Verification time:  Info Missing, ', 'mojnw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward13,2532, Bardhaman Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908158007">7908158007</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Koushik Sarkar</h3>
+
+<span id="loedb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Koushik Sarkar, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward1216, Bardhaman Town, Availability Status: Available, Contact number: 7908836271, Verification time:  Info Missing, ', 'loedb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward1216, Bardhaman Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908836271">7908836271</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Monuddin</h3>
+
+<span id="dluxi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Monuddin, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward1724,3335, Availability Status: Available, Contact number: 8116398963, Verification time:  Info Missing, ', 'dluxi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward1724,3335</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8116398963">8116398963</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Nandita</h3>
+
+<span id="onzqa" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Nandita, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward1724,3335, Availability Status: Available, Contact number: 9382255499, Verification time:  Info Missing, ', 'onzqa');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward1724,3335</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9382255499">9382255499</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Afrid</h3>
+
+<span id="gvzze" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Afrid, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward1724,3335, Availability Status: Available, Contact number: 9064333056, Verification time:  Info Missing, ', 'gvzze');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward1724,3335</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064333056">9064333056</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Gourab Chakraborty</h3>
+
+<span id="auvpx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Gourab Chakraborty, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward13,2532, Bardhaman town, Availability Status: Available, Contact number: 7001194447, Verification time:  Info Missing, ', 'auvpx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward13,2532, Bardhaman Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7001194447">7001194447</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Saibal</h3>
+
+<span id="yqfwp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Saibal, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward 1216, Bardhaman Town, Availability Status: Available, Contact number: 8918613724, Verification time:  Info Missing, ', 'yqfwp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward 1216, Bardhaman Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8918613724">8918613724</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Dibyendu Nandi</h3>
+
+<span id="gazgs" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Dibyendu Nandi, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward13,2532, Bardhaman town, Availability Status: Available, Contact number: 9064183340, Verification time:  Info Missing, ', 'gazgs');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward13,2532, Bardhaman Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064183340">9064183340</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Agniva</h3>
+
+<span id="vdegu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Agniva, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward1724,3335, Bardhaman Town, Availability Status: Available, Contact number: 9064235189, Verification time:  Info Missing, ', 'vdegu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward1724,3335, Bardhaman Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064235189">9064235189</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Bijoy De</h3>
+
+<span id="gfpuz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Bijoy De, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward1216, Bardhaman Town, Availability Status: Available, Contact number: 9064235189, Verification time:  Info Missing, ', 'gfpuz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward1216, Bardhaman Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064235189">9064235189</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Asik Aslam</h3>
+
+<span id="frqqs" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Asik Aslam, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: ward1724,3335, Bardhaman Town, Availability Status: Available, Contact number: 9382839748, Verification time:  Info Missing, ', 'frqqs');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ward1724,3335, Bardhaman Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9382839748">9382839748</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Chandan Som</h3>
+
+<span id="wkssx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Chandan Som, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Uttar, Availability Status: Available, Contact number: 7363056595, Verification time:  Info Missing, ', 'wkssx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Uttar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7363056595">7363056595</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Chandi Charan Let</h3>
+
+<span id="gwofz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Chandi Charan Let, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Uttar, Availability Status: Available, Contact number: 9093546683, Verification time:  Info Missing, ', 'gwofz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Uttar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9093546683">9093546683</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Chandrakanta Mukherjee</h3>
+
+<span id="ooogk" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Chandrakanta Mukherjee, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bardhaman Uttar, Availability Status: Available, Contact number: 7001983577, Verification time:  Info Missing, ', 'ooogk');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bardhaman Uttar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7001983577">7001983577</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sanju</h3>
+
+<span id="ghxsd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sanju, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bhatar, Availability Status: Available, Contact number: 8641893818, Verification time:  Info Missing, ', 'ghxsd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bhatar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8641893818">8641893818</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Chinmoy</h3>
+
+<span id="cxhnj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Chinmoy, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bhatar, Availability Status: Available, Contact number: 7001092514, Verification time:  Info Missing, ', 'cxhnj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bhatar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7001092514">7001092514</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Roni</h3>
+
+<span id="ajupk" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Roni, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bogpur Nadanghat, Availability Status: Available, Contact number: 7001862414, Verification time:  Info Missing, ', 'ajupk');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bogpur Nadanghat</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7001862414">7001862414</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Koushik</h3>
+
+<span id="yugse" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Koushik, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Bogpur Nadanghat, Availability Status: Available, Contact number: 9123648640, Verification time:  Info Missing, ', 'yugse');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bogpur Nadanghat</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9123648640">9123648640</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Makhan</h3>
+
+<span id="pgcyl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Makhan, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Galsi, Availability Status: Available, Contact number: 7699431128, Verification time:  Info Missing, ', 'pgcyl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Galsi</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7699431128">7699431128</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Atanu</h3>
+
+<span id="gvout" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Atanu, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Guskara Paschim, Availability Status: Available, Contact number: 7908277392, Verification time:  Info Missing, ', 'gvout');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Guskara Paschim</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908277392">7908277392</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Pralay</h3>
+
+<span id="lurye" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Pralay, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Guskara Purba, Availability Status: Available, Contact number: 7908846143, Verification time:  Info Missing, ', 'lurye');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Guskara Purba</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908846143">7908846143</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Neelkamal</h3>
+
+<span id="ejnya" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Neelkamal, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Jamalpur, Availability Status: Available, Contact number: 6294453753, Verification time:  Info Missing, ', 'ejnya');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Jamalpur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6294453753">6294453753</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Asif</h3>
+
+<span id="yjsvb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Asif, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Kalna 2, Availability Status: Available, Contact number: 9064258106, Verification time:  Info Missing, ', 'yjsvb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kalna 2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064258106">9064258106</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Surajit</h3>
+
+<span id="scsdp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Surajit, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Kalna 2, Availability Status: Available, Contact number: 6295876009, Verification time:  Info Missing, ', 'scsdp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kalna 2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6295876009">6295876009</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Suman</h3>
+
+<span id="tmwnn" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Suman, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Kalna 2, Availability Status: Available, Contact number: 9064381340, Verification time:  Info Missing, ', 'tmwnn');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kalna 2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064381340">9064381340</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Avijit Raha</h3>
+
+<span id="falxa" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Avijit Raha, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Kalna Town, Availability Status: Available, Contact number: 8101963687, Verification time:  Info Missing, ', 'falxa');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kalna Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8101963687">8101963687</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ayan Goshwami</h3>
+
+<span id="ymzsd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ayan Goshwami, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Kalna Town, Availability Status: Available, Contact number: 8372076458, Verification time:  Info Missing, ', 'ymzsd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kalna Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8372076458">8372076458</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Prabir Bhowmick</h3>
+
+<span id="myrru" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Prabir Bhowmick, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Kalna Town, Availability Status: Available, Contact number: 9647552146, Verification time:  Info Missing, ', 'myrru');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kalna Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9647552146">9647552146</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Souvik Dey</h3>
+
+<span id="styze" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Souvik Dey, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Kalna Town, Availability Status: Available, Contact number: 7001898947, Verification time:  Info Missing, ', 'styze');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kalna Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7001898947">7001898947</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Alamgir Sheikh</h3>
+
+<span id="qkbwa" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Alamgir Sheikh, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Kalna 1, Availability Status: Available, Contact number: 9734616051, Verification time:  Info Missing, ', 'qkbwa');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kalna 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9734616051">9734616051</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Jahangir Sheikh</h3>
+
+<span id="bhsef" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Jahangir Sheikh, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Kalna 1, Availability Status: Available, Contact number: 8158944125, Verification time:  Info Missing, ', 'bhsef');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kalna 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8158944125">8158944125</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sabuj Sheikh</h3>
+
+<span id="minte" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sabuj Sheikh, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Kalna 1, Availability Status: Available, Contact number: 8391943745, Verification time:  Info Missing, ', 'minte');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kalna 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8391943745">8391943745</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Saptarshi</h3>
+
+<span id="adima" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Saptarshi, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Katwa1, Availability Status: Available, Contact number: 9635829829, Verification time:  Info Missing, ', 'adima');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Katwa1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9635829829">9635829829</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Surojit</h3>
+
+<span id="mjxnu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Surojit, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Katwa Town, Availability Status: Available, Contact number: 9932009827, Verification time:  Info Missing, ', 'mjxnu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Katwa Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9932009827">9932009827</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Neelmadhab</h3>
+
+<span id="ebwdh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Neelmadhab, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Katwa2, Availability Status: Available, Contact number: 8515891259, Verification time:  Info Missing, ', 'ebwdh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Katwa2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8515891259">8515891259</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Mangaldeep</h3>
+
+<span id="jcvrh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Mangaldeep, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Katwa Town, Availability Status: Available, Contact number: 8001072154, Verification time:  Info Missing, ', 'jcvrh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Katwa Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8001072154">8001072154</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Saif</h3>
+
+<span id="xbxqq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Saif, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Katwa Town, Availability Status: Available, Contact number: 9832735636, Verification time:  Info Missing, ', 'xbxqq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Katwa Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9832735636">9832735636</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Akash</h3>
+
+<span id="janot" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Akash, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Katwa1, Availability Status: Available, Contact number: 7478181881, Verification time:  Info Missing, ', 'janot');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Katwa1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7478181881">7478181881</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Pradip</h3>
+
+<span id="qvwyj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Pradip, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Katwa2, Availability Status: Available, Contact number: 8250125982, Verification time:  Info Missing, ', 'qvwyj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Katwa2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8250125982">8250125982</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Abinash</h3>
+
+<span id="sxuxg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Abinash, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Katwa1, Availability Status: Available, Contact number: 6294752799, Verification time:  Info Missing, ', 'sxuxg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Katwa1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6294752799">6294752799</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ayan</h3>
+
+<span id="plbzm" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ayan, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Ketugram, Availability Status: Available, Contact number: 7679422927, Verification time:  Info Missing, ', 'plbzm');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ketugram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7679422927">7679422927</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Tulip</h3>
+
+<span id="yhjwa" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Tulip, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Ketugram, Availability Status: Available, Contact number: 8918681090, Verification time:  Info Missing, ', 'yhjwa');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ketugram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8918681090">8918681090</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sandip</h3>
+
+<span id="uyhzp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sandip, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Khandaghosh, Availability Status: Available, Contact number: 9749462516, Verification time:  Info Missing, ', 'uyhzp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Khandaghosh</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9749462516">9749462516</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Biplab</h3>
+
+<span id="mvpen" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Biplab, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Khandaghosh, Availability Status: Available, Contact number: 9547832501, Verification time:  Info Missing, ', 'mvpen');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Khandaghosh</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9547832501">9547832501</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Maidul</h3>
+
+<span id="dxpce" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Maidul, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Mangalkot, Availability Status: Available, Contact number: 9083387998, Verification time:  Info Missing, ', 'dxpce');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Mangalkot</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9083387998">9083387998</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Makhan</h3>
+
+<span id="sqmzf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Makhan, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Mangalkot, Availability Status: Available, Contact number: 7890668215, Verification time:  Info Missing, ', 'sqmzf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Mangalkot</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7890668215">7890668215</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Debjit</h3>
+
+<span id="sihen" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Debjit, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Memari 2  Manteswar, Availability Status: Available, Contact number: 9064088868, Verification time:  Info Missing, ', 'sihen');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Memari 2  Manteswar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064088868">9064088868</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Mayukh</h3>
+
+<span id="xbbqi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Mayukh, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Memari1, Availability Status: Available, Contact number: 6295219502, Verification time:  Info Missing, ', 'xbbqi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Memari1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6295219502">6295219502</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Hemanta</h3>
+
+<span id="oifsi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Hemanta, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Memari 2  Manteswar, Availability Status: Available, Contact number: 9064075084, Verification time:  Info Missing, ', 'oifsi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Memari 2  Manteswar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064075084">9064075084</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Tarok</h3>
+
+<span id="vflbw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Tarok, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Memari1, Availability Status: Available, Contact number: 7863904873, Verification time:  Info Missing, ', 'vflbw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Memari1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7863904873">7863904873</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Nayan</h3>
+
+<span id="diqht" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Nayan, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Purbasthali2, Availability Status: Available, Contact number: 7318963442, Verification time:  Info Missing, ', 'diqht');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Purbasthali2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7318963442">7318963442</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Santanu</h3>
+
+<span id="vedky" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Santanu, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Purbasthali2, Availability Status: Available, Contact number: 8515811474, Verification time:  Info Missing, ', 'vedky');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Purbasthali2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8515811474">8515811474</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Srijan</h3>
+
+<span id="yjoza" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Srijan, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Purbasthali1, Availability Status: Available, Contact number: 7076784222, Verification time:  Info Missing, ', 'yjoza');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Purbasthali1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7076784222">7076784222</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Koushik</h3>
+
+<span id="iehgu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Koushik, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Purbasthali1, Availability Status: Available, Contact number: 9123648640, Verification time:  Info Missing, ', 'iehgu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Purbasthali1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9123648640">9123648640</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Trinath</h3>
+
+<span id="myrdk" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Trinath, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Raina, Availability Status: Available, Contact number: 7001451543, Verification time:  Info Missing, ', 'myrdk');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raina</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7001451543">7001451543</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Manas</h3>
+
+<span id="taiwu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Manas, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Raina, Availability Status: Available, Contact number: 7478018919, Verification time:  Info Missing, ', 'taiwu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raina</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7478018919">7478018919</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Deep</h3>
+
+<span id="tztyi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Deep, District: Purba Burdwan Bardhaman, Verification  Status: Verified, Location: Raina, Availability Status: Available, Contact number: 9088087728, Verification time:  Info Missing, ', 'tztyi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Purba Burdwan Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raina</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9088087728">9088087728</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div></div>
+</div>
 
   </div>
 

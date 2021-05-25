@@ -22,13 +22,18 @@
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://www.wbcan.org/feed.xml" title="WBCAN" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
-  gtag('config', 'G-4V3KJLL18H');
+  gtag("config", "G-4V3KJLL18H");
 
   function filterSearch() {
     var input, filter, av_divs, nav_divs, i, txtValue;
@@ -36,368 +41,438 @@
     filter = input.value.toUpperCase().trim();
     av_divs = document.getElementsByClassName("card_av");
     nav_divs = document.getElementsByClassName("card_nav");
-    if(filter.length > 0){
-      setDisplay(av_divs,filter);
-      setDisplay(nav_divs,filter);
-    }else{
+    if (filter.length > 0) {
+      setDisplay(av_divs, filter);
+      setDisplay(nav_divs, filter);
+    } else {
       console.error("Invalid input length.");
       setAllBlock(av_divs, nav_divs);
     }
   }
   function setDisplay(divs, filter) {
-    for(i = 0; i < divs.length; i++) {
+    for (i = 0; i < divs.length; i++) {
       txtValue = divs[i].innerText.toUpperCase();
-      if(txtValue.indexOf(filter) > -1) {
+      if (txtValue.indexOf(filter) > -1) {
         divs[i].style.display = "";
-      }
-      else {
+      } else {
         divs[i].style.display = "none";
       }
     }
   }
   function setAllBlock(divs1, divs2) {
-    for(i = 0; i < divs1.length; i++) {
+    for (i = 0; i < divs1.length; i++) {
       divs1[i].style.display = "";
     }
-    for(i = 0; i < divs2.length; i++) {
+    for (i = 0; i < divs2.length; i++) {
       divs2[i].style.display = "";
     }
   }
 
+  function copyToClipboard(text, id) {
+    document.querySelector(`#${id}`).style.background = "#5ef345";
+    setTimeout(function () {
+      document.querySelector(`#${id}`).style.background = "lightgray";
+    }, 3000);
+    let temp = document.createElement("textarea");
+    document.body.appendChild(temp);
+    temp.value = text;
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+  }
 </script>
 
 <style>
-  .button0 {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button1 {
-    background-color: #4c7aaf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button2 {
-    background-color: #a8af4c;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button3 {
-    background-color: #e6518f;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button4 {
-    background-color: #5e4caf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button5 {
-    background-color: #7782d3;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+    .head-and-copy {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0 10px 0;
+    }
 
-  .sp{
-  width: 10px;
-  padding-right: 15px;
-  background-color: #bdbbc5;
-  padding: 4px 12px;
-  }
+    .card-head {
+      font-weight: 700;
+      font-size: 1.1rem !important;
+      margin: 0 !important;
+    }
 
-  .highlight{
-  font-family: ABeeZee, sans-serif;
-  background-color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(99, 82, 82, 1);
-  text-transform: none;
-  font-style: normal;
-  text-decoration: none;
-  line-height: 1.6em;
-  letter-spacing: 0.7px;
-  }
-  .headHi{
+    .copy-to-clip-board {
+      background-color: lightgray;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .copy-to-clip-board > img {
+      width: 15px;
+      height: 15px;
+    }
+
+    .button0 {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button1 {
+      background-color: #4c7aaf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button2 {
+      background-color: #a8af4c;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button3 {
+      background-color: #e6518f;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button4 {
+      background-color: #5e4caf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button5 {
+      background-color: #7782d3;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .sp{
+    width: 10px;
+    padding-right: 15px;
+    background-color: #bdbbc5;
+    padding: 4px 12px;
+    }
+
+    .highlight{
     font-family: ABeeZee, sans-serif;
-    font-size: 26px;
+    background-color: #ffffff;
+    font-size: 16px;
     font-weight: 600;
-    color: rgba(77, 63, 63, 1);
+    color: rgba(99, 82, 82, 1);
     text-transform: none;
     font-style: normal;
     text-decoration: none;
     line-height: 1.6em;
     letter-spacing: 0.7px;
-}
-
-.introtext{
-    font-family: Verdana, sans-serif;
-    font-size: 16px;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.datetext{
-    font-family: Courier New, sans-serif;
-    font-size: 16px;
-    background-color: #eeeeee;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.divtext{
-  background-color: rgb(214, 226, 226);
-}
-
-div.ex1 {
-  width: 150px;
-  margin: auto;
-  border: 3px solid #73AD21;
-}
-.introhightext{
-    font-family: Optima, sans-serif;
-    font-size: 16px;
-    font-weight: 100;
-    color: #000010;
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 0em;
-    letter-spacing: 0px;
-}
-
-
-
-.column {
-  width: 60%;
-  text-align: center;
-  padding: 2px;
-  margin: 0 auto
-}
-
-/* Remove extra left and right margins, due to padding */
-.row {
-  width: 100%;
-  text-align: center;
-  padding: 7px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive columns */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
+    }
+    .headHi{
+      font-family: ABeeZee, sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: rgba(77, 63, 63, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.6em;
+      letter-spacing: 0.7px;
   }
-}
+
+  .introtext{
+      font-family: Verdana, sans-serif;
+      font-size: 16px;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .datetext{
+      font-family: Courier New, sans-serif;
+      font-size: 16px;
+      background-color: #eeeeee;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .divtext{
+    background-color: rgb(214, 226, 226);
+  }
+
+  div.ex1 {
+    width: 150px;
+    margin: auto;
+    border: 3px solid #73AD21;
+  }
+  .introhightext{
+      font-family: Optima, sans-serif;
+      font-size: 16px;
+      font-weight: 100;
+      color: #000010;
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 0em;
+      letter-spacing: 0px;
+  }
 
 
 
-.card_av {
-  padding: 16px;
-  text-align: center;
-  background-color: #bdfcd5;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  .column {
+    width: 60%;
+    text-align: center;
+    padding: 2px;
+    margin: 0 auto
+  }
 
-.card_nav {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  padding: 16px;
-  text-align: center;
-  background-color: #e49e9e;
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  /* Remove extra left and right margins, due to padding */
+  .row {
+    width: 100%;
+    text-align: center;
+    padding: 7px;
+  }
 
-.text_highlight{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 14px;
-  background-color: rgb(247, 194, 194);
-  text-align: justify;
-}
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
-.text_reg{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
-
-.text_foot{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 10px;
-  color:rgb(157, 158, 158);
-  text-align: justify;
-}
-
-.info {
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
-  padding: 2px;
-  text-align: left;
-  background-color: #f8f9fc;
-}
-
-
-/* button group css */
-.btn-group button {
-  background-color: #04AA6D; /* Green background */
-  border: 1px solid green; /* Green border */
-  color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  width: 50%; /* Set a width if needed */
-  display: block; /* Make the buttons appear below each other */
-}
-
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-  background-color: #3e8e41;
-}
-
-
-.cards {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-}
-
-/* CRAZY CARDS */ 
-
-
-/* buttons in intro */
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px !important;
-  margin-bottom: 15px;
-  font-size: inherit !important;
-}
-
-a:hover{
-  text-decoration: none;
-}
-
-#myInput {
-  background-image: url('../assets/css/searchicon.png');
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 91.6%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-.sticky {
-  position: fixed;
-  top: 2px;
-  width: 50% !important;
-}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-/* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
-  </style>
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
 
 
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
+  .card_av {
+    margin: 18px;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #bdfcd5;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .card_nav {
+    margin: 18px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #e49e9e;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .resource-info {
+    width: 44%;
+    text-align: left;
+  }
+
+  .resource-title {
+    font-weight: 600;
+    margin-right: 8px;
+  }
+
+  .resource-time {
+    font-family: monospace;
+    font-size: 14px;
+    border-top: 1px solid lightgray;
+    padding: 10px;
+    text-align: right;
+  }
+
+  .card-verified {
+    background-color: lightgreen;
+    border-radius: 50%;
+    padding: 8px;
+    margin-left: 8px;
+  }
+
+  .card-verified img {
+    width: 17px;
+    height: 17px;
+  }
+
+  .text_highlight{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    background-color: rgb(247, 194, 194);
+    text-align: justify;
+  }
+
+  .text_reg{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .text_foot{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    color:rgb(157, 158, 158);
+    text-align: justify;
+  }
+
+  .info {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    padding: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 10px;
+  }
+
+
+  /* button group css */
+  .btn-group button {
+    background-color: #04AA6D; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+  }
+
+  .btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+  }
+
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }
+
+
+  .cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  /* CRAZY CARDS */
+
+
+  /* buttons in intro */
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px !important;
+    margin-bottom: 15px;
+    font-size: inherit !important;
+  }
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  #myInput {
+    background-image: url('../assets/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 91.6%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  .sticky {
+    position: fixed;
+    top: 2px;
+    width: 50% !important;
+  }
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  /* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
+</style>
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Volunteer | WBCAN</title>
 <meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Volunteer" />
@@ -415,6 +490,7 @@ a:hover{
 <script type="application/ld+json">
 {"headline":"Volunteer","url":"http://www.wbcan.org/volunteer/Bankura","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.wbcan.org/wecan-covidhelp/assets/wbcan-logo.png"},"name":"WBCAN Copyright © 2021"},"author":{"@type":"Person","name":"WBCAN Copyright © 2021"},"@type":"WebPage","description":"Connecting verified resource information with patients in need.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+
 </head>
 <body><header class="site-header" style="background-color: #eeeeee;">
 
@@ -431,9 +507,7 @@ a:hover{
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/tools/">
-               Helplines
-            </a><a class="page-link" href="/faq/">
+        <div class="trigger"><a class="page-link" href="/faq/">
                Covid-19 FAQ
             </a><a class="page-link" href="/contribute/">
                Volunteer
@@ -455,710 +529,780 @@ a:hover{
 <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search.." />
 
  <br /><br />
-<div class="text_foot"><h4> Data updated at: 25, May 2021 21:45. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
+<div class="text_foot"><h4> Data updated at: 25, May 2021 21:55. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
 <div class="row">
 	<div class="column">
-<div class="card_av">
-<h3>Subhadeep Dey</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9134046771">9134046771</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sujoy Pal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8001232312">8001232312</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Nilrudra</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 11</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064442189">9064442189</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Surja</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 13</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6295271534">6295271534</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Semab</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 12</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8637873914">8637873914</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Mithun</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 11</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8617513644">8617513644</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Surajit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 10</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7718521371">7718521371</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Manab</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 24</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7076650794">7076650794</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Dharam</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 12</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8436774412">8436774412</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Jumman</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 10</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9614606367">9614606367</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Somnath</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 21</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908430457">7908430457</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ashikur</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 12</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9563843645">9563843645</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sankhasubhra Goswami</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8167531332">8167531332</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Anirban Goswami</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7319475895">7319475895</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Rajib</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town 10 No Ward</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9046720426">9046720426</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Mousam Nandi</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8116890560">8116890560</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Chadda</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 16</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8250217803">8250217803</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sandip</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 22</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7384206039">7384206039</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Suman</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 17</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8918990028">8918990028</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Kiran</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 11</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908211062">7908211062</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Choton</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 15</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7430879810">7430879810</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Paresh</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 15</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9382234446">9382234446</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Tia</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 17</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8617031692">8617031692</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Surjo</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town  13/14Ward</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7872342698">7872342698</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Soumya</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 11</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9475500780">9475500780</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Pradip</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 16</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8906927358">8906927358</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Joygopal Kar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9749130651">9749130651</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Asish</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 17</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9635727872">9635727872</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sanjoy</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 24</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9434183184">9434183184</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Saroj</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bankura Town Ward No 14</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8637811575">8637811575</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Saradindu Patra</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bikrampur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9735842558">9735842558</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Prasenjit Saha</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bishnupur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9932319895">9932319895</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Amar Sau</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bishnupur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7384200396">7384200396</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Samyo Chanda</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bishnupur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8250847603">8250847603</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Gopal Dhibar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bishnupur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9474670098">9474670098</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Krishnapada Kandu</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bishnupur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9434202242">9434202242</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sanjay Lohar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bishnupur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9434588123">9434588123</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Biswajit Ghosh</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bishnupur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8637394470">8637394470</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Atanu Ghosh</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bishnupur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9564976130">9564976130</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Raju Pal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bishnupur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9046449343">9046449343</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Debdas Das</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Bishnupur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7602665686">7602665686</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sanjay Pal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Dubrajpur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9933042025">9933042025</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Biplab Das Mahapatra</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Dubrajpur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9734575757">9734575757</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Pankaj Mondal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Geliya Gram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9475446792">9475446792</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Kantimay Mukherjee</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Geliya Gram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6294766059">6294766059</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Asim Khan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Geliya Gram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9641560109">9641560109</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Madan Kunsu</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Geliya Gram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7602788107">7602788107</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Mrityunjoy Das</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Geliya Gram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8927439100">8927439100</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sumanta Choudhury</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Geliya Gram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9775303631">9775303631</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Samaresh Kar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Geliya Gram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9382071175">9382071175</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sital Koibarta</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Geliya Gram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9434523289">9434523289</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Anjan Mondal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Geliya Gram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7407547932">7407547932</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shyamal Mukherjee</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Geliya Gram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6297809670">6297809670</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sartha Bhadra</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Hatgram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7001839265">7001839265</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Prabir Nandi</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Hatgram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6295934146">6295934146</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Tuhin Dubhra Layek</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Hatgram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7602756092">7602756092</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Prasanta Dutta</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Hatgram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9474997489">9474997489</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Partha Satpati</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Mandalgram</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6297909644">6297909644</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Suvendu Mondal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Saltora</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9932610313">9932610313</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Manash Bauri</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Saltora</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9547865445">9547865445</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Akshay Sadhu</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Saltora</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6297743218">6297743218</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Nayan Pramanik</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Saltora</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8116560160">8116560160</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sajem Khan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Saltora</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9434838241">9434838241</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Bipan Hansda</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Saltora</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9800064319">9800064319</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Biswajit Dhibar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Saltora</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064416638">9064416638</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Samimur Rahaman</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Saltora</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8600163069">8600163069</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Koushik Pyne</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Simlapal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9743696969">9743696969</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Aktar Ansari</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Simlapal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908543160">7908543160</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Bosir Molla</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Location</th><th>Simlapal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9635784497">9635784497</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Vutsahar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Bankura</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9732393922">9732393922</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
+<div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Subhadeep Dey</h3>
+
+<span id="obnvg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Subhadeep Dey, District: Bankura, Verification  Status: Verified, Location: Bankura Town, Availability Status: Available, Contact number: 9134046771, Verification time:  Info Missing, ', 'obnvg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9134046771">9134046771</a></div>
 </div>
- </div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sujoy Pal</h3>
+
+<span id="sezpf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sujoy Pal, District: Bankura, Verification  Status: Verified, Location: Bankura Town, Availability Status: Available, Contact number: 8001232312, Verification time:  Info Missing, ', 'sezpf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8001232312">8001232312</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Nilrudra</h3>
+
+<span id="fzfsw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Nilrudra, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 11, Availability Status: Available, Contact number: 9064442189, Verification time:  Info Missing, ', 'fzfsw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 11</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064442189">9064442189</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Surja</h3>
+
+<span id="sjbaf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Surja, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 13, Availability Status: Available, Contact number: 6295271534, Verification time:  Info Missing, ', 'sjbaf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 13</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6295271534">6295271534</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Semab</h3>
+
+<span id="dwdcq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Semab, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 12, Availability Status: Available, Contact number: 8637873914, Verification time:  Info Missing, ', 'dwdcq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 12</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8637873914">8637873914</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Mithun</h3>
+
+<span id="gvbwm" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Mithun, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 11, Availability Status: Available, Contact number: 8617513644, Verification time:  Info Missing, ', 'gvbwm');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 11</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8617513644">8617513644</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Surajit</h3>
+
+<span id="fwnmp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Surajit, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 10, Availability Status: Available, Contact number: 7718521371, Verification time:  Info Missing, ', 'fwnmp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 10</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7718521371">7718521371</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Manab</h3>
+
+<span id="xxgpp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Manab, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 24, Availability Status: Available, Contact number: 7076650794, Verification time:  Info Missing, ', 'xxgpp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 24</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7076650794">7076650794</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Dharam</h3>
+
+<span id="goxbf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Dharam, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 12, Availability Status: Available, Contact number: 8436774412, Verification time:  Info Missing, ', 'goxbf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 12</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8436774412">8436774412</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Jumman</h3>
+
+<span id="vlblz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Jumman, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 10, Availability Status: Available, Contact number: 9614606367, Verification time:  Info Missing, ', 'vlblz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 10</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9614606367">9614606367</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Somnath</h3>
+
+<span id="xddvk" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Somnath, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 21, Availability Status: Available, Contact number: 7908430457, Verification time:  Info Missing, ', 'xddvk');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 21</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908430457">7908430457</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ashikur</h3>
+
+<span id="omatv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ashikur, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 12, Availability Status: Available, Contact number: 9563843645, Verification time:  Info Missing, ', 'omatv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 12</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9563843645">9563843645</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sankhasubhra Goswami</h3>
+
+<span id="bbqrl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sankhasubhra Goswami, District: Bankura, Verification  Status: Verified, Location: Bankura Town, Availability Status: Available, Contact number: 8167531332, Verification time:  Info Missing, ', 'bbqrl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8167531332">8167531332</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Anirban Goswami</h3>
+
+<span id="eskno" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Anirban Goswami, District: Bankura, Verification  Status: Verified, Location: Bankura Town, Availability Status: Available, Contact number: 7319475895, Verification time:  Info Missing, ', 'eskno');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7319475895">7319475895</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Rajib</h3>
+
+<span id="jssgn" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Rajib, District: Bankura, Verification  Status: Verified, Location: Bankura Town 10 No Ward, Availability Status: Available, Contact number: 9046720426, Verification time:  Info Missing, ', 'jssgn');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town 10 No Ward</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9046720426">9046720426</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Mousam Nandi</h3>
+
+<span id="epddl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Mousam Nandi, District: Bankura, Verification  Status: Verified, Location: Bankura Town, Availability Status: Available, Contact number: 8116890560, Verification time:  Info Missing, ', 'epddl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8116890560">8116890560</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Chadda</h3>
+
+<span id="xqtwt" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Chadda, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 16, Availability Status: Available, Contact number: 8250217803, Verification time:  Info Missing, ', 'xqtwt');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 16</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8250217803">8250217803</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sandip</h3>
+
+<span id="pnruw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sandip, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 22, Availability Status: Available, Contact number: 7384206039, Verification time:  Info Missing, ', 'pnruw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 22</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7384206039">7384206039</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Suman</h3>
+
+<span id="njzyj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Suman, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 17, Availability Status: Available, Contact number: 8918990028, Verification time:  Info Missing, ', 'njzyj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 17</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8918990028">8918990028</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Kiran</h3>
+
+<span id="tuulv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Kiran, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 11, Availability Status: Available, Contact number: 7908211062, Verification time:  Info Missing, ', 'tuulv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 11</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908211062">7908211062</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Choton</h3>
+
+<span id="wuycj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Choton, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 15, Availability Status: Available, Contact number: 7430879810, Verification time:  Info Missing, ', 'wuycj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 15</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7430879810">7430879810</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Paresh</h3>
+
+<span id="uskub" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Paresh, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 15, Availability Status: Available, Contact number: 9382234446, Verification time:  Info Missing, ', 'uskub');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 15</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9382234446">9382234446</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Tia</h3>
+
+<span id="eoquv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Tia, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 17, Availability Status: Available, Contact number: 8617031692, Verification time:  Info Missing, ', 'eoquv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 17</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8617031692">8617031692</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Surjo</h3>
+
+<span id="ldbnl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Surjo, District: Bankura, Verification  Status: Verified, Location: Bankura Town  13/14Ward, Availability Status: Available, Contact number: 7872342698, Verification time:  Info Missing, ', 'ldbnl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town  13/14Ward</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7872342698">7872342698</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Soumya</h3>
+
+<span id="oyzca" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Soumya, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 11, Availability Status: Available, Contact number: 9475500780, Verification time:  Info Missing, ', 'oyzca');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 11</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9475500780">9475500780</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Pradip</h3>
+
+<span id="niwbh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Pradip, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 16, Availability Status: Available, Contact number: 8906927358, Verification time:  Info Missing, ', 'niwbh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 16</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8906927358">8906927358</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Joygopal Kar</h3>
+
+<span id="pdphs" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Joygopal Kar, District: Bankura, Verification  Status: Verified, Location: Bankura Town, Availability Status: Available, Contact number: 9749130651, Verification time:  Info Missing, ', 'pdphs');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9749130651">9749130651</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Asish</h3>
+
+<span id="knbsb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Asish, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 17, Availability Status: Available, Contact number: 9635727872, Verification time:  Info Missing, ', 'knbsb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 17</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9635727872">9635727872</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sanjoy</h3>
+
+<span id="sxsff" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sanjoy, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 24, Availability Status: Available, Contact number: 9434183184, Verification time:  Info Missing, ', 'sxsff');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 24</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9434183184">9434183184</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Saroj</h3>
+
+<span id="ogaky" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Saroj, District: Bankura, Verification  Status: Verified, Location: Bankura Town Ward No 14, Availability Status: Available, Contact number: 8637811575, Verification time:  Info Missing, ', 'ogaky');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bankura Town Ward No 14</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8637811575">8637811575</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Saradindu Patra</h3>
+
+<span id="uvcut" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Saradindu Patra, District: Bankura, Verification  Status: Verified, Location: Bikrampur, Availability Status: Available, Contact number: 9735842558, Verification time:  Info Missing, ', 'uvcut');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bikrampur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9735842558">9735842558</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Prasenjit Saha</h3>
+
+<span id="zhqup" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Prasenjit Saha, District: Bankura, Verification  Status: Verified, Location: Bishnupur, Availability Status: Available, Contact number: 9932319895, Verification time:  Info Missing, ', 'zhqup');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bishnupur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9932319895">9932319895</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Amar Sau</h3>
+
+<span id="gthuc" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Amar Sau, District: Bankura, Verification  Status: Verified, Location: Bishnupur, Availability Status: Available, Contact number: 7384200396, Verification time:  Info Missing, ', 'gthuc');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bishnupur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7384200396">7384200396</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Samyo Chanda</h3>
+
+<span id="toigp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Samyo Chanda, District: Bankura, Verification  Status: Verified, Location: Bishnupur, Availability Status: Available, Contact number: 8250847603, Verification time:  Info Missing, ', 'toigp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bishnupur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8250847603">8250847603</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Gopal Dhibar</h3>
+
+<span id="nualr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Gopal Dhibar, District: Bankura, Verification  Status: Verified, Location: Bishnupur, Availability Status: Available, Contact number: 9474670098, Verification time:  Info Missing, ', 'nualr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bishnupur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9474670098">9474670098</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Krishnapada Kandu</h3>
+
+<span id="qeqec" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Krishnapada Kandu, District: Bankura, Verification  Status: Verified, Location: Bishnupur, Availability Status: Available, Contact number: 9434202242, Verification time:  Info Missing, ', 'qeqec');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bishnupur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9434202242">9434202242</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sanjay Lohar</h3>
+
+<span id="yeshe" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sanjay Lohar, District: Bankura, Verification  Status: Verified, Location: Bishnupur, Availability Status: Available, Contact number: 9434588123, Verification time:  Info Missing, ', 'yeshe');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bishnupur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9434588123">9434588123</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Biswajit Ghosh</h3>
+
+<span id="byuar" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Biswajit Ghosh, District: Bankura, Verification  Status: Verified, Location: Bishnupur, Availability Status: Available, Contact number: 8637394470, Verification time:  Info Missing, ', 'byuar');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bishnupur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8637394470">8637394470</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Atanu Ghosh</h3>
+
+<span id="ppdbh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Atanu Ghosh, District: Bankura, Verification  Status: Verified, Location: Bishnupur, Availability Status: Available, Contact number: 9564976130, Verification time:  Info Missing, ', 'ppdbh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bishnupur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9564976130">9564976130</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Raju Pal</h3>
+
+<span id="ivjbt" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Raju Pal, District: Bankura, Verification  Status: Verified, Location: Bishnupur, Availability Status: Available, Contact number: 9046449343, Verification time:  Info Missing, ', 'ivjbt');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bishnupur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9046449343">9046449343</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Debdas Das</h3>
+
+<span id="mnzjs" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Debdas Das, District: Bankura, Verification  Status: Verified, Location: Bishnupur, Availability Status: Available, Contact number: 7602665686, Verification time:  Info Missing, ', 'mnzjs');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Bishnupur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7602665686">7602665686</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sanjay Pal</h3>
+
+<span id="jqhxa" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sanjay Pal, District: Bankura, Verification  Status: Verified, Location: Dubrajpur, Availability Status: Available, Contact number: 9933042025, Verification time:  Info Missing, ', 'jqhxa');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dubrajpur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9933042025">9933042025</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Biplab Das Mahapatra</h3>
+
+<span id="ivsjp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Biplab Das Mahapatra, District: Bankura, Verification  Status: Verified, Location: Dubrajpur, Availability Status: Available, Contact number: 9734575757, Verification time:  Info Missing, ', 'ivsjp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dubrajpur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9734575757">9734575757</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Pankaj Mondal</h3>
+
+<span id="iqgwl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Pankaj mondal, District: Bankura, Verification  Status: Verified, Location: Geliya Gram, Availability Status: Available, Contact number: 9475446792, Verification time:  Info Missing, ', 'iqgwl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Geliya Gram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9475446792">9475446792</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Kantimay Mukherjee</h3>
+
+<span id="cxzaj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Kantimay Mukherjee, District: Bankura, Verification  Status: Verified, Location: Geliya Gram, Availability Status: Available, Contact number: 6294766059, Verification time:  Info Missing, ', 'cxzaj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Geliya Gram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6294766059">6294766059</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Asim Khan</h3>
+
+<span id="bmqma" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Asim Khan, District: Bankura, Verification  Status: Verified, Location: Geliya Gram, Availability Status: Available, Contact number: 9641560109, Verification time:  Info Missing, ', 'bmqma');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Geliya Gram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9641560109">9641560109</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Madan Kunsu</h3>
+
+<span id="zpmgb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Madan kunsu, District: Bankura, Verification  Status: Verified, Location: Geliya Gram, Availability Status: Available, Contact number: 7602788107, Verification time:  Info Missing, ', 'zpmgb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Geliya Gram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7602788107">7602788107</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Mrityunjoy Das</h3>
+
+<span id="wdfla" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Mrityunjoy Das, District: Bankura, Verification  Status: Verified, Location: Geliya Gram, Availability Status: Available, Contact number: 8927439100, Verification time:  Info Missing, ', 'wdfla');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Geliya Gram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8927439100">8927439100</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sumanta Choudhury</h3>
+
+<span id="fzgbu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sumanta Choudhury, District: Bankura, Verification  Status: Verified, Location: Geliya Gram, Availability Status: Available, Contact number: 9775303631, Verification time:  Info Missing, ', 'fzgbu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Geliya Gram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9775303631">9775303631</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Samaresh Kar</h3>
+
+<span id="xxrmv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Samaresh Kar, District: Bankura, Verification  Status: Verified, Location: Geliya Gram, Availability Status: Available, Contact number: 9382071175, Verification time:  Info Missing, ', 'xxrmv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Geliya Gram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9382071175">9382071175</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sital Koibarta</h3>
+
+<span id="zqcbm" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sital Koibarta, District: Bankura, Verification  Status: Verified, Location: Geliya Gram, Availability Status: Available, Contact number: 9434523289, Verification time:  Info Missing, ', 'zqcbm');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Geliya Gram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9434523289">9434523289</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Anjan Mondal</h3>
+
+<span id="wnhsh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Anjan Mondal, District: Bankura, Verification  Status: Verified, Location: Geliya Gram, Availability Status: Available, Contact number: 7407547932, Verification time:  Info Missing, ', 'wnhsh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Geliya Gram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7407547932">7407547932</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shyamal Mukherjee</h3>
+
+<span id="qfipj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shyamal Mukherjee, District: Bankura, Verification  Status: Verified, Location: Geliya Gram, Availability Status: Available, Contact number: 6297809670, Verification time:  Info Missing, ', 'qfipj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Geliya Gram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6297809670">6297809670</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sartha Bhadra</h3>
+
+<span id="pfash" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sartha Bhadra, District: Bankura, Verification  Status: Verified, Location: Hatgram, Availability Status: Available, Contact number: 7001839265, Verification time:  Info Missing, ', 'pfash');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Hatgram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7001839265">7001839265</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Prabir Nandi</h3>
+
+<span id="bzrkj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Prabir Nandi, District: Bankura, Verification  Status: Verified, Location: Hatgram, Availability Status: Available, Contact number: 6295934146, Verification time:  Info Missing, ', 'bzrkj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Hatgram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6295934146">6295934146</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Tuhin Dubhra Layek</h3>
+
+<span id="qbcna" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Tuhin Dubhra Layek, District: Bankura, Verification  Status: Verified, Location: Hatgram, Availability Status: Available, Contact number: 7602756092, Verification time:  Info Missing, ', 'qbcna');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Hatgram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7602756092">7602756092</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Prasanta Dutta</h3>
+
+<span id="cnztv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Prasanta Dutta, District: Bankura, Verification  Status: Verified, Location: Hatgram, Availability Status: Available, Contact number: 9474997489, Verification time:  Info Missing, ', 'cnztv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Hatgram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9474997489">9474997489</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Partha Satpati</h3>
+
+<span id="nckyo" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Partha Satpati, District: Bankura, Verification  Status: Verified, Location: Mandalgram, Availability Status: Available, Contact number: 6297909644, Verification time:  Info Missing, ', 'nckyo');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Mandalgram</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6297909644">6297909644</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Suvendu Mondal</h3>
+
+<span id="vhycg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Suvendu Mondal, District: Bankura, Verification  Status: Verified, Location: Saltora, Availability Status: Available, Contact number: 9932610313, Verification time:  Info Missing, ', 'vhycg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Saltora</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9932610313">9932610313</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Manash Bauri</h3>
+
+<span id="byrmo" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Manash Bauri, District: Bankura, Verification  Status: Verified, Location: Saltora, Availability Status: Available, Contact number: 9547865445, Verification time:  Info Missing, ', 'byrmo');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Saltora</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9547865445">9547865445</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Akshay Sadhu</h3>
+
+<span id="wqkro" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Akshay Sadhu, District: Bankura, Verification  Status: Verified, Location: Saltora, Availability Status: Available, Contact number: 6297743218, Verification time:  Info Missing, ', 'wqkro');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Saltora</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6297743218">6297743218</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Nayan Pramanik</h3>
+
+<span id="gjagi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Nayan Pramanik, District: Bankura, Verification  Status: Verified, Location: Saltora, Availability Status: Available, Contact number: 8116560160, Verification time:  Info Missing, ', 'gjagi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Saltora</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8116560160">8116560160</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sajem Khan</h3>
+
+<span id="icwmc" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sajem Khan, District: Bankura, Verification  Status: Verified, Location: Saltora, Availability Status: Available, Contact number: 9434838241, Verification time:  Info Missing, ', 'icwmc');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Saltora</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9434838241">9434838241</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Bipan Hansda</h3>
+
+<span id="bdffg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Bipan Hansda, District: Bankura, Verification  Status: Verified, Location: Saltora, Availability Status: Available, Contact number: 9800064319, Verification time:  Info Missing, ', 'bdffg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Saltora</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9800064319">9800064319</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Biswajit Dhibar</h3>
+
+<span id="ivoey" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Biswajit Dhibar, District: Bankura, Verification  Status: Verified, Location: Saltora, Availability Status: Available, Contact number: 9064416638, Verification time:  Info Missing, ', 'ivoey');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Saltora</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064416638">9064416638</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Samimur Rahaman</h3>
+
+<span id="zgruc" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Samimur Rahaman, District: Bankura, Verification  Status: Verified, Location: Saltora, Availability Status: Available, Contact number: 8600163069, Verification time:  Info Missing, ', 'zgruc');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Saltora</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8600163069">8600163069</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Koushik Pyne</h3>
+
+<span id="zourp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Koushik Pyne, District: Bankura, Verification  Status: Verified, Location: Simlapal, Availability Status: Available, Contact number: 9743696969, Verification time:  Info Missing, ', 'zourp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Simlapal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9743696969">9743696969</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Aktar Ansari</h3>
+
+<span id="mbuxl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Aktar Ansari, District: Bankura, Verification  Status: Verified, Location: Simlapal, Availability Status: Available, Contact number: 7908543160, Verification time:  Info Missing, ', 'mbuxl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Simlapal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908543160">7908543160</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Bosir Molla</h3>
+
+<span id="htfew" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Bosir Molla, District: Bankura, Verification  Status: Verified, Location: Simlapal, Availability Status: Available, Contact number: 9635784497, Verification time:  Info Missing, ', 'htfew');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Simlapal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9635784497">9635784497</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Vutsahar</h3>
+
+<span id="bmawo" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Vutsahar, District: Bankura, Verification  Status: Verified, Location:  Info Missing, Availability Status: Available, Contact number: 9732393922, Verification time:  Info Missing, ', 'bmawo');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Bankura</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9732393922">9732393922</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div></div>
+</div>
 
   </div>
 

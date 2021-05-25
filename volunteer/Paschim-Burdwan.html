@@ -22,13 +22,18 @@
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://www.wbcan.org/feed.xml" title="WBCAN" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
-  gtag('config', 'G-4V3KJLL18H');
+  gtag("config", "G-4V3KJLL18H");
 
   function filterSearch() {
     var input, filter, av_divs, nav_divs, i, txtValue;
@@ -36,368 +41,438 @@
     filter = input.value.toUpperCase().trim();
     av_divs = document.getElementsByClassName("card_av");
     nav_divs = document.getElementsByClassName("card_nav");
-    if(filter.length > 0){
-      setDisplay(av_divs,filter);
-      setDisplay(nav_divs,filter);
-    }else{
+    if (filter.length > 0) {
+      setDisplay(av_divs, filter);
+      setDisplay(nav_divs, filter);
+    } else {
       console.error("Invalid input length.");
       setAllBlock(av_divs, nav_divs);
     }
   }
   function setDisplay(divs, filter) {
-    for(i = 0; i < divs.length; i++) {
+    for (i = 0; i < divs.length; i++) {
       txtValue = divs[i].innerText.toUpperCase();
-      if(txtValue.indexOf(filter) > -1) {
+      if (txtValue.indexOf(filter) > -1) {
         divs[i].style.display = "";
-      }
-      else {
+      } else {
         divs[i].style.display = "none";
       }
     }
   }
   function setAllBlock(divs1, divs2) {
-    for(i = 0; i < divs1.length; i++) {
+    for (i = 0; i < divs1.length; i++) {
       divs1[i].style.display = "";
     }
-    for(i = 0; i < divs2.length; i++) {
+    for (i = 0; i < divs2.length; i++) {
       divs2[i].style.display = "";
     }
   }
 
+  function copyToClipboard(text, id) {
+    document.querySelector(`#${id}`).style.background = "#5ef345";
+    setTimeout(function () {
+      document.querySelector(`#${id}`).style.background = "lightgray";
+    }, 3000);
+    let temp = document.createElement("textarea");
+    document.body.appendChild(temp);
+    temp.value = text;
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+  }
 </script>
 
 <style>
-  .button0 {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button1 {
-    background-color: #4c7aaf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button2 {
-    background-color: #a8af4c;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button3 {
-    background-color: #e6518f;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button4 {
-    background-color: #5e4caf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button5 {
-    background-color: #7782d3;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+    .head-and-copy {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0 10px 0;
+    }
 
-  .sp{
-  width: 10px;
-  padding-right: 15px;
-  background-color: #bdbbc5;
-  padding: 4px 12px;
-  }
+    .card-head {
+      font-weight: 700;
+      font-size: 1.1rem !important;
+      margin: 0 !important;
+    }
 
-  .highlight{
-  font-family: ABeeZee, sans-serif;
-  background-color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(99, 82, 82, 1);
-  text-transform: none;
-  font-style: normal;
-  text-decoration: none;
-  line-height: 1.6em;
-  letter-spacing: 0.7px;
-  }
-  .headHi{
+    .copy-to-clip-board {
+      background-color: lightgray;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .copy-to-clip-board > img {
+      width: 15px;
+      height: 15px;
+    }
+
+    .button0 {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button1 {
+      background-color: #4c7aaf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button2 {
+      background-color: #a8af4c;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button3 {
+      background-color: #e6518f;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button4 {
+      background-color: #5e4caf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button5 {
+      background-color: #7782d3;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .sp{
+    width: 10px;
+    padding-right: 15px;
+    background-color: #bdbbc5;
+    padding: 4px 12px;
+    }
+
+    .highlight{
     font-family: ABeeZee, sans-serif;
-    font-size: 26px;
+    background-color: #ffffff;
+    font-size: 16px;
     font-weight: 600;
-    color: rgba(77, 63, 63, 1);
+    color: rgba(99, 82, 82, 1);
     text-transform: none;
     font-style: normal;
     text-decoration: none;
     line-height: 1.6em;
     letter-spacing: 0.7px;
-}
-
-.introtext{
-    font-family: Verdana, sans-serif;
-    font-size: 16px;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.datetext{
-    font-family: Courier New, sans-serif;
-    font-size: 16px;
-    background-color: #eeeeee;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.divtext{
-  background-color: rgb(214, 226, 226);
-}
-
-div.ex1 {
-  width: 150px;
-  margin: auto;
-  border: 3px solid #73AD21;
-}
-.introhightext{
-    font-family: Optima, sans-serif;
-    font-size: 16px;
-    font-weight: 100;
-    color: #000010;
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 0em;
-    letter-spacing: 0px;
-}
-
-
-
-.column {
-  width: 60%;
-  text-align: center;
-  padding: 2px;
-  margin: 0 auto
-}
-
-/* Remove extra left and right margins, due to padding */
-.row {
-  width: 100%;
-  text-align: center;
-  padding: 7px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive columns */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
+    }
+    .headHi{
+      font-family: ABeeZee, sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: rgba(77, 63, 63, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.6em;
+      letter-spacing: 0.7px;
   }
-}
+
+  .introtext{
+      font-family: Verdana, sans-serif;
+      font-size: 16px;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .datetext{
+      font-family: Courier New, sans-serif;
+      font-size: 16px;
+      background-color: #eeeeee;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .divtext{
+    background-color: rgb(214, 226, 226);
+  }
+
+  div.ex1 {
+    width: 150px;
+    margin: auto;
+    border: 3px solid #73AD21;
+  }
+  .introhightext{
+      font-family: Optima, sans-serif;
+      font-size: 16px;
+      font-weight: 100;
+      color: #000010;
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 0em;
+      letter-spacing: 0px;
+  }
 
 
 
-.card_av {
-  padding: 16px;
-  text-align: center;
-  background-color: #bdfcd5;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  .column {
+    width: 60%;
+    text-align: center;
+    padding: 2px;
+    margin: 0 auto
+  }
 
-.card_nav {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  padding: 16px;
-  text-align: center;
-  background-color: #e49e9e;
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  /* Remove extra left and right margins, due to padding */
+  .row {
+    width: 100%;
+    text-align: center;
+    padding: 7px;
+  }
 
-.text_highlight{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 14px;
-  background-color: rgb(247, 194, 194);
-  text-align: justify;
-}
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
-.text_reg{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
-
-.text_foot{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 10px;
-  color:rgb(157, 158, 158);
-  text-align: justify;
-}
-
-.info {
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
-  padding: 2px;
-  text-align: left;
-  background-color: #f8f9fc;
-}
-
-
-/* button group css */
-.btn-group button {
-  background-color: #04AA6D; /* Green background */
-  border: 1px solid green; /* Green border */
-  color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  width: 50%; /* Set a width if needed */
-  display: block; /* Make the buttons appear below each other */
-}
-
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-  background-color: #3e8e41;
-}
-
-
-.cards {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-}
-
-/* CRAZY CARDS */ 
-
-
-/* buttons in intro */
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px !important;
-  margin-bottom: 15px;
-  font-size: inherit !important;
-}
-
-a:hover{
-  text-decoration: none;
-}
-
-#myInput {
-  background-image: url('../assets/css/searchicon.png');
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 91.6%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-.sticky {
-  position: fixed;
-  top: 2px;
-  width: 50% !important;
-}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-/* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
-  </style>
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
 
 
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
+  .card_av {
+    margin: 18px;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #bdfcd5;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .card_nav {
+    margin: 18px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #e49e9e;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .resource-info {
+    width: 44%;
+    text-align: left;
+  }
+
+  .resource-title {
+    font-weight: 600;
+    margin-right: 8px;
+  }
+
+  .resource-time {
+    font-family: monospace;
+    font-size: 14px;
+    border-top: 1px solid lightgray;
+    padding: 10px;
+    text-align: right;
+  }
+
+  .card-verified {
+    background-color: lightgreen;
+    border-radius: 50%;
+    padding: 8px;
+    margin-left: 8px;
+  }
+
+  .card-verified img {
+    width: 17px;
+    height: 17px;
+  }
+
+  .text_highlight{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    background-color: rgb(247, 194, 194);
+    text-align: justify;
+  }
+
+  .text_reg{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .text_foot{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    color:rgb(157, 158, 158);
+    text-align: justify;
+  }
+
+  .info {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    padding: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 10px;
+  }
+
+
+  /* button group css */
+  .btn-group button {
+    background-color: #04AA6D; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+  }
+
+  .btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+  }
+
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }
+
+
+  .cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  /* CRAZY CARDS */
+
+
+  /* buttons in intro */
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px !important;
+    margin-bottom: 15px;
+    font-size: inherit !important;
+  }
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  #myInput {
+    background-image: url('../assets/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 91.6%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  .sticky {
+    position: fixed;
+    top: 2px;
+    width: 50% !important;
+  }
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  /* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
+</style>
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Volunteer | WBCAN</title>
 <meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Volunteer" />
@@ -415,6 +490,7 @@ a:hover{
 <script type="application/ld+json">
 {"headline":"Volunteer","url":"http://www.wbcan.org/volunteer/Paschim-Burdwan","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.wbcan.org/wecan-covidhelp/assets/wbcan-logo.png"},"name":"WBCAN Copyright © 2021"},"author":{"@type":"Person","name":"WBCAN Copyright © 2021"},"@type":"WebPage","description":"Connecting verified resource information with patients in need.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+
 </head>
 <body><header class="site-header" style="background-color: #eeeeee;">
 
@@ -431,9 +507,7 @@ a:hover{
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/tools/">
-               Helplines
-            </a><a class="page-link" href="/faq/">
+        <div class="trigger"><a class="page-link" href="/faq/">
                Covid-19 FAQ
             </a><a class="page-link" href="/contribute/">
                Volunteer
@@ -455,703 +529,770 @@ a:hover{
 <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search.." />
 
  <br /><br />
-<div class="text_foot"><h4> Data updated at: 25, May 2021 21:45. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
+<div class="text_foot"><h4> Data updated at: 25, May 2021 21:55. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
 <div class="row">
 	<div class="column">
-<div class="card_av">
-<h3>Kunal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Andal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8617383916">8617383916</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/18/2021 20:17:01</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sourav</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Andal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8250371725">8250371725</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Verification time</th><th>5/18/2021 20:16:16</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Chiranjeet</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Andal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8250221875">8250221875</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Debraj</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Andal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7098389582">7098389582</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Suman</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Andal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9641153003">9641153003</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Arghya</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Andal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7074874457">7074874457</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Biswayan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Dhadka, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8101675441">8101675441</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shreya</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Sripally, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9641677912">9641677912</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Alok</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Burnpur, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8250334715">8250334715</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Binit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Mohishila, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8597796515">8597796515</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ishan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ismile,Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8918708833">8918708833</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Soubhagya</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Dhadka, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7001515697">7001515697</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Aindrila</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Burnpur, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8101439021">8101439021</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Pijush</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Mohishila, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908814052">7908814052</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Debdut</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Mohishila, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8250426680">8250426680</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ankita</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ismile,Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064246843">9064246843</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Samarpan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Sripally, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8918721602">8918721602</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Monalisa</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Girmint, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908557800">7908557800</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Himaghna</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Mohishila, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7001669070">7001669070</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Anubhab</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Girmint, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9475526168">9475526168</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Biswajit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Mohishila, Asansol</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9775726212">9775726212</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Rajesh</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Barabani</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9933913237">9933913237</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Kanchan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Barabani</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9804690597">9804690597</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shital</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Barabani</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7063687846">7063687846</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Manideepa</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Barabani</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6296639512">6296639512</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Kalyan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Barabani</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9378280020">9378280020</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Dhananjoy</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Barabani</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908381176">7908381176</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Raja</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Barabani</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9614133367">9614133367</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Arpan Mukherjee</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8906163817">8906163817</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Abir Roy</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8617529422">8617529422</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Rohan Sharma</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7047680689">7047680689</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Aniket Choudhuri</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9749752735">9749752735</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Arkaprava Gan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064004343">9064004343</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sayan Biswas</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8207063318">8207063318</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Archan Biswas</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8372986788">8372986788</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Manodip Mondal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908711290">7908711290</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Abhinav Jha</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908425248">7908425248</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Souhardya Dey</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9832062948">9832062948</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shraddha Pramanik</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7602333950">7602333950</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Red Volunteer</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur East</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9932901968">9932901968</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Red Volunteer</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur East</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9732093939">9732093939</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Red Volunteer</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur East</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9547801406">9547801406</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Red Volunteer</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur East</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9933050548">9933050548</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Red Volunteer</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Durgapur East</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9832279920">9832279920</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sakhtar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ajay East, Jamuria</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8617374180">8617374180</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Prosenjit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ajay East, Jamuria</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8116139274">8116139274</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Partha</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ajay East, Jamuria</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7001097088">7001097088</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Bharat</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ajay East, Jamuria</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908698969">7908698969</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Rabiul</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ajay East, Jamuria</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9732034794">9732034794</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Aishe</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ajay East, Jamuria</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9582389956">9582389956</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ashish</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ajay East, Jamuria</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6296824889">6296824889</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Kalyan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ajay East, Jamuria</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8777593123">8777593123</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Parimal</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ajay East, Jamuria</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9382576698">9382576698</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sabyasachi</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Ajay East, Jamuria</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8250866595">8250866595</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Red Volunteer</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Kulti</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9883531331">9883531331</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Red Volunteer</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Kulti</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6296981294">6296981294</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Red Volunteer</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Kulti</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8637516651">8637516651</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Red Volunteer</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Kulti</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6296898809">6296898809</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Red Volunteer</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Kulti</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9647996224">9647996224</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Red Volunteer</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Kulti</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6295567219">6295567219</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sukanta Chatterjee</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Raniganj</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9144191648">9144191648</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Manojit Bose</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Raniganj</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908639901">7908639901</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Chandidas Goswami</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Raniganj</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064142182">9064142182</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Gourab Dhalia</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Raniganj</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064243747">9064243747</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Pradip Das</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Raniganj</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9474673527">9474673527</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sanjoy Pramanik</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Raniganj</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9832206660">9832206660</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Hemanta Prabhakar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Raniganj</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7718320008">7718320008</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Anupom Chatterjee</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Raniganj</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9547767408">9547767408</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sagar Banerjee</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Burdwan West Bardhaman</th></tr>
-<tr><th>Location</th><th>Raniganj</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9564642924">9564642924</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
+<div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Kunal</h3>
+
+<span id="ggcoc" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Kunal, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Andal, Availability Status: Available, Contact number: 8617383916, Verification time: 5/18/2021 20:17:01, ', 'ggcoc');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Andal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8617383916">8617383916</a></div>
 </div>
- </div>
+</div>
+<div class="resource-time">5/18/2021 20:17:01<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sourav</h3>
+
+<span id="qkxxx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sourav, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Andal, Availability Status: Available, Contact number: 8250371725, Verification time: 5/18/2021 20:16:16, ', 'qkxxx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Andal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8250371725">8250371725</a></div>
+</div>
+</div>
+<div class="resource-time">5/18/2021 20:16:16<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Chiranjeet</h3>
+
+<span id="umghy" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Chiranjeet, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Andal, Availability Status: Available, Contact number: 8250221875, Verification time:  Info Missing, ', 'umghy');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Andal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8250221875">8250221875</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Debraj</h3>
+
+<span id="ppshv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Debraj, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Andal, Availability Status: Available, Contact number: 7098389582, Verification time:  Info Missing, ', 'ppshv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Andal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7098389582">7098389582</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Suman</h3>
+
+<span id="puebg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Suman, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Andal, Availability Status: Available, Contact number: 9641153003, Verification time:  Info Missing, ', 'puebg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Andal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9641153003">9641153003</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Arghya</h3>
+
+<span id="hifrr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Arghya, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Andal, Availability Status: Available, Contact number: 7074874457, Verification time:  Info Missing, ', 'hifrr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Andal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7074874457">7074874457</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Biswayan</h3>
+
+<span id="zohml" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Biswayan, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Dhadka, Asansol, Availability Status: Available, Contact number: 8101675441, Verification time:  Info Missing, ', 'zohml');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dhadka, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8101675441">8101675441</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shreya</h3>
+
+<span id="utpoy" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shreya, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Sripally, Asansol, Availability Status: Available, Contact number: 9641677912, Verification time:  Info Missing, ', 'utpoy');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Sripally, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9641677912">9641677912</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Alok</h3>
+
+<span id="nmyhe" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Alok, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Burnpur, Asansol, Availability Status: Available, Contact number: 8250334715, Verification time:  Info Missing, ', 'nmyhe');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Burnpur, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8250334715">8250334715</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Binit</h3>
+
+<span id="omosb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Binit, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Mohishila, Asansol, Availability Status: Available, Contact number: 8597796515, Verification time:  Info Missing, ', 'omosb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Mohishila, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8597796515">8597796515</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ishan</h3>
+
+<span id="ruygz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ishan, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ismile,Asansol, Availability Status: Available, Contact number: 8918708833, Verification time:  Info Missing, ', 'ruygz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ismile,Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8918708833">8918708833</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Soubhagya</h3>
+
+<span id="cgzjg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Soubhagya, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Dhadka, Asansol, Availability Status: Available, Contact number: 7001515697, Verification time:  Info Missing, ', 'cgzjg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dhadka, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7001515697">7001515697</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Aindrila</h3>
+
+<span id="imwyl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Aindrila, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Burnpur, Asansol, Availability Status: Available, Contact number: 8101439021, Verification time:  Info Missing, ', 'imwyl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Burnpur, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8101439021">8101439021</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Pijush</h3>
+
+<span id="shwmd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Pijush, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Mohishila, Asansol, Availability Status: Available, Contact number: 7908814052, Verification time:  Info Missing, ', 'shwmd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Mohishila, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908814052">7908814052</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Debdut</h3>
+
+<span id="icdtn" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Debdut, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Mohishila, Asansol, Availability Status: Available, Contact number: 8250426680, Verification time:  Info Missing, ', 'icdtn');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Mohishila, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8250426680">8250426680</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ankita</h3>
+
+<span id="oqvjk" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ankita, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ismile,Asansol, Availability Status: Available, Contact number: 9064246843, Verification time:  Info Missing, ', 'oqvjk');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ismile,Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064246843">9064246843</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Samarpan</h3>
+
+<span id="exwzy" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Samarpan, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Sripally, Asansol, Availability Status: Available, Contact number: 8918721602, Verification time:  Info Missing, ', 'exwzy');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Sripally, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8918721602">8918721602</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Monalisa</h3>
+
+<span id="ywzai" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Monalisa, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Girmint, Asansol, Availability Status: Available, Contact number: 7908557800, Verification time:  Info Missing, ', 'ywzai');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Girmint, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908557800">7908557800</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Himaghna</h3>
+
+<span id="clqtl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Himaghna, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Mohishila, Asansol, Availability Status: Available, Contact number: 7001669070, Verification time:  Info Missing, ', 'clqtl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Mohishila, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7001669070">7001669070</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Anubhab</h3>
+
+<span id="jnljj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Anubhab, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Girmint, Asansol, Availability Status: Available, Contact number: 9475526168, Verification time:  Info Missing, ', 'jnljj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Girmint, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9475526168">9475526168</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Biswajit</h3>
+
+<span id="oqvvx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Biswajit, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Mohishila, Asansol, Availability Status: Available, Contact number: 9775726212, Verification time:  Info Missing, ', 'oqvvx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Mohishila, Asansol</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9775726212">9775726212</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Rajesh</h3>
+
+<span id="gdkls" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Rajesh, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Barabani, Availability Status: Available, Contact number: 9933913237, Verification time:  Info Missing, ', 'gdkls');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barabani</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9933913237">9933913237</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Kanchan</h3>
+
+<span id="lfjnf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Kanchan, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Barabani, Availability Status: Available, Contact number: 9804690597, Verification time:  Info Missing, ', 'lfjnf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barabani</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9804690597">9804690597</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shital</h3>
+
+<span id="aooyd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shital, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Barabani, Availability Status: Available, Contact number: 7063687846, Verification time:  Info Missing, ', 'aooyd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barabani</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7063687846">7063687846</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Manideepa</h3>
+
+<span id="yohmj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Manideepa, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Barabani, Availability Status: Available, Contact number: 6296639512, Verification time:  Info Missing, ', 'yohmj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barabani</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6296639512">6296639512</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Kalyan</h3>
+
+<span id="dupnn" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Kalyan, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Barabani, Availability Status: Available, Contact number: 9378280020, Verification time:  Info Missing, ', 'dupnn');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barabani</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9378280020">9378280020</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Dhananjoy</h3>
+
+<span id="dqhjx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Dhananjoy, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Barabani, Availability Status: Available, Contact number: 7908381176, Verification time:  Info Missing, ', 'dqhjx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barabani</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908381176">7908381176</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Raja</h3>
+
+<span id="jwrez" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Raja, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Barabani, Availability Status: Available, Contact number: 9614133367, Verification time:  Info Missing, ', 'jwrez');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Barabani</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9614133367">9614133367</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Arpan Mukherjee</h3>
+
+<span id="ifbli" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Arpan Mukherjee, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur, Availability Status: Available, Contact number: 8906163817, Verification time:  Info Missing, ', 'ifbli');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8906163817">8906163817</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Abir Roy</h3>
+
+<span id="icfbj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Abir Roy, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur, Availability Status: Available, Contact number: 8617529422, Verification time:  Info Missing, ', 'icfbj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8617529422">8617529422</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Rohan Sharma</h3>
+
+<span id="jdxbq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Rohan Sharma, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur, Availability Status: Available, Contact number: 7047680689, Verification time:  Info Missing, ', 'jdxbq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7047680689">7047680689</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Aniket Choudhuri</h3>
+
+<span id="osfeu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Aniket Choudhuri, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur, Availability Status: Available, Contact number: 9749752735, Verification time:  Info Missing, ', 'osfeu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9749752735">9749752735</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Arkaprava Gan</h3>
+
+<span id="pfafv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Arkaprava Gan, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur, Availability Status: Available, Contact number: 9064004343, Verification time:  Info Missing, ', 'pfafv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064004343">9064004343</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sayan Biswas</h3>
+
+<span id="hbgbo" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sayan Biswas, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur, Availability Status: Available, Contact number: 8207063318, Verification time:  Info Missing, ', 'hbgbo');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8207063318">8207063318</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Archan Biswas</h3>
+
+<span id="geeop" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Archan Biswas, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur, Availability Status: Available, Contact number: 8372986788, Verification time:  Info Missing, ', 'geeop');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8372986788">8372986788</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Manodip Mondal</h3>
+
+<span id="sxclx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Manodip Mondal, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur, Availability Status: Available, Contact number: 7908711290, Verification time:  Info Missing, ', 'sxclx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908711290">7908711290</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Abhinav Jha</h3>
+
+<span id="qjxiy" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Abhinav Jha, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur, Availability Status: Available, Contact number: 7908425248, Verification time:  Info Missing, ', 'qjxiy');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908425248">7908425248</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Souhardya Dey</h3>
+
+<span id="dmkoe" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Souhardya Dey, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur, Availability Status: Available, Contact number: 9832062948, Verification time:  Info Missing, ', 'dmkoe');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9832062948">9832062948</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shraddha Pramanik</h3>
+
+<span id="scvqk" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shraddha Pramanik, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur, Availability Status: Available, Contact number: 7602333950, Verification time:  Info Missing, ', 'scvqk');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7602333950">7602333950</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteer</h3>
+
+<span id="rjxaq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red Volunteer, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur East, Availability Status: Available, Contact number: 9932901968, Verification time:  Info Missing, ', 'rjxaq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur East</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9932901968">9932901968</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteer</h3>
+
+<span id="fzsth" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red Volunteer, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur East, Availability Status: Available, Contact number: 9732093939, Verification time:  Info Missing, ', 'fzsth');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur East</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9732093939">9732093939</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteer</h3>
+
+<span id="wqjjz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red Volunteer, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur East, Availability Status: Available, Contact number: 9547801406, Verification time:  Info Missing, ', 'wqjjz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur East</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9547801406">9547801406</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteer</h3>
+
+<span id="zluoy" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red Volunteer, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur East, Availability Status: Available, Contact number: 9933050548, Verification time:  Info Missing, ', 'zluoy');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur East</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9933050548">9933050548</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteer</h3>
+
+<span id="bubbl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red Volunteer, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Durgapur East, Availability Status: Available, Contact number: 9832279920, Verification time:  Info Missing, ', 'bubbl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Durgapur East</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9832279920">9832279920</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sakhtar</h3>
+
+<span id="hqqcg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sakhtar, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ajay East, Jamuria, Availability Status: Available, Contact number: 8617374180, Verification time:  Info Missing, ', 'hqqcg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ajay East, Jamuria</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8617374180">8617374180</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Prosenjit</h3>
+
+<span id="mwvij" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Prosenjit, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ajay East, Jamuria, Availability Status: Available, Contact number: 8116139274, Verification time:  Info Missing, ', 'mwvij');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ajay East, Jamuria</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8116139274">8116139274</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Partha</h3>
+
+<span id="geckz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Partha, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ajay East, Jamuria, Availability Status: Available, Contact number: 7001097088, Verification time:  Info Missing, ', 'geckz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ajay East, Jamuria</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7001097088">7001097088</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Bharat</h3>
+
+<span id="wbpvw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Bharat, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ajay East, Jamuria, Availability Status: Available, Contact number: 7908698969, Verification time:  Info Missing, ', 'wbpvw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ajay East, Jamuria</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908698969">7908698969</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Rabiul</h3>
+
+<span id="eccrw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Rabiul, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ajay East, Jamuria, Availability Status: Available, Contact number: 9732034794, Verification time:  Info Missing, ', 'eccrw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ajay East, Jamuria</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9732034794">9732034794</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Aishe</h3>
+
+<span id="pyjxp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Aishe, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ajay East, Jamuria, Availability Status: Available, Contact number: 9582389956, Verification time:  Info Missing, ', 'pyjxp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ajay East, Jamuria</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9582389956">9582389956</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ashish</h3>
+
+<span id="ejoxh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ashish, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ajay East, Jamuria, Availability Status: Available, Contact number: 6296824889, Verification time:  Info Missing, ', 'ejoxh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ajay East, Jamuria</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6296824889">6296824889</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Kalyan</h3>
+
+<span id="speaj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Kalyan, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ajay East, Jamuria, Availability Status: Available, Contact number: 8777593123, Verification time:  Info Missing, ', 'speaj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ajay East, Jamuria</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8777593123">8777593123</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Parimal</h3>
+
+<span id="kisyd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Parimal, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ajay East, Jamuria, Availability Status: Available, Contact number: 9382576698, Verification time:  Info Missing, ', 'kisyd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ajay East, Jamuria</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9382576698">9382576698</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sabyasachi</h3>
+
+<span id="bkuhu" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sabyasachi, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Ajay East, Jamuria, Availability Status: Available, Contact number: 8250866595, Verification time:  Info Missing, ', 'bkuhu');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ajay East, Jamuria</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8250866595">8250866595</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteer</h3>
+
+<span id="ksjhi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red Volunteer, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Kulti, Availability Status: Available, Contact number: 9883531331, Verification time:  Info Missing, ', 'ksjhi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kulti</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9883531331">9883531331</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteer</h3>
+
+<span id="jtauq" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red Volunteer, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Kulti, Availability Status: Available, Contact number: 6296981294, Verification time:  Info Missing, ', 'jtauq');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kulti</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6296981294">6296981294</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteer</h3>
+
+<span id="gitca" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red Volunteer, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Kulti, Availability Status: Available, Contact number: 8637516651, Verification time:  Info Missing, ', 'gitca');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kulti</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8637516651">8637516651</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteer</h3>
+
+<span id="iqykv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red Volunteer, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Kulti, Availability Status: Available, Contact number: 6296898809, Verification time:  Info Missing, ', 'iqykv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kulti</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6296898809">6296898809</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteer</h3>
+
+<span id="svwfj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red Volunteer, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Kulti, Availability Status: Available, Contact number: 9647996224, Verification time:  Info Missing, ', 'svwfj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kulti</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9647996224">9647996224</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Red Volunteer</h3>
+
+<span id="trywp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Red Volunteer, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Kulti, Availability Status: Available, Contact number: 6295567219, Verification time:  Info Missing, ', 'trywp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kulti</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6295567219">6295567219</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sukanta Chatterjee</h3>
+
+<span id="uwhzo" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sukanta Chatterjee, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Raniganj, Availability Status: Available, Contact number: 9144191648, Verification time:  Info Missing, ', 'uwhzo');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raniganj</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9144191648">9144191648</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Manojit Bose</h3>
+
+<span id="ynxxg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Manojit Bose, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Raniganj, Availability Status: Available, Contact number: 7908639901, Verification time:  Info Missing, ', 'ynxxg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raniganj</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908639901">7908639901</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Chandidas Goswami</h3>
+
+<span id="ukofs" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Chandidas Goswami, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Raniganj, Availability Status: Available, Contact number: 9064142182, Verification time:  Info Missing, ', 'ukofs');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raniganj</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064142182">9064142182</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Gourab Dhalia</h3>
+
+<span id="wznuy" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Gourab Dhalia, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Raniganj, Availability Status: Available, Contact number: 9064243747, Verification time:  Info Missing, ', 'wznuy');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raniganj</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064243747">9064243747</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Pradip Das</h3>
+
+<span id="mzzlm" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Pradip Das, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Raniganj, Availability Status: Available, Contact number: 9474673527, Verification time:  Info Missing, ', 'mzzlm');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raniganj</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9474673527">9474673527</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sanjoy Pramanik</h3>
+
+<span id="zwivs" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sanjoy Pramanik, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Raniganj, Availability Status: Available, Contact number: 9832206660, Verification time:  Info Missing, ', 'zwivs');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raniganj</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9832206660">9832206660</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Hemanta Prabhakar</h3>
+
+<span id="apihb" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Hemanta Prabhakar, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Raniganj, Availability Status: Available, Contact number: 7718320008, Verification time:  Info Missing, ', 'apihb');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raniganj</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7718320008">7718320008</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Anupom Chatterjee</h3>
+
+<span id="ndivd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Anupom Chatterjee, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Raniganj, Availability Status: Available, Contact number: 9547767408, Verification time:  Info Missing, ', 'ndivd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raniganj</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9547767408">9547767408</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sagar Banerjee</h3>
+
+<span id="yotvc" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sagar Banerjee, District: Paschim Burdwan West Bardhaman, Verification  Status: Verified, Location: Raniganj, Availability Status: Available, Contact number: 9564642924, Verification time:  Info Missing, ', 'yotvc');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Burdwan West Bardhaman</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Raniganj</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9564642924">9564642924</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div></div>
+</div>
 
   </div>
 

@@ -22,13 +22,18 @@
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://www.wbcan.org/feed.xml" title="WBCAN" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-4V3KJLL18H"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
-  gtag('config', 'G-4V3KJLL18H');
+  gtag("config", "G-4V3KJLL18H");
 
   function filterSearch() {
     var input, filter, av_divs, nav_divs, i, txtValue;
@@ -36,368 +41,438 @@
     filter = input.value.toUpperCase().trim();
     av_divs = document.getElementsByClassName("card_av");
     nav_divs = document.getElementsByClassName("card_nav");
-    if(filter.length > 0){
-      setDisplay(av_divs,filter);
-      setDisplay(nav_divs,filter);
-    }else{
+    if (filter.length > 0) {
+      setDisplay(av_divs, filter);
+      setDisplay(nav_divs, filter);
+    } else {
       console.error("Invalid input length.");
       setAllBlock(av_divs, nav_divs);
     }
   }
   function setDisplay(divs, filter) {
-    for(i = 0; i < divs.length; i++) {
+    for (i = 0; i < divs.length; i++) {
       txtValue = divs[i].innerText.toUpperCase();
-      if(txtValue.indexOf(filter) > -1) {
+      if (txtValue.indexOf(filter) > -1) {
         divs[i].style.display = "";
-      }
-      else {
+      } else {
         divs[i].style.display = "none";
       }
     }
   }
   function setAllBlock(divs1, divs2) {
-    for(i = 0; i < divs1.length; i++) {
+    for (i = 0; i < divs1.length; i++) {
       divs1[i].style.display = "";
     }
-    for(i = 0; i < divs2.length; i++) {
+    for (i = 0; i < divs2.length; i++) {
       divs2[i].style.display = "";
     }
   }
 
+  function copyToClipboard(text, id) {
+    document.querySelector(`#${id}`).style.background = "#5ef345";
+    setTimeout(function () {
+      document.querySelector(`#${id}`).style.background = "lightgray";
+    }, 3000);
+    let temp = document.createElement("textarea");
+    document.body.appendChild(temp);
+    temp.value = text;
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+  }
 </script>
 
 <style>
-  .button0 {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button1 {
-    background-color: #4c7aaf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button2 {
-    background-color: #a8af4c;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button3 {
-    background-color: #e6518f;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button4 {
-    background-color: #5e4caf;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  .button5 {
-    background-color: #7782d3;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+    .head-and-copy {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0 10px 0;
+    }
 
-  .sp{
-  width: 10px;
-  padding-right: 15px;
-  background-color: #bdbbc5;
-  padding: 4px 12px;
-  }
+    .card-head {
+      font-weight: 700;
+      font-size: 1.1rem !important;
+      margin: 0 !important;
+    }
 
-  .highlight{
-  font-family: ABeeZee, sans-serif;
-  background-color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(99, 82, 82, 1);
-  text-transform: none;
-  font-style: normal;
-  text-decoration: none;
-  line-height: 1.6em;
-  letter-spacing: 0.7px;
-  }
-  .headHi{
+    .copy-to-clip-board {
+      background-color: lightgray;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .copy-to-clip-board > img {
+      width: 15px;
+      height: 15px;
+    }
+
+    .button0 {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button1 {
+      background-color: #4c7aaf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button2 {
+      background-color: #a8af4c;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button3 {
+      background-color: #e6518f;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button4 {
+      background-color: #5e4caf;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button5 {
+      background-color: #7782d3;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .sp{
+    width: 10px;
+    padding-right: 15px;
+    background-color: #bdbbc5;
+    padding: 4px 12px;
+    }
+
+    .highlight{
     font-family: ABeeZee, sans-serif;
-    font-size: 26px;
+    background-color: #ffffff;
+    font-size: 16px;
     font-weight: 600;
-    color: rgba(77, 63, 63, 1);
+    color: rgba(99, 82, 82, 1);
     text-transform: none;
     font-style: normal;
     text-decoration: none;
     line-height: 1.6em;
     letter-spacing: 0.7px;
-}
-
-.introtext{
-    font-family: Verdana, sans-serif;
-    font-size: 16px;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.datetext{
-    font-family: Courier New, sans-serif;
-    font-size: 16px;
-    background-color: #eeeeee;
-    /* font-weight: 400; */
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 1.5em;
-    letter-spacing: -0.1px;
-}
-
-.divtext{
-  background-color: rgb(214, 226, 226);
-}
-
-div.ex1 {
-  width: 150px;
-  margin: auto;
-  border: 3px solid #73AD21;
-}
-.introhightext{
-    font-family: Optima, sans-serif;
-    font-size: 16px;
-    font-weight: 100;
-    color: #000010;
-    color: rgba(0, 0, 0, 1);
-    text-transform: none;
-    font-style: normal;
-    text-decoration: none;
-    line-height: 0em;
-    letter-spacing: 0px;
-}
-
-
-
-.column {
-  width: 60%;
-  text-align: center;
-  padding: 2px;
-  margin: 0 auto
-}
-
-/* Remove extra left and right margins, due to padding */
-.row {
-  width: 100%;
-  text-align: center;
-  padding: 7px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive columns */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
+    }
+    .headHi{
+      font-family: ABeeZee, sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: rgba(77, 63, 63, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.6em;
+      letter-spacing: 0.7px;
   }
-}
+
+  .introtext{
+      font-family: Verdana, sans-serif;
+      font-size: 16px;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .datetext{
+      font-family: Courier New, sans-serif;
+      font-size: 16px;
+      background-color: #eeeeee;
+      /* font-weight: 400; */
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 1.5em;
+      letter-spacing: -0.1px;
+  }
+
+  .divtext{
+    background-color: rgb(214, 226, 226);
+  }
+
+  div.ex1 {
+    width: 150px;
+    margin: auto;
+    border: 3px solid #73AD21;
+  }
+  .introhightext{
+      font-family: Optima, sans-serif;
+      font-size: 16px;
+      font-weight: 100;
+      color: #000010;
+      color: rgba(0, 0, 0, 1);
+      text-transform: none;
+      font-style: normal;
+      text-decoration: none;
+      line-height: 0em;
+      letter-spacing: 0px;
+  }
 
 
 
-.card_av {
-  padding: 16px;
-  text-align: center;
-  background-color: #bdfcd5;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  .column {
+    width: 60%;
+    text-align: center;
+    padding: 2px;
+    margin: 0 auto
+  }
 
-.card_nav {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  padding: 16px;
-  text-align: center;
-  background-color: #e49e9e;
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
+  /* Remove extra left and right margins, due to padding */
+  .row {
+    width: 100%;
+    text-align: center;
+    padding: 7px;
+  }
 
-.text_highlight{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 14px;
-  background-color: rgb(247, 194, 194);
-  text-align: justify;
-}
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
-.text_reg{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 12px;
-}
-
-.text_foot{
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 10px;
-  color:rgb(157, 158, 158);
-  text-align: justify;
-}
-
-.info {
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
-  padding: 2px;
-  text-align: left;
-  background-color: #f8f9fc;
-}
-
-
-/* button group css */
-.btn-group button {
-  background-color: #04AA6D; /* Green background */
-  border: 1px solid green; /* Green border */
-  color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  width: 50%; /* Set a width if needed */
-  display: block; /* Make the buttons appear below each other */
-}
-
-.btn-group button:not(:last-child) {
-  border-bottom: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-  background-color: #3e8e41;
-}
-
-
-.cards {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-}
-
-/* CRAZY CARDS */ 
-
-
-/* buttons in intro */
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.card {
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
-  margin: 10px;
-  border-radius: 25px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-h4{
-  margin-top: 15px !important;
-  margin-bottom: 15px;
-  font-size: inherit !important;
-}
-
-a:hover{
-  text-decoration: none;
-}
-
-#myInput {
-  background-image: url('../assets/css/searchicon.png');
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 91.6%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-.sticky {
-  position: fixed;
-  top: 2px;
-  width: 50% !important;
-}
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-/* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
-  </style>
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
 
 
 
-  <!-- Begin Jekyll SEO tag v2.7.1 -->
+  .card_av {
+    margin: 18px;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #bdfcd5;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .card_nav {
+    margin: 18px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 15px 1px rgb(170, 169, 170);
+    padding: 12px;
+    text-align: center;
+    border: 3px solid #e49e9e;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .resource-info {
+    width: 44%;
+    text-align: left;
+  }
+
+  .resource-title {
+    font-weight: 600;
+    margin-right: 8px;
+  }
+
+  .resource-time {
+    font-family: monospace;
+    font-size: 14px;
+    border-top: 1px solid lightgray;
+    padding: 10px;
+    text-align: right;
+  }
+
+  .card-verified {
+    background-color: lightgreen;
+    border-radius: 50%;
+    padding: 8px;
+    margin-left: 8px;
+  }
+
+  .card-verified img {
+    width: 17px;
+    height: 17px;
+  }
+
+  .text_highlight{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    background-color: rgb(247, 194, 194);
+    text-align: justify;
+  }
+
+  .text_reg{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .text_foot{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    color:rgb(157, 158, 158);
+    text-align: justify;
+  }
+
+  .info {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    padding: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 10px;
+  }
+
+
+  /* button group css */
+  .btn-group button {
+    background-color: #04AA6D; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+  }
+
+  .btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+  }
+
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }
+
+
+  .cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  /* CRAZY CARDS */
+
+
+  /* buttons in intro */
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .card {
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin: 10px;
+    border-radius: 25px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  h4{
+    margin-top: 15px !important;
+    margin-bottom: 15px;
+    font-size: inherit !important;
+  }
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  #myInput {
+    background-image: url('../assets/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 91.6%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  .sticky {
+    position: fixed;
+    top: 2px;
+    width: 50% !important;
+  }
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  /* <link rel="stylesheet" href="/assets/css/cardstyle.css"> */
+</style>
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Volunteer | WBCAN</title>
 <meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Volunteer" />
@@ -415,6 +490,7 @@ a:hover{
 <script type="application/ld+json">
 {"headline":"Volunteer","url":"http://www.wbcan.org/volunteer/Paschim-Medinipur","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://www.wbcan.org/wecan-covidhelp/assets/wbcan-logo.png"},"name":"WBCAN Copyright © 2021"},"author":{"@type":"Person","name":"WBCAN Copyright © 2021"},"@type":"WebPage","description":"Connecting verified resource information with patients in need.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
+
 </head>
 <body><header class="site-header" style="background-color: #eeeeee;">
 
@@ -431,9 +507,7 @@ a:hover{
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/tools/">
-               Helplines
-            </a><a class="page-link" href="/faq/">
+        <div class="trigger"><a class="page-link" href="/faq/">
                Covid-19 FAQ
             </a><a class="page-link" href="/contribute/">
                Volunteer
@@ -455,676 +529,743 @@ a:hover{
 <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search.." />
 
  <br /><br />
-<div class="text_foot"><h4> Data updated at: 25, May 2021 21:45. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
+<div class="text_foot"><h4> Data updated at: 25, May 2021 21:55. DISCLAIMER: All of these resources provided on an “as and when basis” and “as in” based on a fact check done by volunteers who are dedicated to help individuals and families in such challenging times. By using these resources, you are agreeing that WBCAN, however, do not accept any responsibility or liability for the accuracy, content, completeness, legality or reliability of the information contained in any of these. </h4> </div></div>
 <div class="row">
 	<div class="column">
-<div class="card_av">
-<h3>Subhajit Jana</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6295802025">6295802025</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Birsha Soren</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9775267557">9775267557</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sandip Roy</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9733702126">9733702126</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Archisman Das</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8670118484">8670118484</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Manik Bhat</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9679306490">9679306490</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Aritra Saha</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7063484110">7063484110</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Md Hossain Khan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8016165786">8016165786</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Tushar Paira</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8348472887">8348472887</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Nanigopal Das</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9732753615">9732753615</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Amaresh Bera</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9775762708">9775762708</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Biswajit Panda</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9735643268">9735643268</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Rajib Roy</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9775953812">9775953812</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Tapas Sinha</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9434025152">9434025152</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Soham Dash</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8145957121">8145957121</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Aniket Sengupta</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Old Malancha</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7076354078">7076354078</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sourav Das</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Malancha</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8670656329">8670656329</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sourav Sarkar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Malancha</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8653171015">8653171015</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Subhradeep Sinha</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Malancha</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7364964568">7364964568</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Syed Saddam Ali</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908053208">7908053208</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Samapan Kuila</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8768717137">8768717137</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Soumya Bhadra</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Inda Vidyasagar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8372875378">8372875378</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Debmallya Dutta</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Kharida</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8170842930">8170842930</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Akash Patra</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Rajpura</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9153006396">9153006396</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Swaraj Mridha</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Mathurakati</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7501776486">7501776486</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Arijeet Majumder</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Malancha</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8250694592">8250694592</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ansu Nag</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9153241481">9153241481</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Soroshi Prasad Goswami</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9732761399">9732761399</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Suman</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Daspur 2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8116675487">8116675487</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ashwini</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Narayangar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9933452767">9933452767</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shubhadeep</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Debra</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9932909290">9932909290</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Braj</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Chandrakona 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9932833410">9932833410</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sudeep</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Chandrakona 2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9679370304">9679370304</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Dwaipayan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Ghatal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7076252732">7076252732</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Soubhik</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Keshpur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9547579325">9547579325</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Nasir</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Chandrakona 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7076995423">7076995423</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shubhojit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6295802025">6295802025</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shubho</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Ghatal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8317873550">8317873550</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shubha</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Shalboni</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8637515109">8637515109</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Partha</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Pingla</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8768040730">8768040730</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Durgaprasad</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Daspur 2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8145303532">8145303532</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Debayan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Keshiari</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7407698196">7407698196</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Aqib</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Keshiari</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9083643614">9083643614</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Rahat</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan 2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9804161180">9804161180</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sahil</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Pingla</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6296080490">6296080490</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Ranit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan 2</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7797340540">7797340540</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Milan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Ghatal</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9933571695">9933571695</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Archisman</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Keshiari</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908061434">7908061434</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Soumen</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Daspur 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7365996901">7365996901</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Amit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Debra</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7602492273">7602492273</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Sukumar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Chandrakona Road</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9749501875">9749501875</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Bishwajit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Sabang</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7001994861">7001994861</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Shukdev</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Daspur 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9609710020">9609710020</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Anway</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Debra</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8158939534">8158939534</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Miraj</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Narayangar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9064349254">9064349254</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Archisman</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Dantan 1</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8670118484">8670118484</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Rabi</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Sabang</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6294027695">6294027695</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Santu</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Pingla</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7478785171">7478785171</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Habibul</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Sabang</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9647310975">9647310975</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Prasenjit</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Kendriya</th></tr>
-<tr><th>Contact number</th><th><a href="tel:9800586516">9800586516</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Subhro</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Medinipur Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6295954760">6295954760</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Joe</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8348660610">8348660610</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Srijan</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Medinipur Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8001891454">8001891454</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Snehashis</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Medinipur Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7365981552">7365981552</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Dibakar</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Medinipur Sadar</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8944078459">8944078459</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Abhishek</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Medinipur Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:8945822833">8945822833</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Suprabhat</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Medinipur Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:7908072292">7908072292</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
-<div class="card_av">
-<h3>Aranya</h3>
-
-<div class="info"><table>
-<tr><th>District</th><th>Paschim Medinipur</th></tr>
-<tr><th>Location</th><th>Medinipur Town</th></tr>
-<tr><th>Contact number</th><th><a href="tel:6296750568">6296750568</a></th></tr>
-<tr><th>Verification  Status</th><th>Verified</th></tr>
-<tr><th>Availability Status</th><th>Available</th></tr>
-</table></div></div>
+<div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Subhajit Jana</h3>
+
+<span id="vgdqw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Subhajit Jana, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 6295802025, Verification time:  Info Missing, ', 'vgdqw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6295802025">6295802025</a></div>
 </div>
- </div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Birsha Soren</h3>
+
+<span id="necwg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Birsha Soren, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 9775267557, Verification time:  Info Missing, ', 'necwg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9775267557">9775267557</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sandip Roy</h3>
+
+<span id="bacvs" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sandip Roy, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 9733702126, Verification time:  Info Missing, ', 'bacvs');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9733702126">9733702126</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Archisman Das</h3>
+
+<span id="zmxqr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Archisman Das, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 8670118484, Verification time:  Info Missing, ', 'zmxqr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8670118484">8670118484</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Manik Bhat</h3>
+
+<span id="bhaid" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Manik Bhat, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 9679306490, Verification time:  Info Missing, ', 'bhaid');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9679306490">9679306490</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Aritra Saha</h3>
+
+<span id="bsmak" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Aritra Saha, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 7063484110, Verification time:  Info Missing, ', 'bsmak');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7063484110">7063484110</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Md Hossain Khan</h3>
+
+<span id="hwaad" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Md Hossain Khan, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 8016165786, Verification time:  Info Missing, ', 'hwaad');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8016165786">8016165786</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Tushar Paira</h3>
+
+<span id="yvjea" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Tushar Paira, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 8348472887, Verification time:  Info Missing, ', 'yvjea');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8348472887">8348472887</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Nanigopal Das</h3>
+
+<span id="ltjvv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Nanigopal Das, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 9732753615, Verification time:  Info Missing, ', 'ltjvv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9732753615">9732753615</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Amaresh Bera</h3>
+
+<span id="dwxxp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Amaresh Bera, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 9775762708, Verification time:  Info Missing, ', 'dwxxp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9775762708">9775762708</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Biswajit Panda</h3>
+
+<span id="shzjo" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Biswajit Panda, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 9735643268, Verification time:  Info Missing, ', 'shzjo');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9735643268">9735643268</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Rajib Roy</h3>
+
+<span id="hxgis" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Rajib Roy, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 9775953812, Verification time:  Info Missing, ', 'hxgis');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9775953812">9775953812</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Tapas Sinha</h3>
+
+<span id="awsba" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Tapas Sinha, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 9434025152, Verification time:  Info Missing, ', 'awsba');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9434025152">9434025152</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Soham Dash</h3>
+
+<span id="admqx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Soham Dash, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan, Availability Status: Available, Contact number: 8145957121, Verification time:  Info Missing, ', 'admqx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8145957121">8145957121</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Aniket Sengupta</h3>
+
+<span id="ethhm" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Aniket Sengupta, District: Paschim Medinipur, Verification  Status: Verified, Location: Old Malancha, Availability Status: Available, Contact number: 7076354078, Verification time:  Info Missing, ', 'ethhm');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Old Malancha</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7076354078">7076354078</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sourav Das</h3>
+
+<span id="cnzgi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sourav Das, District: Paschim Medinipur, Verification  Status: Verified, Location: Malancha, Availability Status: Available, Contact number: 8670656329, Verification time:  Info Missing, ', 'cnzgi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Malancha</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8670656329">8670656329</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sourav Sarkar</h3>
+
+<span id="vhnqj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sourav Sarkar, District: Paschim Medinipur, Verification  Status: Verified, Location: Malancha, Availability Status: Available, Contact number: 8653171015, Verification time:  Info Missing, ', 'vhnqj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Malancha</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8653171015">8653171015</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Subhradeep Sinha</h3>
+
+<span id="bctdx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Subhradeep Sinha, District: Paschim Medinipur, Verification  Status: Verified, Location: Malancha, Availability Status: Available, Contact number: 7364964568, Verification time:  Info Missing, ', 'bctdx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Malancha</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7364964568">7364964568</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Syed Saddam Ali</h3>
+
+<span id="ncibd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Syed Saddam Ali, District: Paschim Medinipur, Verification  Status: Verified, Location:  Info Missing, Availability Status: Available, Contact number: 7908053208, Verification time:  Info Missing, ', 'ncibd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908053208">7908053208</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Samapan Kuila</h3>
+
+<span id="xyaxo" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Samapan Kuila, District: Paschim Medinipur, Verification  Status: Verified, Location:  Info Missing, Availability Status: Available, Contact number: 8768717137, Verification time:  Info Missing, ', 'xyaxo');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8768717137">8768717137</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Soumya Bhadra</h3>
+
+<span id="iqrjx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Soumya Bhadra, District: Paschim Medinipur, Verification  Status: Verified, Location: Inda Vidyasagar, Availability Status: Available, Contact number: 8372875378, Verification time:  Info Missing, ', 'iqrjx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Inda Vidyasagar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8372875378">8372875378</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Debmallya Dutta</h3>
+
+<span id="jldjh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Debmallya Dutta, District: Paschim Medinipur, Verification  Status: Verified, Location: Kharida, Availability Status: Available, Contact number: 8170842930, Verification time:  Info Missing, ', 'jldjh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kharida</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8170842930">8170842930</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Akash Patra</h3>
+
+<span id="tiwfe" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Akash Patra, District: Paschim Medinipur, Verification  Status: Verified, Location: Rajpura, Availability Status: Available, Contact number: 9153006396, Verification time:  Info Missing, ', 'tiwfe');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Rajpura</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9153006396">9153006396</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Swaraj Mridha</h3>
+
+<span id="hxaqp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Swaraj Mridha, District: Paschim Medinipur, Verification  Status: Verified, Location: Mathurakati, Availability Status: Available, Contact number: 7501776486, Verification time:  Info Missing, ', 'hxaqp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Mathurakati</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7501776486">7501776486</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Arijeet Majumder</h3>
+
+<span id="hpqsi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Arijeet Majumder, District: Paschim Medinipur, Verification  Status: Verified, Location: Malancha, Availability Status: Available, Contact number: 8250694592, Verification time:  Info Missing, ', 'hpqsi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Malancha</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8250694592">8250694592</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ansu Nag</h3>
+
+<span id="cbatj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ansu Nag, District: Paschim Medinipur, Verification  Status: Verified, Location:  Info Missing, Availability Status: Available, Contact number: 9153241481, Verification time:  Info Missing, ', 'cbatj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9153241481">9153241481</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Soroshi Prasad Goswami</h3>
+
+<span id="idmqe" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Soroshi Prasad Goswami, District: Paschim Medinipur, Verification  Status: Verified, Location:  Info Missing, Availability Status: Available, Contact number: 9732761399, Verification time:  Info Missing, ', 'idmqe');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9732761399">9732761399</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Suman</h3>
+
+<span id="tbzqz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Suman, District: Paschim Medinipur, Verification  Status: Verified, Location: Daspur 2, Availability Status: Available, Contact number: 8116675487, Verification time:  Info Missing, ', 'tbzqz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Daspur 2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8116675487">8116675487</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ashwini</h3>
+
+<span id="mjegv" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ashwini, District: Paschim Medinipur, Verification  Status: Verified, Location: Narayangar, Availability Status: Available, Contact number: 9933452767, Verification time:  Info Missing, ', 'mjegv');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Narayangar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9933452767">9933452767</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shubhadeep</h3>
+
+<span id="kxudg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shubhadeep, District: Paschim Medinipur, Verification  Status: Verified, Location: Debra, Availability Status: Available, Contact number: 9932909290, Verification time:  Info Missing, ', 'kxudg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Debra</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9932909290">9932909290</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Braj</h3>
+
+<span id="mgoly" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Braj, District: Paschim Medinipur, Verification  Status: Verified, Location: Chandrakona 1, Availability Status: Available, Contact number: 9932833410, Verification time:  Info Missing, ', 'mgoly');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Chandrakona 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9932833410">9932833410</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sudeep</h3>
+
+<span id="huzyd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sudeep, District: Paschim Medinipur, Verification  Status: Verified, Location: Chandrakona 2, Availability Status: Available, Contact number: 9679370304, Verification time:  Info Missing, ', 'huzyd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Chandrakona 2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9679370304">9679370304</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Dwaipayan</h3>
+
+<span id="fyelp" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Dwaipayan, District: Paschim Medinipur, Verification  Status: Verified, Location: Ghatal, Availability Status: Available, Contact number: 7076252732, Verification time:  Info Missing, ', 'fyelp');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ghatal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7076252732">7076252732</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Soubhik</h3>
+
+<span id="ivlvj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Soubhik, District: Paschim Medinipur, Verification  Status: Verified, Location: Keshpur, Availability Status: Available, Contact number: 9547579325, Verification time:  Info Missing, ', 'ivlvj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Keshpur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9547579325">9547579325</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Nasir</h3>
+
+<span id="fxwtc" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Nasir, District: Paschim Medinipur, Verification  Status: Verified, Location: Chandrakona 1, Availability Status: Available, Contact number: 7076995423, Verification time:  Info Missing, ', 'fxwtc');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Chandrakona 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7076995423">7076995423</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shubhojit</h3>
+
+<span id="sofak" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shubhojit, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan 1, Availability Status: Available, Contact number: 6295802025, Verification time:  Info Missing, ', 'sofak');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6295802025">6295802025</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shubho</h3>
+
+<span id="mqgfr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shubho, District: Paschim Medinipur, Verification  Status: Verified, Location: Ghatal, Availability Status: Available, Contact number: 8317873550, Verification time:  Info Missing, ', 'mqgfr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ghatal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8317873550">8317873550</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shubha</h3>
+
+<span id="ftuav" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shubha, District: Paschim Medinipur, Verification  Status: Verified, Location: Shalboni, Availability Status: Available, Contact number: 8637515109, Verification time:  Info Missing, ', 'ftuav');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Shalboni</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8637515109">8637515109</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Partha</h3>
+
+<span id="nnwdh" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Partha, District: Paschim Medinipur, Verification  Status: Verified, Location: Pingla, Availability Status: Available, Contact number: 8768040730, Verification time:  Info Missing, ', 'nnwdh');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Pingla</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8768040730">8768040730</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Durgaprasad</h3>
+
+<span id="zldct" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Durgaprasad, District: Paschim Medinipur, Verification  Status: Verified, Location: Daspur 2, Availability Status: Available, Contact number: 8145303532, Verification time:  Info Missing, ', 'zldct');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Daspur 2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8145303532">8145303532</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Debayan</h3>
+
+<span id="qzfrs" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Debayan, District: Paschim Medinipur, Verification  Status: Verified, Location: Keshiari, Availability Status: Available, Contact number: 7407698196, Verification time:  Info Missing, ', 'qzfrs');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Keshiari</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7407698196">7407698196</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Aqib</h3>
+
+<span id="rxfro" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Aqib, District: Paschim Medinipur, Verification  Status: Verified, Location: Keshiari, Availability Status: Available, Contact number: 9083643614, Verification time:  Info Missing, ', 'rxfro');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Keshiari</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9083643614">9083643614</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Rahat</h3>
+
+<span id="wymwg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Rahat, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan 2, Availability Status: Available, Contact number: 9804161180, Verification time:  Info Missing, ', 'wymwg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan 2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9804161180">9804161180</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sahil</h3>
+
+<span id="kutwl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sahil, District: Paschim Medinipur, Verification  Status: Verified, Location: Pingla, Availability Status: Available, Contact number: 6296080490, Verification time:  Info Missing, ', 'kutwl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Pingla</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6296080490">6296080490</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Ranit</h3>
+
+<span id="zepoo" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Ranit, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan 2, Availability Status: Available, Contact number: 7797340540, Verification time:  Info Missing, ', 'zepoo');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan 2</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7797340540">7797340540</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Milan</h3>
+
+<span id="kwlqx" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Milan, District: Paschim Medinipur, Verification  Status: Verified, Location: Ghatal, Availability Status: Available, Contact number: 9933571695, Verification time:  Info Missing, ', 'kwlqx');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Ghatal</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9933571695">9933571695</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Archisman</h3>
+
+<span id="wmvkr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Archisman, District: Paschim Medinipur, Verification  Status: Verified, Location: Keshiari, Availability Status: Available, Contact number: 7908061434, Verification time:  Info Missing, ', 'wmvkr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Keshiari</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908061434">7908061434</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Soumen</h3>
+
+<span id="ccwxi" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Soumen, District: Paschim Medinipur, Verification  Status: Verified, Location: Daspur 1, Availability Status: Available, Contact number: 7365996901, Verification time:  Info Missing, ', 'ccwxi');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Daspur 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7365996901">7365996901</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Amit</h3>
+
+<span id="zgvku" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Amit, District: Paschim Medinipur, Verification  Status: Verified, Location: Debra, Availability Status: Available, Contact number: 7602492273, Verification time:  Info Missing, ', 'zgvku');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Debra</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7602492273">7602492273</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Sukumar</h3>
+
+<span id="txozz" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Sukumar, District: Paschim Medinipur, Verification  Status: Verified, Location: Chandrakona road, Availability Status: Available, Contact number: 9749501875, Verification time:  Info Missing, ', 'txozz');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Chandrakona Road</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9749501875">9749501875</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Bishwajit</h3>
+
+<span id="tcwex" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Bishwajit, District: Paschim Medinipur, Verification  Status: Verified, Location: Sabang, Availability Status: Available, Contact number: 7001994861, Verification time:  Info Missing, ', 'tcwex');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Sabang</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7001994861">7001994861</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Shukdev</h3>
+
+<span id="hdjct" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Shukdev, District: Paschim Medinipur, Verification  Status: Verified, Location: Daspur 1, Availability Status: Available, Contact number: 9609710020, Verification time:  Info Missing, ', 'hdjct');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Daspur 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9609710020">9609710020</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Anway</h3>
+
+<span id="pktpo" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Anway, District: Paschim Medinipur, Verification  Status: Verified, Location: Debra, Availability Status: Available, Contact number: 8158939534, Verification time:  Info Missing, ', 'pktpo');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Debra</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8158939534">8158939534</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Miraj</h3>
+
+<span id="aqvsa" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Miraj, District: Paschim Medinipur, Verification  Status: Verified, Location: Narayangar, Availability Status: Available, Contact number: 9064349254, Verification time:  Info Missing, ', 'aqvsa');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Narayangar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9064349254">9064349254</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Archisman</h3>
+
+<span id="hohzn" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Archisman, District: Paschim Medinipur, Verification  Status: Verified, Location: Dantan 1, Availability Status: Available, Contact number: 8670118484, Verification time:  Info Missing, ', 'hohzn');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Dantan 1</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8670118484">8670118484</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Rabi</h3>
+
+<span id="pzmqj" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Rabi, District: Paschim Medinipur, Verification  Status: Verified, Location: Sabang, Availability Status: Available, Contact number: 6294027695, Verification time:  Info Missing, ', 'pzmqj');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Sabang</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6294027695">6294027695</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Santu</h3>
+
+<span id="outrg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Santu, District: Paschim Medinipur, Verification  Status: Verified, Location: Pingla, Availability Status: Available, Contact number: 7478785171, Verification time:  Info Missing, ', 'outrg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Pingla</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7478785171">7478785171</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Habibul</h3>
+
+<span id="jcjyr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Habibul, District: Paschim Medinipur, Verification  Status: Verified, Location: Sabang, Availability Status: Available, Contact number: 9647310975, Verification time:  Info Missing, ', 'jcjyr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Sabang</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9647310975">9647310975</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Prasenjit</h3>
+
+<span id="qxque" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Prasenjit, District: Paschim Medinipur, Verification  Status: Verified, Location: Kendriya, Availability Status: Available, Contact number: 9800586516, Verification time:  Info Missing, ', 'qxque');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Kendriya</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:9800586516">9800586516</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Subhro</h3>
+
+<span id="nkbrm" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Subhro, District: Paschim Medinipur, Verification  Status: Verified, Location: Medinipur Town, Availability Status: Available, Contact number: 6295954760, Verification time:  Info Missing, ', 'nkbrm');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Medinipur Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6295954760">6295954760</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Joe</h3>
+
+<span id="wzrlw" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Joe, District: Paschim Medinipur, Verification  Status: Verified, Location:  Info Missing, Availability Status: Available, Contact number: 8348660610, Verification time:  Info Missing, ', 'wzrlw');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8348660610">8348660610</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Srijan</h3>
+
+<span id="wiyxg" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Srijan, District: Paschim Medinipur, Verification  Status: Verified, Location: Medinipur Town, Availability Status: Available, Contact number: 8001891454, Verification time:  Info Missing, ', 'wiyxg');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Medinipur Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8001891454">8001891454</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Snehashis</h3>
+
+<span id="ljgfr" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Snehashis, District: Paschim Medinipur, Verification  Status: Verified, Location: Medinipur Town, Availability Status: Available, Contact number: 7365981552, Verification time:  Info Missing, ', 'ljgfr');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Medinipur Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7365981552">7365981552</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Dibakar</h3>
+
+<span id="wpczl" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Dibakar, District: Paschim Medinipur, Verification  Status: Verified, Location: Medinipur Sadar, Availability Status: Available, Contact number: 8944078459, Verification time:  Info Missing, ', 'wpczl');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Medinipur Sadar</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8944078459">8944078459</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Abhishek</h3>
+
+<span id="zmuwd" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Abhishek, District: Paschim Medinipur, Verification  Status: Verified, Location: Medinipur Town, Availability Status: Available, Contact number: 8945822833, Verification time:  Info Missing, ', 'zmuwd');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Medinipur Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:8945822833">8945822833</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Suprabhat</h3>
+
+<span id="ryjlf" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Suprabhat, District: Paschim Medinipur, Verification  Status: Verified, Location: Medinipur Town, Availability Status: Available, Contact number: 7908072292, Verification time:  Info Missing, ', 'ryjlf');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Medinipur Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:7908072292">7908072292</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div><div class="card_av"><div class="head-and-copy">
+<h3 class="card-head">Aranya</h3>
+
+<span id="grjwn" onclick="(function(){ return copyToClipboard('Name of the Organisation/Contact Person: Aranya, District: Paschim Medinipur, Verification  Status: Verified, Location: Medinipur Town, Availability Status: Available, Contact number: 6296750568, Verification time:  Info Missing, ', 'grjwn');})()" class="copy-to-clip-board"><img src="https://pics.freeicons.io/uploads/icons/png/4498062351543238871-512.png" alt="copy" /></span></div><div class="info">
+<p class="resource-info"><span class="resource-title">District: </span>Paschim Medinipur</p>
+<p class="resource-info"><span class="resource-title">Location: </span>Medinipur Town</p>
+<p class="resource-info"><span class="resource-title">Availability Status: </span>Available</p>
+<div class="resource-info"><span class="resource-title">Contact: </span>
+<div><a href="tel:6296750568">6296750568</a></div>
+</div>
+</div>
+<div class="resource-time"> Info Missing<span class="card-verified"><img src="https://image.flaticon.com/icons/png/512/271/271257.png" alt="verified" /></span></div></div></div>
+</div>
 
   </div>
 
